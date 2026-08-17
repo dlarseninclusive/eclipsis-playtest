@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eclipsis: The Shattered Expanse</title>
+<meta name="description" content="An open-world survival sim in a post-collapse waste where nineteen factions live their own lives, the economy runs without you, and the sun goes out every fourteenth day. Pre-alpha playtest builds for Windows and Linux.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#0a0908;
+    --bg-2:#100e0b;
+    --panel:#15120e;
+    --panel-2:#1b1712;
+    --rule:#2b241b;
+    --rule-soft:#221d16;
+    --ink:#ded6c7;
+    --ink-strong:#f2ece0;
+    --ink-dim:#9a8f7c;
+    --ink-faint:#71695a;
+    --corona:#f0b24a;
+    --corona-soft:#ffd489;
+    --rust:#a4552e;
+    --maxw:1100px;
+    --textw:74ch;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:var(--corona-soft);text-decoration:none;border-bottom:1px solid rgba(240,178,74,.35)}
+  a:hover{border-bottom-color:var(--corona)}
+  img{max-width:100%;height:auto;display:block}
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;color:var(--ink-strong)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .col{max-width:var(--textw)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--rule);
+    background:
+      radial-gradient(120% 90% at 50% 118%, #1d1710 0%, #120f0b 40%, var(--bg) 72%);
+  }
+  .masthead .horizon{
+    position:absolute;left:-10%;right:-10%;bottom:0;height:38%;
+    background:linear-gradient(180deg, rgba(120,86,44,.00) 0%, rgba(126,90,46,.16) 55%, rgba(20,16,12,.9) 100%);
+    pointer-events:none;
+  }
+  .eclipse{
+    position:absolute;
+    left:50%;top:44px;
+    width:230px;height:230px;
+    margin-left:-115px;
+    border-radius:50%;
+    background:#070605;
+    box-shadow:
+      0 0 0 2px rgba(255,212,137,.85),
+      0 0 26px 6px rgba(240,178,74,.55),
+      0 0 90px 34px rgba(240,178,74,.18),
+      0 0 190px 90px rgba(164,85,46,.10);
+    pointer-events:none;
+  }
+  .eclipse::after{
+    content:"";position:absolute;inset:-160px;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(255,212,137,.14) 0%, rgba(240,178,74,.05) 38%, rgba(0,0,0,0) 62%);
+  }
+  .masthead-inner{position:relative;padding:118px 20px 54px;text-align:center;max-width:var(--maxw);margin:0 auto}
+  .title{
+    margin:0;
+    font-size:clamp(42px,10.5vw,104px);
+    line-height:.98;
+    letter-spacing:.10em;
+    text-indent:.10em;
+    color:#f6f0e4;
+    text-shadow:0 2px 0 rgba(0,0,0,.6), 0 0 44px rgba(240,178,74,.22);
+  }
+  .subtitle{
+    margin:16px 0 0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(13px,2.6vw,20px);
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--corona-soft);
+    text-transform:uppercase;
+  }
+  .rule-orn{
+    width:min(420px,70%);margin:26px auto 0;height:1px;
+    background:linear-gradient(90deg,rgba(240,178,74,0) 0%,rgba(240,178,74,.5) 50%,rgba(240,178,74,0) 100%);
+  }
+  .hook{
+    margin:22px auto 0;max-width:60ch;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(18px,3.2vw,25px);
+    line-height:1.45;color:var(--ink);
+  }
+  .kicker{
+    margin:30px 0 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0}
+  section + section{border-top:1px solid var(--rule-soft)}
+  h2{
+    font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;
+  }
+  h3{font-size:20px;margin:0 0 8px}
+  p{margin:0 0 18px}
+  .lede{font-size:19px;color:var(--ink-strong)}
+
+  /* ---------- gallery ---------- */
+  .shot-frame{
+    background:#000;border:1px solid var(--rule);
+    position:relative;line-height:0;
+  }
+  .shot-frame img{width:100%}
+  .navbtn{
+    position:absolute;top:0;bottom:0;width:16%;min-width:52px;
+    border:0;background:transparent;cursor:pointer;color:#fff;
+    font-size:30px;line-height:1;opacity:.0;transition:opacity .15s ease;
+    text-shadow:0 0 10px #000;
+  }
+  .shot-frame:hover .navbtn{opacity:.55}
+  .navbtn:hover{opacity:1 !important;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.next{right:0;background:none}
+  .navbtn.next:hover{background:linear-gradient(270deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.prev{left:0}
+  .caption{
+    margin:14px 0 0;color:var(--ink-dim);font-size:15px;line-height:1.55;
+    display:flex;gap:14px;align-items:baseline;
+  }
+  .caption .idx{color:var(--ink-faint);font-variant-numeric:tabular-nums;flex:0 0 auto;font-size:13px;letter-spacing:.08em}
+  .thumbs{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px;
+  }
+  .thumbs button{
+    padding:0;border:1px solid var(--rule);background:#000;cursor:pointer;line-height:0;
+    opacity:.45;transition:opacity .15s ease,border-color .15s ease;
+  }
+  .thumbs button:hover{opacity:.8}
+  .thumbs button[aria-current="true"]{opacity:1;border-color:var(--corona)}
+  .thumbs img{width:100%}
+
+  /* ---------- download ---------- */
+  .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px}
+  .btn{
+    display:block;text-decoration:none;border:1px solid var(--rule);
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    padding:20px 22px;color:var(--ink-strong);transition:border-color .15s ease,background .15s ease;
+  }
+  .btn:hover{border-color:var(--corona);background:linear-gradient(180deg,#241d14,#191510)}
+  .btn .os{display:block;font-family:Georgia,serif;font-size:23px;margin-bottom:3px;color:var(--corona-soft)}
+  .btn .meta{display:block;font-size:13px;color:var(--ink-dim);letter-spacing:.04em}
+  .version{
+    font-size:14px;color:var(--ink-dim);margin:0 0 26px;letter-spacing:.04em;
+    padding-bottom:22px;border-bottom:1px solid var(--rule-soft);
+  }
+  .version code{color:var(--corona-soft)}
+  .howto{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .howto h3{font-size:17px;color:var(--corona-soft);font-family:inherit;letter-spacing:.02em}
+  .howto ol{margin:0;padding-left:20px}
+  .howto li{margin-bottom:10px;font-size:16px;color:var(--ink)}
+  code,kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+    background:#1c1811;border:1px solid var(--rule-soft);padding:1px 5px;color:#e6dcc8;
+    word-break:break-word;
+  }
+  .note{
+    margin-top:30px;border-left:2px solid var(--rust);padding:2px 0 2px 18px;
+    color:var(--ink-dim);font-size:15px;
+  }
+  .note strong{color:var(--ink)}
+  .reqs{margin-top:26px;font-size:15px;color:var(--ink-dim)}
+  .reqs dt{color:var(--ink);float:left;clear:left;width:9.5em;font-size:14px;letter-spacing:.04em}
+  .reqs dd{margin:0 0 6px 9.5em}
+
+  /* ---------- features ---------- */
+  ul.features{list-style:none;margin:0;padding:0;columns:2;column-gap:44px}
+  ul.features li{
+    break-inside:avoid;margin:0 0 16px;padding-left:20px;position:relative;font-size:16px;line-height:1.55;
+  }
+  ul.features li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+
+  /* ---------- disclaimer ---------- */
+  .warnbox{
+    border:1px solid #3b2c18;background:#16120c;padding:26px 28px;
+  }
+  .warnbox h2{margin-top:0}
+  .warnbox p:last-child{margin-bottom:0}
+
+  footer{
+    border-top:1px solid var(--rule);padding:34px 0 60px;color:var(--ink-faint);font-size:14px;
+  }
+  footer p{margin:0 0 6px}
+
+  @media (max-width:760px){
+    body{font-size:16px}
+    .masthead-inner{padding:96px 18px 42px}
+    .eclipse{width:150px;height:150px;margin-left:-75px;top:30px}
+    ul.features{columns:1}
+    .dl-grid,.howto{grid-template-columns:1fr}
+    .thumbs{grid-template-columns:repeat(4,1fr)}
+    .navbtn{opacity:.5}
+    .reqs dt{float:none;width:auto}
+    .reqs dd{margin-left:0;margin-bottom:12px}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="eclipse" aria-hidden="true"></div>
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="masthead-inner">
+    <h1 class="title">ECLIPSIS</h1>
+    <p class="subtitle">The Shattered Expanse</p>
+    <div class="rule-orn"></div>
+    <p class="hook">Survive a wasteland that keeps living whether you are in it or not.</p>
+    <p class="kicker">Pre-alpha playtest &middot; Windows &amp; Linux &middot; Single-player</p>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap" aria-labelledby="shots-h">
+  <h2 id="shots-h">Screenshots</h2>
+  <div class="shot-frame">
+    <img id="shot" src="screenshots/01.png" width="1920" height="1080"
+         alt="Gameplay screenshot from Eclipsis: The Shattered Expanse">
+    <button class="navbtn prev" type="button" id="prev" aria-label="Previous screenshot">&#8249;</button>
+    <button class="navbtn next" type="button" id="next" aria-label="Next screenshot">&#8250;</button>
+  </div>
+  <p class="caption"><span class="idx" id="shot-idx">01 / 07</span><span id="shot-cap">Rust Haven at midday — a Rust Walker town inside its hexagonal curtain wall, two dozen townsfolk on the streets, and a door you can walk through.</span></p>
+  <div class="thumbs" id="thumbs" role="tablist" aria-label="Choose a screenshot"></div>
+</section>
+
+<section class="wrap" aria-labelledby="about-h">
+  <h2 id="about-h">About the game</h2>
+  <div class="col">
+    <p class="lede">Eclipsis: The Shattered Expanse is an open-world survival sim in the Kenshi lane. Nineteen factions hold their own cities, feed their own people and go to war without asking you. You start as nobody in particular, and the world keeps a record of what you did to it.</p>
+
+    <h3>The sun goes out on a schedule</h3>
+    <p>Nothing exploded here. The old world was switched off. The civilisation everyone calls the Architects did not fall — they stopped answering, and left their roads running true, their towers humming on clear nights and their machines still executing the last instruction they were given. Every fourteenth day at noon the sun goes black for a quarter of a day. The Cog Preachers call it their holiest hour. Something in the Machine Nexus wakes up for it.</p>
+
+    <h3>A world that does not wait</h3>
+    <p>Enemy factions clash on sight whether or not you are on the map. Caravans haul real cargo to towns that really need it, and towns eat, so a bad season on the breadbasket is a famine three regions away and a price you can see move. Cities pay their guards out of a treasury, and a bankrupt one loses them. Wars start over something, cost something, and end. Leave the game running and it will still have news for you at dawn.</p>
+
+    <h3>What you actually do</h3>
+    <p>Scavenge, farm, cook, fish, mine and haggle. Recruit a squad, arm it, set its stance and take direct control of any member. Climb seven ages of technology — stone to autonomous — with the bench you built and the first thing you made at it. Run contraband past a gate frisk and fence it in a back room. Take a bounty, or become one. Bury the companions you lose under a cut headstone with your name on it, or dig up somebody else's dead and find out that grave goods are the one thing no lawful counter in the Expanse will touch.</p>
+
+    <h3>Losing is a place the game continues from</h3>
+    <p>A fight has stances, blocks, dodges and charged heavies, and it can go badly in ways that are not a reload. Limbs are lost and replaced with prosthetics. Go down in the wrong territory and you wake in a cell, in a work gang, in a slaver's camp, or being carried off by the Hollowed to whoever they answer to — and getting out is the next thing you do.</p>
+
+    <h3>Every system is wired to every other one</h3>
+    <p>There is no separate quest layer sitting on top of a diorama. A cull contract on the bar's work board exists because a den three days away has been growing while nobody burned it. A rumour in that bar was minted from something that actually happened to somebody. The Codex fills in as you live, the History tab writes the world's own chronicle day by day, and a marker stands on the ground where the thing it names took place.</p>
+
+    <h3>Drawn by code</h3>
+    <p>Every pixel in the game is drawn at runtime by the code that runs it — no sprite sheets, no tilesets. That is why a town can be a hexagon of brick one seed and an octagon the next, why an L-shaped building is solid where the wing is and walkable in the notch, and why the whole world can be re-dressed by a mod. The grade is deliberately faded: the only vivid things in the Expanse are blood, fire, an alert, the arcane, and the corona.</p>
+
+    <h3>Built to be rebuilt</h3>
+    <p>Factions, creatures, recipes, quests, items, reactions and most of the rules are plain data files, and the base game is loaded through the same path a mod is. A mod folder merges over them, an executable verifier checks it is honest, and a complete total conversion ships as a worked example. If you want to make a different game with this one, that is the design rather than an accident.</p>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="feat-h">
+  <h2 id="feat-h">Features</h2>
+  <ul class="features">
+    <li>Nineteen factions with their own cities, territories, economies, named leaders, succession, wars and long memories.</li>
+    <li>One continuous 75,000-unit map: six biomes, sixteen named lands, and walled towns you get into through the gate like everyone else.</li>
+    <li>A living economy you can plug into — caravans that haul real cargo, treasuries that pay guards, glut prices that crash when you dump a harvest, and famine when a season goes wrong.</li>
+    <li>Homesteading that feeds it: farm, cook, ranch, fish, hunt and mine, and smoke the catch before it spoils.</li>
+    <li>Squad play — recruit, equip, command and take direct control of any companion; they carry moods, remember what you did, and want paying.</li>
+    <li>Combat with styles, stances, blocks, dodges and charged heavies, plus bleeding, burns, broken bones, lost limbs and prosthetics.</li>
+    <li>Crime as a system: contraband, gate frisks, witnesses, bounty hunters, four kinds of custody, and fences who buy what no shop will.</li>
+    <li>Seven ages of technology across eleven disciplines, climbed by hand — or studied out of books and charts you buy off an archive shelf or take off a body.</li>
+    <li>A nineteen-species ecology with predators, scavengers, dens that escalate into broodmother nests, seasonal migrations and three apex beasts waiting at fixed lairs.</li>
+    <li>A graveyard outside every town: bury your dead under their own headstone, or leave them out there and watch the squad think about it.</li>
+    <li>The Great Eclipse every fourteenth day — a quarter-day of totality that lets out the things which sleep the rest of the month.</li>
+    <li>Optional local-LLM NPC dialogue with per-character memory, running entirely on your machine. No account, no internet, and written lines when it is off.</li>
+  </ul>
+</section>
+
+<section class="wrap" aria-labelledby="dl-h">
+  <h2 id="dl-h">Download the playtest build</h2>
+  <div class="dl-grid">
+    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-1/eclipsis_windows_x86_64.zip">
+      <span class="os">Windows</span>
+      <span class="meta">64-bit &middot; .zip</span>
+    </a>
+    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-1/eclipsis_linux_x86_64.tar.gz">
+      <span class="os">Linux</span>
+      <span class="meta">x86_64 &middot; .zip</span>
+    </a>
+  </div>
+  <p class="version">Build <code>Playtest 1 · 2026-08-16 · Windows &amp; Linux</code> &middot; single executable, no installer, no launcher, no account.</p>
+
+  <div class="howto">
+    <div>
+      <h3>Windows</h3>
+      <ol>
+        <li>Unzip the archive somewhere you can write to — your Desktop or Documents is fine. Do not run it from inside the zip.</li>
+        <li>Run <code>eclipsis.exe</code>.</li>
+        <li>Windows SmartScreen will warn you that it does not recognise the app. This build is unsigned pre-release software, so that warning is expected. Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+        <li>First launch takes a few seconds longer than the rest while the world is generated.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Linux</h3>
+      <ol>
+        <li>Unzip the archive to a folder of your choice.</li>
+        <li>Make the binary executable: <code>chmod +x eclipsis.x86_64</code> — or, in your file manager, Properties &rarr; Permissions &rarr; allow executing as a program.</li>
+        <li>Launch it from the terminal or by double-clicking it in the file manager.</li>
+        <li>First launch takes a few seconds longer than the rest while the world is generated.</li>
+      </ol>
+    </div>
+  </div>
+
+  <p class="note"><strong>Send the log with any bug report.</strong> The build has no console window, so its log file is the only window into what happened. It is written every run, in the game's user-data folder: on Windows under <code>%APPDATA%\Godot\app_userdata\</code>, in the Eclipsis folder, at <code>logs\godot.log</code>; on Linux under <code>~/.local/share/godot/app_userdata/</code>, in the Eclipsis folder, at <code>logs/godot.log</code>. Attach that file, say roughly what you were doing, and that is a complete report.</p>
+
+  <dl class="reqs">
+    <dt>Operating system</dt><dd>64-bit Windows 10 or later &middot; x86_64 Linux</dd>
+    <dt>Disk</dt><dd>About 200 MB once unzipped</dd>
+    <dt>Graphics</dt><dd>Any GPU from the last decade</dd>
+    <dt>Network</dt><dd>None. The game never phones anywhere.</dd>
+    <dt>Optional</dt><dd>A local Ollama install enables LLM-written NPC dialogue. Without it, characters speak their written lines and nothing else changes.</dd>
+  </dl>
+</section>
+
+<section class="wrap" aria-labelledby="alpha-h">
+  <div class="warnbox">
+    <h2 id="alpha-h">This is a pre-alpha playtest</h2>
+    <p>That is a real description rather than a modest one. Expect bugs, including ones that lose you a session. <strong>There is no audio at all</strong> — no music, no effects, nothing. The art is drawn by code and is still being worked on; several systems look plainer than they will. Saves are not guaranteed to survive the next build. Balance is provisional everywhere, and some corners of the map are thinner than others.</p>
+    <p>A run-based mode — pick a seed, play until the waste takes you, and the next wanderer inherits what the last one learned — is in design and is <em>not</em> in this build. Nothing on this page describes it as present.</p>
+    <p>This page is unlisted: it is not indexed, not announced, and not linked from anywhere public. Please do not repost the link or the build.</p>
+    <p>If you play it, tell me what happened — what confused you, what you tried that the game did not expect, and what made you stop. That is the whole reason this build exists.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Eclipsis: The Shattered Expanse &mdash; &copy; 2026 Dave Larsen. All rights reserved.</p>
+  <p>No tracking, no analytics, no cookies, no external requests. This page is one file.</p>
+</footer>
+
+<script>
+(function(){
+  var shots = [
+    ["screenshots/01.png","Rust Haven at midday — a Rust Walker town inside its hexagonal curtain wall, two dozen townsfolk on the streets, and a door you can walk through."],
+    ["screenshots/02.png","The same street at 23:20. Lit windows, lamps down the main road, and a crowd you can only half see — night is genuinely dark, and what you can see depends on what you are carrying."],
+    ["screenshots/03.png","A dust storm over the highway through Corona's Grave. Wind-aligned streaks, the tint on everything, travellers strung out along the road, and an Architect ruin just found and marked."],
+    ["screenshots/04.png","Inside The Crooked Compass — the keeper behind the Rusty Cog's counter, patrons at the tables, kegs and stools, and a floor selector for the rooftop and the basement."],
+    ["screenshots/05.png","A street brawl mid-swing: damage numbers in the air, blood and dropped packs on the ground, two Dust Reavers still standing, and a log line reading “You kill a Dust Reaver. Their people won't forget.”"],
+    ["screenshots/06.png","The whole Expanse laid flat — biome ground, faction territories in their own colours, named capitals, the sixteen named lands, and a compass rose."],
+    ["screenshots/07.png","Six days of world, written down: a famine in the Cinder Dominion, a war between the Blacklight Syndicate and the Automatons, treasuries, world mood — and “A shadow crossed the sun for the length of a breath, and the birds have not come back down.”"]
+  ];
+  var img = document.getElementById('shot'),
+      cap = document.getElementById('shot-cap'),
+      idx = document.getElementById('shot-idx'),
+      strip = document.getElementById('thumbs'),
+      cur = 0, btns = [];
+
+  shots.forEach(function(s, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Screenshot ' + (i+1));
+    b.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+    var t = document.createElement('img');
+    t.src = s[0];
+    t.alt = '';
+    t.loading = 'lazy';
+    b.appendChild(t);
+    b.addEventListener('click', function(){ show(i); });
+    strip.appendChild(b);
+    btns.push(b);
+  });
+
+  function show(i){
+    cur = (i + shots.length) % shots.length;
+    img.src = shots[cur][0];
+    img.alt = shots[cur][1];
+    cap.textContent = shots[cur][1];
+    idx.textContent = ('0' + (cur+1)).slice(-2) + ' / 07';
+    btns.forEach(function(b, n){ b.setAttribute('aria-current', n === cur ? 'true' : 'false'); });
+  }
+
+  document.getElementById('prev').addEventListener('click', function(){ show(cur - 1); });
+  document.getElementById('next').addEventListener('click', function(){ show(cur + 1); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft')  { show(cur - 1); }
+    if (e.key === 'ArrowRight') { show(cur + 1); }
+  });
+
+  show(0);
+})();
+</script>
+
+</body>
+</html>
