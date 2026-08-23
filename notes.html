@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release notes — Eclipsis: The Shattered Expanse</title>
+<meta name="description" content="What changed in each Eclipsis playtest build, newest first: features added and bugs fixed.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#0a0908;
+    --bg-2:#100e0b;
+    --panel:#15120e;
+    --panel-2:#1b1712;
+    --rule:#2b241b;
+    --rule-soft:#221d16;
+    --ink:#ded6c7;
+    --ink-strong:#f2ece0;
+    --ink-dim:#9a8f7c;
+    --ink-faint:#71695a;
+    --corona:#f0b24a;
+    --corona-soft:#ffd489;
+    --rust:#a4552e;
+    --maxw:1100px;
+    --textw:74ch;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:var(--corona-soft);text-decoration:none;border-bottom:1px solid rgba(240,178,74,.35)}
+  a:hover{border-bottom-color:var(--corona)}
+  img{max-width:100%;height:auto;display:block}
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;color:var(--ink-strong)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .col{max-width:var(--textw)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--rule);
+    background:
+      radial-gradient(120% 90% at 50% 118%, #1d1710 0%, #120f0b 40%, var(--bg) 72%);
+  }
+  .masthead .horizon{
+    position:absolute;left:-10%;right:-10%;bottom:0;height:38%;
+    background:linear-gradient(180deg, rgba(120,86,44,.00) 0%, rgba(126,90,46,.16) 55%, rgba(20,16,12,.9) 100%);
+    pointer-events:none;
+  }
+  .eclipse{
+    position:absolute;
+    left:50%;top:44px;
+    width:230px;height:230px;
+    margin-left:-115px;
+    border-radius:50%;
+    background:#070605;
+    box-shadow:
+      0 0 0 2px rgba(255,212,137,.85),
+      0 0 26px 6px rgba(240,178,74,.55),
+      0 0 90px 34px rgba(240,178,74,.18),
+      0 0 190px 90px rgba(164,85,46,.10);
+    pointer-events:none;
+  }
+  .eclipse::after{
+    content:"";position:absolute;inset:-160px;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(255,212,137,.14) 0%, rgba(240,178,74,.05) 38%, rgba(0,0,0,0) 62%);
+  }
+  .masthead-inner{position:relative;padding:118px 20px 54px;text-align:center;max-width:var(--maxw);margin:0 auto}
+  .title{
+    margin:0;
+    font-size:clamp(42px,10.5vw,104px);
+    line-height:.98;
+    letter-spacing:.10em;
+    text-indent:.10em;
+    color:#f6f0e4;
+    text-shadow:0 2px 0 rgba(0,0,0,.6), 0 0 44px rgba(240,178,74,.22);
+  }
+  .subtitle{
+    margin:16px 0 0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(13px,2.6vw,20px);
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--corona-soft);
+    text-transform:uppercase;
+  }
+  .rule-orn{
+    width:min(420px,70%);margin:26px auto 0;height:1px;
+    background:linear-gradient(90deg,rgba(240,178,74,0) 0%,rgba(240,178,74,.5) 50%,rgba(240,178,74,0) 100%);
+  }
+  .hook{
+    margin:22px auto 0;max-width:60ch;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(18px,3.2vw,25px);
+    line-height:1.45;color:var(--ink);
+  }
+  .kicker{
+    margin:30px 0 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0}
+  section + section{border-top:1px solid var(--rule-soft)}
+  h2{
+    font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;
+  }
+  h3{font-size:20px;margin:0 0 8px}
+  p{margin:0 0 18px}
+  .lede{font-size:19px;color:var(--ink-strong)}
+
+  /* ---------- gallery ---------- */
+  .shot-frame{
+    background:#000;border:1px solid var(--rule);
+    position:relative;line-height:0;
+  }
+  .shot-frame img{width:100%}
+  .navbtn{
+    position:absolute;top:0;bottom:0;width:16%;min-width:52px;
+    border:0;background:transparent;cursor:pointer;color:#fff;
+    font-size:30px;line-height:1;opacity:.0;transition:opacity .15s ease;
+    text-shadow:0 0 10px #000;
+  }
+  .shot-frame:hover .navbtn{opacity:.55}
+  .navbtn:hover{opacity:1 !important;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.next{right:0;background:none}
+  .navbtn.next:hover{background:linear-gradient(270deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.prev{left:0}
+  .caption{
+    margin:14px 0 0;color:var(--ink-dim);font-size:15px;line-height:1.55;
+    display:flex;gap:14px;align-items:baseline;
+  }
+  .caption .idx{color:var(--ink-faint);font-variant-numeric:tabular-nums;flex:0 0 auto;font-size:13px;letter-spacing:.08em}
+  .thumbs{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px;
+  }
+  .thumbs button{
+    padding:0;border:1px solid var(--rule);background:#000;cursor:pointer;line-height:0;
+    opacity:.45;transition:opacity .15s ease,border-color .15s ease;
+  }
+  .thumbs button:hover{opacity:.8}
+  .thumbs button[aria-current="true"]{opacity:1;border-color:var(--corona)}
+  .thumbs img{width:100%}
+
+  /* ---------- download ---------- */
+  .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px}
+  .btn{
+    display:block;text-decoration:none;border:1px solid var(--rule);
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    padding:20px 22px;color:var(--ink-strong);transition:border-color .15s ease,background .15s ease;
+  }
+  .btn:hover{border-color:var(--corona);background:linear-gradient(180deg,#241d14,#191510)}
+  .btn .os{display:block;font-family:Georgia,serif;font-size:23px;margin-bottom:3px;color:var(--corona-soft)}
+  .btn .meta{display:block;font-size:13px;color:var(--ink-dim);letter-spacing:.04em}
+  .version{
+    font-size:14px;color:var(--ink-dim);margin:0 0 26px;letter-spacing:.04em;
+    padding-bottom:22px;border-bottom:1px solid var(--rule-soft);
+  }
+  .version code{color:var(--corona-soft)}
+  .howto{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .howto h3{font-size:17px;color:var(--corona-soft);font-family:inherit;letter-spacing:.02em}
+  .howto ol{margin:0;padding-left:20px}
+  .howto li{margin-bottom:10px;font-size:16px;color:var(--ink)}
+  code,kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+    background:#1c1811;border:1px solid var(--rule-soft);padding:1px 5px;color:#e6dcc8;
+    word-break:break-word;
+  }
+  .note{
+    margin-top:30px;border-left:2px solid var(--rust);padding:2px 0 2px 18px;
+    color:var(--ink-dim);font-size:15px;
+  }
+  .note strong{color:var(--ink)}
+  .reqs{margin-top:26px;font-size:15px;color:var(--ink-dim)}
+  .reqs dt{color:var(--ink);float:left;clear:left;width:9.5em;font-size:14px;letter-spacing:.04em}
+  .reqs dd{margin:0 0 6px 9.5em}
+
+  /* ---------- features ---------- */
+  ul.features{list-style:none;margin:0;padding:0;columns:2;column-gap:44px}
+  ul.features li{
+    break-inside:avoid;margin:0 0 16px;padding-left:20px;position:relative;font-size:16px;line-height:1.55;
+  }
+  ul.features li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+
+  /* ---------- disclaimer ---------- */
+  .warnbox{
+    border:1px solid #3b2c18;background:#16120c;padding:26px 28px;
+  }
+  .warnbox h2{margin-top:0}
+  .warnbox p:last-child{margin-bottom:0}
+
+  footer{
+    border-top:1px solid var(--rule);padding:34px 0 60px;color:var(--ink-faint);font-size:14px;
+  }
+  footer p{margin:0 0 6px}
+
+  @media (max-width:760px){
+    body{font-size:16px}
+    .masthead-inner{padding:96px 18px 42px}
+    .eclipse{width:150px;height:150px;margin-left:-75px;top:30px}
+    ul.features{columns:1}
+    .dl-grid,.howto{grid-template-columns:1fr}
+    .thumbs{grid-template-columns:repeat(4,1fr)}
+    .navbtn{opacity:.5}
+    .reqs dt{float:none;width:auto}
+    .reqs dd{margin-left:0;margin-bottom:12px}
+  }
+
+  /* ---------- release notes ---------- */
+  .backlink{font-size:15px;letter-spacing:.04em}
+  .rel{padding:52px 0}
+  .rel + .rel{border-top:1px solid var(--rule-soft)}
+  .rel-h{font-size:28px;margin:0 0 6px;letter-spacing:.01em}
+  .rel-date{
+    margin:0 0 8px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .rel-lede{color:var(--ink-strong);font-size:18px;margin:0 0 24px}
+  h3.sub{
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;margin:26px 0 14px;
+  }
+  .rel h3.sub:first-of-type{margin-top:0}
+  ul.rn{list-style:none;margin:0;padding:0}
+  ul.rn li{
+    break-inside:avoid;margin:0 0 14px;padding-left:20px;position:relative;
+    font-size:16px;line-height:1.6;
+  }
+  ul.rn li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+  ul.rn li strong{color:var(--ink-strong);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="masthead-inner" style="padding:64px 20px 40px">
+    <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
+    <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
+    <div class="rule-orn"></div>
+    <p class="kicker">Newest first &middot; Playtest 7 back to Playtest 1</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
+
+<div class="col">
+
+<section class="rel" aria-labelledby="pt7">
+  <h2 class="rel-h" id="pt7">Playtest 7 &mdash; turn it down, and look again</h2>
+  <p class="rel-date">Released 2026-08-23</p>
+  <p class="rel-lede">A short polish release: a proper volume control at last, and a handful of places where the view under an open roof was still telling you something that was not true.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>Audio settings.</strong> Press <kbd>Esc</kbd> and there is an Audio block on the settings screen &mdash; master, effects and music, each on its own slider. Your choices are remembered between runs. Until now the only volume control was the one on your speakers.</li>
+    <li><strong>Sound has a distance to it.</strong> Zoom out to take in the whole town and the world gets quieter; zoom in on one street and it comes back up. What you hear follows where the camera is standing, instead of playing at one flat volume however far away you were.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>The keeper is not standing on the roof.</strong> With a shop's roof shut, the shopkeeper behind the counter was being drawn on top of it &mdash; a person apparently up on the tiles of the building they are actually inside. They stay under their roof now, and appear when it lifts.</li>
+    <li><strong>Weather stops at an open roof.</strong> A sandstorm, and the other weather veils, used to be drawn straight across a building whose roof you had lifted, so you looked down into a room with a dust storm blowing through it indoors. The veils are cut away over an interior you can see into.</li>
+    <li><strong>The message blip is quieter, and knows when to be quiet.</strong> The tick that plays when a line lands in the log was too loud, and a busy moment could fire a dozen at once into a rattle. Turned down, and it no longer stacks on itself.</li>
+    <li><strong>Stairs are drawn to size.</strong> They were rendered oversized and loose, spilling past the run they occupy. They are tighter now and sit where the stairwell actually is.</li>
+    <li><strong>The top of a building is outdoors.</strong> Standing on the top deck &mdash; a flat roof, a parapet &mdash; you were still being treated as under cover. Weather, light and the rest of the outdoor world reach you up there now, because they should.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt6">
+  <h2 class="rel-h" id="pt6">Playtest 6 &mdash; the world under the roofs, fixed</h2>
+  <p class="rel-date">Released 2026-08-23</p>
+  <p class="rel-lede">Playtest 5 took the roofs off, which was the right thing to do and also the thing that exposed everything under those roofs that had never had to work before. This is the pass that went back in after it.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>The build knows its own name.</strong> The title screen tells you which build you are running, and once per launch &mdash; quietly, in the background &mdash; asks whether a newer one exists. If there is one you get a single line and a <strong>Get it</strong> button. If there is not, or you are offline, or anything goes wrong at all, nothing happens: no error, no dialog, no waiting.</li>
+    <li><strong>The cut got its polish.</strong> The roof fades over a quarter-second instead of popping off in a frame. The cut edge is a sliced wall with real thickness. The floor says whose floor it is &mdash; a woven mat in front of a counter, worn boards in a taproom, a scorch where the work gets done. And rooms have depth: inner shadow where the sun says it should fall, the floor below drawn dimmer and drained of colour, and a stairwell drawn as an actual shaft rather than a painted square.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>The labour camp is escapable.</strong> There is a gate in the yard and <kbd>E</kbd> at it runs for it. The custody card had been telling you to run for a gate that did not exist, which quietly made the slaver start a life sentence with two guards on it. That start is survivable now, both ways out of it.</li>
+    <li><strong>Freed slaves get their gear back.</strong> Working off the quota the honest way now un-collars you and hands back the kit they stripped. It used to leave you in rags with your real weapon and armour stranded somewhere nothing would ever return them &mdash; and a second collar while still in rags destroyed them for good.</li>
+    <li><strong>Doors work.</strong> Walk up to one and <kbd>E</kbd> opens it, closes it, picks the lock or puts your shoulder through it. Roughly a third of the doors in the world are locked, and until now not one of those four verbs could reach any door at all &mdash; you would find a sealed wing of a house and simply have nothing to do about it. A door you bash open is now genuinely open: to walking, to line of sight, and to everyone routing through it, instead of drawing open while still being a wall.</li>
+    <li><strong>The down-strike from a battlement lands.</strong> Standing on a town wall, every body in the street below was filtered out of your swing before it happened, so the parapet strike and bow fire from the wall never connected &mdash; not rarely, never. In the street the same mistake ran the other way and you could melee someone a storey up through their floorboards.</li>
+    <li><strong>Nobody hits you through a ceiling.</strong> In a cellar, a pursuer standing over you was beating you through the floor &mdash; and a chase parks one directly overhead every time, so this was not an edge case. Nor can a body on one roof reach into the house next door, or step off its roof and cross the street in mid-air.</li>
+    <li><strong>About two hundred other proximity checks</strong> &mdash; aggro, witnesses, capture, squad combat, turrets, looting, wells, the crime ledger &mdash; now ask whether you and the other body are actually in the same space, instead of assuming a building is a solid block nobody can be inside.</li>
+    <li><strong>Old saves land somewhere real.</strong> A save holds your character and your world's history, not its terrain, so one taken on an upper floor or a roof used to restore you onto a floor that does not exist in the newly generated world: standing in mid-air, untouchable and unable to touch anything. Every restored body is now landed properly, and loading the same file three times no longer leaves three rings of invisible masonry behind it.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt5">
+  <h2 class="rel-h" id="pt5">Playtest 5 &mdash; one world</h2>
+  <p class="rel-date">Released 2026-08-22</p>
+  <p class="rel-lede">Until now, walking into a building was a magic trick: the screen cut to black, you appeared in a little room that existed nowhere, and the world outside stopped mattering. That whole second world is gone. There is one world, and buildings are part of it.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>Walk in and the roof comes off.</strong> No loading, no cut, no separate room. You step through a door, the roof fades away so you can see the floor you are standing on, and the street you just came from is still right there out the window, still going on without you.</li>
+    <li><strong>The guard follows you in.</strong> Break a law and run into a house and whoever is chasing you comes through the door after you and up the stairs. Fights work indoors: swings connect, arrows fly, someone on a battlement can strike down at someone below.</li>
+    <li><strong>A locked door actually stops them.</strong> Unlocked, a pursuer simply opens it. Locked, they cannot get through at all, and they stop instead of grinding against the wood. That is a genuine escape.</li>
+    <li><strong>Shopkeepers are people standing at counters.</strong> The counter is a real object at a real spot on a real floor and the keeper is a body behind it &mdash; the same character who walks home in the evening, sleeps, and comes back in the morning.</li>
+    <li><strong>Your squad walks in with you</strong>, through the door like everybody else, instead of being spirited to your side.</li>
+    <li><strong>Every verb works under a roof.</strong> Claim, capture, read, pickpocket, dodge, squad orders and stances all work in a room, because a room is just part of the world now. Surveying and digging correctly refuse &mdash; you cannot assay the ore under somebody's floorboards.</li>
+    <li><strong>Walls and battlements ride the same system.</strong> A town wall, its stairs and its parapet are floors in the same model a house's upper storey uses, so a lookout on the wall and the gun beside them are two separate things your hand can reach for &mdash; and it picks the one you meant.</li>
+    <li><strong>The labour camp is a real place</strong> &mdash; a walled compound on clear ground with its own yard and its own captors living in it, rather than a room you are teleported into.</li>
+    <li><strong>You can look down the stairwell.</strong> On an upper floor the way down is cut open as a window, with the floor below drawn into it, dimmer, receding for each level under that.</li>
+    <li><strong>One HUD</strong> tells you which building has you, whose it is, and which floor you are on.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>Buildings no longer stand inside each other.</strong> Towns had been quietly putting houses on top of their own neighbours for a long time &mdash; invisible while both were solid blocks, and immediately obvious once you could walk in and find yourself in the wrong house's hall.</li>
+    <li><strong>Keyboard zoom is back.</strong> <kbd>+</kbd> and <kbd>-</kbd>, and the keypad pair, zoom exactly as the mouse wheel does. They had been deleted along with the old interior room, behind a comment claiming otherwise.</li>
+    <li><strong>Hold-right-mouse-to-walk works everywhere</strong>, because there is no longer a second movement path that did not have it.</li>
+    <li><strong>The keeper can leave the counter.</strong> Evening routines could get stuck behind a shopkeeper who would not stand down from a post.</li>
+    <li><strong>Click-to-move into a room routes to the door</strong> instead of beelining into a wall, and a companion you are driving accepts that order outdoors too.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt4">
+  <h2 class="rel-h" id="pt4">Playtest 4 &mdash; the cost of doing business</h2>
+  <p class="rel-date">Released 2026-08-22</p>
+  <p class="rel-lede">Playtest 3 let you own a shop. Playtest 4 sends you the bill.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>Somebody always owes somebody.</strong> A venue you own carries a levy &mdash; rent to a landlord, tax to the faction that holds the ground, or protection to whoever really runs that street. It comes due whether or not you had a good week, and missing it makes the people you owe stop being polite about it.</li>
+    <li><strong>Set your own markup.</strong> The price you post is a dial rather than a number handed to you. Charge what you like, but the town is paying attention: a famished town will swallow a cruel margin because it has no choice, a comfortable one will simply walk out.</li>
+    <li><strong>Hire a smuggler.</strong> Stock does not walk to your door. Put a smuggler on retainer and they run your supply line &mdash; a real route, over real ground, with real things that can go wrong on it.</li>
+    <li><strong>Run a back room.</strong> A second key turns your honest storefront into a speakeasy after hours. Contraband carries a premium, the racket takes its cut, and the trade you cannot do at the counter happens behind it.</li>
+    <li><strong>Bribe somebody.</strong> Gate guards, coffle escorts, the tax assessor &mdash; every one of them can be bought and none of them is guaranteed. The offer is a roll against your charisma, your standing with their faction, and how incorruptible that faction is to begin with. Some people take the coin. Some people remember that you offered.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>The map no longer lies to a prisoner.</strong> Ordering travel while in custody used to be accepted in silence &mdash; the game said "Traveling to&hellip;" and you stood exactly where you were. Every way of giving a travel order now refuses out loud and says why. You can still open the map and look; looking is not going.</li>
+    <li><strong>Every custody tells you how it ends.</strong> The cell used to be the only place that said what got you out and how long you had left. Cages, work camps and coffles all say it now &mdash; your ways out, and the days remaining.</li>
+    <li><strong>Panel keys toggle.</strong> The key that opens the backpack closes the backpack, and the same goes for the rest of the panels. An open panel no longer swallows clicks meant for the thing behind it.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt3">
+  <h2 class="rel-h" id="pt3">Playtest 3 &mdash; the build has sound</h2>
+  <p class="rel-date">Released 2026-08-21</p>
+  <p class="rel-lede">Fourteen sound effects and a music folder you can fill yourself &mdash; plus a business layer, chain gangs, and law at the shop counter.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>The build has sound.</strong> Fourteen effects &mdash; footsteps, blades, bowstrings, doors, coins, chains, gas &mdash; and a music folder in the game's user-data directory that you can drop your own tracks into and have the game play them.</li>
+    <li><strong>Own a business.</strong> Buy a shop in any town, hire workers off the street or out of your own squad, watch customers come through the door, and run the whole thing from the new Holdings tab.</li>
+    <li><strong>Couriers move people, not just cargo.</strong> Hire someone to carry a passenger across the map and they will actually make the trip.</li>
+    <li><strong>Chain gangs, end to end.</strong> Sentenced prisoners get marched out, worked, and marched back.</li>
+    <li><strong>Contraband law at the counter.</strong> Sell the wrong thing to the wrong shopkeeper and it is a crime with consequences.</li>
+    <li><strong>Steam, gas and town waterworks.</strong> Pipes, pressure, and a water supply the settlement depends on.</li>
+    <li><strong>Companions grow up.</strong> They gain skills over a long run, and when one dies the line carries on through succession.</li>
+    <li><strong>Sell gear straight out of your pack.</strong> The old "you can only sell what you are not carrying" wall is gone.</li>
+    <li><strong>The trade panel folds</strong>, so long stock lists collapse instead of running off the screen.</li>
+    <li><strong>Two new ways to start</strong>, added to the scenario picker.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt2">
+  <h2 class="rel-h" id="pt2">Playtest 2</h2>
+  <p class="rel-date">Released 2026-08-16</p>
+  <p class="rel-lede">A same-day update to the first build.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>The tech ladder is complete</strong> &mdash; age advancement all the way up, and jewellery with it.</li>
+    <li><strong>Death hands the run to a squadmate.</strong> Your successor keeps their own skills and gear, the group keeps its coin, and you can bury who you used to be.</li>
+    <li><strong>Squad driving.</strong> Number keys <kbd>1</kbd>&ndash;<kbd>9</kbd> take direct control of a squad member, and <kbd>;</kbd> cycles through them.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pt1">
+  <h2 class="rel-h" id="pt1">Playtest 1</h2>
+  <p class="rel-date">Released 2026-08-16</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>The first playable playtest build</strong>, for Windows and Linux. Pre-alpha: no audio yet, and the art still in progress. Unpack and run &mdash; instructions in the README inside each archive and on the download page.</li>
+  </ul>
+</section>
+
+</div>
+
+<p class="backlink" style="padding:10px 0 40px"><a href="./">&#8249; Back to downloads</a></p>
+
+</main>
+
+<footer class="wrap">
+  <p>Eclipsis: The Shattered Expanse &mdash; &copy; 2026 Dave Larsen. All rights reserved.</p>
+  <p>No tracking, no analytics, no cookies, no external requests. This page is one file.</p>
+</footer>
+
+</body>
+</html>
