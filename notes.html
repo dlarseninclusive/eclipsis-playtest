@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 8 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 9 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,32 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+
+<section class="rel" aria-labelledby="pt9">
+  <h2 class="rel-h" id="pt9">Playtest 9 &mdash; the feedback build</h2>
+  <p class="rel-date">Released 2026-08-24</p>
+  <p class="rel-lede">Playtest 8 produced fifteen pieces of feedback in three minutes of play. All fifteen are in this build &mdash; nothing else jumped the queue. The theme, if there is one: the game stops being silent about things it always knew.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>Custody is a place, not a menu.</strong> Getting arrested walks you to a real gaol &mdash; cells, a work bench, a barred gate, turnkeys and other prisoners &mdash; and the world keeps running around the bars. Your sentence visibly ticks down; you can wait it out, work it off at the bench, or try the gate. Esc opens the menu like anywhere else, and everything the screen tells you now fits on it.</li>
+    <li><strong>Arrest costs coin &mdash; but never your savings.</strong> The law takes the value of your bounty or half the purse in your pocket, whichever is more, capped so a bad arrest is survivable. What you deposited at a bank is out of their reach &mdash; which is the reason to use one.</li>
+    <li><strong>Interiors you can find your way out of.</strong> The street door is now the most findable thing on its wall &mdash; warm light spilling across the boards, lit frames, chevrons pointing out &mdash; and a shut door looks like a door instead of a dark patch of wall. Stairs carry a clear cue: a warm filled arrow points up, a cool open arrow points down, and the treads brighten toward where each flight goes.</li>
+    <li><strong>Night rooms are lit by their lights.</strong> A hearth or a lamp now genuinely pushes back the dark &mdash; real light, not a faint glow losing to the night &mdash; while unlit cellars and empty houses stay exactly as dark as they should be.</li>
+    <li><strong>Fast bodies run.</strong> A sprinting player (hold <kbd>Shift</kbd>), a fleeing villager, a charging fighter &mdash; anyone moving hard now visibly runs: longer stride, pumping arms, a lean into the movement. Walkers still walk.</li>
+    <li><strong>The console teaches its own arguments.</strong> <code>tp ?</code> lists every destination; <code>tp kr*</code> filters by prefix; the same pattern works on every command &mdash; faction names, item ids, recipes, scenarios &mdash; and multi-word names paste back whole.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>No more mystery teleports.</strong> The silent jump was your release from custody, which flung you into the street without a word. Being transported, fined, or released each tells you what happened, as it happens.</li>
+    <li><strong>The vault bounty explains itself.</strong> If someone sees you crack a bank vault, the alarm goes up at once and the game names who saw you. If nobody did, you keep your head start &mdash; but the bank counts its own strongbox, and the game says so. (And the reliably empty bank hall turned out to be a staffing gap in world generation &mdash; the hall now tells you nobody is behind the counter; an actual teller arrives with the next world rebuild.)</li>
+    <li><strong>E leaves the way it entered.</strong> Shop and bar screens close on the same key that opened them, and buying moved to its own key &mdash; <kbd>Enter</kbd>, same as every other confirm. The panel prints its keys along the bottom so you never have to guess. (The bar screen previously answered no key but Esc at all.)</li>
+    <li><strong>The build banner is readable.</strong> It has its own reserved strip of screen now &mdash; the character info steps aside while build mode is on &mdash; and a permanent test makes it impossible for anything to ever draw over it again.</li>
+    <li><strong>The time-speed control is findable.</strong> <kbd>.</kbd> cycles x1 / x3 / x8 and genuinely speeds up long walks &mdash; hunger and thirst scale honestly with it. It always worked; it was written down nowhere. The Controls tab now has a &ldquo;keys you will not find by guessing&rdquo; section, generated from your actual keybinds.</li>
+    <li><strong>A bar has one name.</strong> The sign over the door, the plaque on the counter, and the header of the trade screen all say the same thing now. (The plaque was reading a label that was never the building’s name.)</li>
+  </ul>
+</section>
 
 <section class="rel" aria-labelledby="pt8">
   <h2 class="rel-h" id="pt8">Playtest 8 &mdash; room to live</h2>
