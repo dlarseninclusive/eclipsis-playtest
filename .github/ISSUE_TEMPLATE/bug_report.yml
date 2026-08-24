@@ -1,0 +1,111 @@
+name: Report a bug
+description: Something crashed, broke, or behaved in a way that felt wrong.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Anything is worth reporting — a crash, a stuck
+        character, a price that made no sense, text running off the edge of a box.
+        You do not need to know what caused it.
+
+        One thing at a time is best: if you hit three separate problems, three
+        reports are easier to fix than one long one.
+
+  - type: dropdown
+    id: build
+    attributes:
+      label: Which build were you playing?
+      description: >
+        The version is printed in the bottom corner of the title screen
+        (it reads something like `playtest-8`). If you are not sure, say so — that is fine.
+      options:
+        - Playtest 8
+        - Playtest 7
+        - Playtest 6
+        - Playtest 5
+        - Playtest 4 or earlier
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: What are you playing on?
+      options:
+        - Windows
+        - Linux
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: In your own words. A sentence is plenty if that is all there is to it.
+      placeholder: The game closed itself the moment I walked through the gate of the walled city.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen instead?
+      placeholder: I expected to walk into the city like the other times.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: What were you doing just before it happened?
+      description: >
+        As much or as little as you remember. If you know how to make it happen again,
+        the steps are the single most useful thing in this whole form.
+      placeholder: |
+        1. Loaded my save, day 22, camped outside the city
+        2. Walked to the east gate with two squadmates
+        3. Stepped through — and it closed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reproducible
+    attributes:
+      label: Does it still happen after restarting the game?
+      options:
+        - "Yes — it happens every time"
+        - "Yes, but not every time"
+        - "No — it went away after a restart"
+        - "I have not tried"
+    validations:
+      required: true
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Save file, screenshot or video (optional)
+      description: |
+        Drag files straight into this box and GitHub will attach them.
+        A screenshot of the moment it went wrong is worth a lot; a save file that
+        reproduces it is worth even more.
+
+        Saves live in the Eclipsis folder under:
+        - **Windows** — paste `%APPDATA%\Godot\app_userdata` into the address bar of a File Explorer window
+        - **Linux** — `~/.local/share/godot/app_userdata/`
+
+        (If a file is too big to attach, just say so here and we will sort it out.)
+      placeholder: Dropping the save I was on when it happened.
+    validations:
+      required: false
+
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else worth knowing?
+      description: Optional. Hardware, a second monitor, anything unusual about your setup.
+    validations:
+      required: false

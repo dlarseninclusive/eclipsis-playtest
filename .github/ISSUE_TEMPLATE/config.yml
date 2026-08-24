@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Download the latest playtest build
+    url: https://dlarseninclusive.github.io/eclipsis-playtest/
+    about: Windows and Linux downloads, plus what changed in this build. Worth a look before reporting — it may already be fixed.
+  - name: An idea, or something that just felt off
+    url: https://github.com/dlarseninclusive/eclipsis-playtest/issues/new
+    about: Not everything is a bug. Open a blank issue and say it in your own words.
