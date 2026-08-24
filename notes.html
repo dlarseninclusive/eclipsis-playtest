@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 7 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 8 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,29 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+
+<section class="rel" aria-labelledby="pt8">
+  <h2 class="rel-h" id="pt8">Playtest 8 &mdash; room to live</h2>
+  <p class="rel-date">Released 2026-08-23</p>
+  <p class="rel-lede">The buildings were too small, and everyone knew it. This build rebuilds the world at a larger scale &mdash; bigger buildings, a bigger map to hold them, stairs that stay where you left them &mdash; and finally makes entering build mode a decision instead of an accident.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>Bigger buildings, and a bigger world to match.</strong> Every building is 1.6&times; larger, plots and town walls scaled with them, and the map grew from 75,000 to 120,000 across so the towns keep their distance from one another. The smallest hall in the world is now a real room: a stairwell, a clear walkway past it, and space for a table and chairs. Travel speed and travel costs scaled together, so a journey between capitals takes the same in-world time and coin it always did.</li>
+    <li><strong>One stairwell per building.</strong> The stairs used to sit at opposite ends of the hall depending on which way you were going &mdash; climb at the east wall, and find the way onward at the west one. Every building now has a single stair shaft, in the same corner on every floor, with the up and down flights side by side. Wherever you are in a building, the stairs are where they were on the last floor.</li>
+    <li><strong>The way down is drawn.</strong> A ground floor over a cellar used to show nothing at all where the descending stair was &mdash; you walked across an unmarked patch of floor and fell into the basement. The downward stair is now drawn as a window into the room below, the same way the upward one has always shown the floor above.</li>
+    <li><strong>Houses are furnished.</strong> Roughly twice as many buildings have furniture in them &mdash; tables, seats, storage &mdash; and tables are placed first, so a home reads as a home rather than a bare hall with one barrel in the middle.</li>
+    <li><strong>Old saves carry forward.</strong> A save from any earlier playtest loads into the new world with everything &mdash; you, your buildings, your marks and discoveries &mdash; moved to its right place on the bigger map, and the game tells you it did so.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>Build mode no longer lays walls by accident.</strong> It entered with a wall already selected and its only on-screen indicator hidden behind the health bars &mdash; so a stray press of <kbd>B</kbd> followed by ordinary clicks quietly raised little structures. It now enters with <em>nothing</em> selected: a click places nothing until you pick a structure with the number keys, a banner across the top of the screen says exactly which state the mode is in, and pressing <kbd>B</kbd> twice by mistake is harmless. Right-click still reclaims anything you placed, at a full refund.</li>
+    <li><strong>Furniture no longer blocks doorways and stairs.</strong> Tables and crates were placed without checking what was underneath, so they could sit on top of a stair mouth or a doorway &mdash; a good share of why you kept bumping into stairs. One placement rule now applies to everything: nothing is put down on a door, a stair, or another piece of furniture.</li>
+    <li><strong>A duel does not reach through a wall.</strong> Two fighters squaring off could land blows with a wall standing between them. A duel now requires the two to actually share the space they are fighting in.</li>
+    <li><strong>A failed build does not kick up dust.</strong> Placing a structure you could not afford played the same puff of dust as a successful build. The dust now means what it says.</li>
+  </ul>
+</section>
 
 <section class="rel" aria-labelledby="pt7">
   <h2 class="rel-h" id="pt7">Playtest 7 &mdash; turn it down, and look again</h2>
