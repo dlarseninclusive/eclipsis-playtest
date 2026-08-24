@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest procedure — Eclipsis: The Shattered Expanse</title>
+<meta name="description" content="How to run an Eclipsis playtest: get the build, what to try, the console, and how to report what you find.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#0a0908;
+    --bg-2:#100e0b;
+    --panel:#15120e;
+    --panel-2:#1b1712;
+    --rule:#2b241b;
+    --rule-soft:#221d16;
+    --ink:#ded6c7;
+    --ink-strong:#f2ece0;
+    --ink-dim:#9a8f7c;
+    --ink-faint:#71695a;
+    --corona:#f0b24a;
+    --corona-soft:#ffd489;
+    --rust:#a4552e;
+    --maxw:1100px;
+    --textw:74ch;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:var(--corona-soft);text-decoration:none;border-bottom:1px solid rgba(240,178,74,.35)}
+  a:hover{border-bottom-color:var(--corona)}
+  img{max-width:100%;height:auto;display:block}
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;color:var(--ink-strong)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .col{max-width:var(--textw)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--rule);
+    background:
+      radial-gradient(120% 90% at 50% 118%, #1d1710 0%, #120f0b 40%, var(--bg) 72%);
+  }
+  .masthead .horizon{
+    position:absolute;left:-10%;right:-10%;bottom:0;height:38%;
+    background:linear-gradient(180deg, rgba(120,86,44,.00) 0%, rgba(126,90,46,.16) 55%, rgba(20,16,12,.9) 100%);
+    pointer-events:none;
+  }
+  .eclipse{
+    position:absolute;
+    left:50%;top:44px;
+    width:230px;height:230px;
+    margin-left:-115px;
+    border-radius:50%;
+    background:#070605;
+    box-shadow:
+      0 0 0 2px rgba(255,212,137,.85),
+      0 0 26px 6px rgba(240,178,74,.55),
+      0 0 90px 34px rgba(240,178,74,.18),
+      0 0 190px 90px rgba(164,85,46,.10);
+    pointer-events:none;
+  }
+  .eclipse::after{
+    content:"";position:absolute;inset:-160px;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, rgba(255,212,137,.14) 0%, rgba(240,178,74,.05) 38%, rgba(0,0,0,0) 62%);
+  }
+  .masthead-inner{position:relative;padding:118px 20px 54px;text-align:center;max-width:var(--maxw);margin:0 auto}
+  .title{
+    margin:0;
+    font-size:clamp(42px,10.5vw,104px);
+    line-height:.98;
+    letter-spacing:.10em;
+    text-indent:.10em;
+    color:#f6f0e4;
+    text-shadow:0 2px 0 rgba(0,0,0,.6), 0 0 44px rgba(240,178,74,.22);
+  }
+  .subtitle{
+    margin:16px 0 0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(13px,2.6vw,20px);
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--corona-soft);
+    text-transform:uppercase;
+  }
+  .rule-orn{
+    width:min(420px,70%);margin:26px auto 0;height:1px;
+    background:linear-gradient(90deg,rgba(240,178,74,0) 0%,rgba(240,178,74,.5) 50%,rgba(240,178,74,0) 100%);
+  }
+  .hook{
+    margin:22px auto 0;max-width:60ch;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(18px,3.2vw,25px);
+    line-height:1.45;color:var(--ink);
+  }
+  .kicker{
+    margin:30px 0 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0}
+  section + section{border-top:1px solid var(--rule-soft)}
+  h2{
+    font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;
+  }
+  h3{font-size:20px;margin:0 0 8px}
+  p{margin:0 0 18px}
+  .lede{font-size:19px;color:var(--ink-strong)}
+
+  /* ---------- gallery ---------- */
+  .shot-frame{
+    background:#000;border:1px solid var(--rule);
+    position:relative;line-height:0;
+  }
+  .shot-frame img{width:100%}
+  .navbtn{
+    position:absolute;top:0;bottom:0;width:16%;min-width:52px;
+    border:0;background:transparent;cursor:pointer;color:#fff;
+    font-size:30px;line-height:1;opacity:.0;transition:opacity .15s ease;
+    text-shadow:0 0 10px #000;
+  }
+  .shot-frame:hover .navbtn{opacity:.55}
+  .navbtn:hover{opacity:1 !important;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.next{right:0;background:none}
+  .navbtn.next:hover{background:linear-gradient(270deg,rgba(0,0,0,.45),rgba(0,0,0,0))}
+  .navbtn.prev{left:0}
+  .caption{
+    margin:14px 0 0;color:var(--ink-dim);font-size:15px;line-height:1.55;
+    display:flex;gap:14px;align-items:baseline;
+  }
+  .caption .idx{color:var(--ink-faint);font-variant-numeric:tabular-nums;flex:0 0 auto;font-size:13px;letter-spacing:.08em}
+  .thumbs{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:16px;
+  }
+  .thumbs button{
+    padding:0;border:1px solid var(--rule);background:#000;cursor:pointer;line-height:0;
+    opacity:.45;transition:opacity .15s ease,border-color .15s ease;
+  }
+  .thumbs button:hover{opacity:.8}
+  .thumbs button[aria-current="true"]{opacity:1;border-color:var(--corona)}
+  .thumbs img{width:100%}
+
+  /* ---------- download ---------- */
+  .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px}
+  .btn{
+    display:block;text-decoration:none;border:1px solid var(--rule);
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    padding:20px 22px;color:var(--ink-strong);transition:border-color .15s ease,background .15s ease;
+  }
+  .btn:hover{border-color:var(--corona);background:linear-gradient(180deg,#241d14,#191510)}
+  .btn .os{display:block;font-family:Georgia,serif;font-size:23px;margin-bottom:3px;color:var(--corona-soft)}
+  .btn .meta{display:block;font-size:13px;color:var(--ink-dim);letter-spacing:.04em}
+  .version{
+    font-size:14px;color:var(--ink-dim);margin:0 0 26px;letter-spacing:.04em;
+    padding-bottom:22px;border-bottom:1px solid var(--rule-soft);
+  }
+  .version code{color:var(--corona-soft)}
+  .howto{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .howto h3{font-size:17px;color:var(--corona-soft);font-family:inherit;letter-spacing:.02em}
+  .howto ol{margin:0;padding-left:20px}
+  .howto li{margin-bottom:10px;font-size:16px;color:var(--ink)}
+  code,kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+    background:#1c1811;border:1px solid var(--rule-soft);padding:1px 5px;color:#e6dcc8;
+    word-break:break-word;
+  }
+  .note{
+    margin-top:30px;border-left:2px solid var(--rust);padding:2px 0 2px 18px;
+    color:var(--ink-dim);font-size:15px;
+  }
+  .note strong{color:var(--ink)}
+  .reqs{margin-top:26px;font-size:15px;color:var(--ink-dim)}
+  .reqs dt{color:var(--ink);float:left;clear:left;width:9.5em;font-size:14px;letter-spacing:.04em}
+  .reqs dd{margin:0 0 6px 9.5em}
+
+  /* ---------- features ---------- */
+  ul.features{list-style:none;margin:0;padding:0;columns:2;column-gap:44px}
+  ul.features li{
+    break-inside:avoid;margin:0 0 16px;padding-left:20px;position:relative;font-size:16px;line-height:1.55;
+  }
+  ul.features li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+
+  /* ---------- disclaimer ---------- */
+  .warnbox{
+    border:1px solid #3b2c18;background:#16120c;padding:26px 28px;
+  }
+  .warnbox h2{margin-top:0}
+  .warnbox p:last-child{margin-bottom:0}
+
+  footer{
+    border-top:1px solid var(--rule);padding:34px 0 60px;color:var(--ink-faint);font-size:14px;
+  }
+  footer p{margin:0 0 6px}
+
+  @media (max-width:760px){
+    body{font-size:16px}
+    .masthead-inner{padding:96px 18px 42px}
+    .eclipse{width:150px;height:150px;margin-left:-75px;top:30px}
+    ul.features{columns:1}
+    .dl-grid,.howto{grid-template-columns:1fr}
+    .thumbs{grid-template-columns:repeat(4,1fr)}
+    .navbtn{opacity:.5}
+    .reqs dt{float:none;width:auto}
+    .reqs dd{margin-left:0;margin-bottom:12px}
+  }
+
+  /* ---------- release notes ---------- */
+  .backlink{font-size:15px;letter-spacing:.04em}
+  .rel{padding:52px 0}
+  .rel + .rel{border-top:1px solid var(--rule-soft)}
+  .rel-h{
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-weight:400;text-transform:none;color:var(--ink-strong);
+    font-size:29px;line-height:1.2;letter-spacing:.01em;margin:0 0 8px;
+  }
+  .rel-date{
+    margin:0 0 8px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .rel-lede{color:var(--ink-strong);font-size:18px;margin:0 0 24px}
+  h3.sub{
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;margin:26px 0 14px;
+  }
+  ul.rn{list-style:none;margin:0;padding:0}
+  ul.rn li{
+    break-inside:avoid;margin:0 0 14px;padding-left:20px;position:relative;
+    font-size:16px;line-height:1.6;
+  }
+  ul.rn li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+  ul.rn li strong{color:var(--ink-strong);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="masthead-inner" style="padding:64px 20px 40px">
+    <h1 class="title" style="font-size:clamp(30px,6vw,58px)">THE PLAYTEST PROCEDURE</h1>
+    <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
+    <div class="rule-orn"></div>
+    <p class="kicker">Thirty minutes of your time, spent well</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
+
+<div class="col">
+
+<section class="rel" aria-labelledby="pp1">
+  <h2 class="rel-h" id="pp1">1 &middot; Get the build running</h2>
+  <p class="rel-lede">No installer, no launcher, no account. Download from the <a href="./">front page</a>, unzip anywhere, and run <code>eclipsis.exe</code> (Windows) or <code>./eclipsis.x86_64</code> (Linux). If the game offers to set up the AI narrator, that is optional &mdash; everything works without it.</p>
+  <ul class="rn">
+    <li><strong>Core keys:</strong> <kbd>WASD</kbd> move &middot; <kbd>E</kbd> use / enter &middot; <kbd>Space</kbd> attack &middot; <kbd>B</kbd> build mode &middot; <kbd>I</kbd> backpack &middot; <kbd>Esc</kbd> menu &amp; settings (audio sliders live there). The game shows the rest as you meet it.</li>
+    <li><strong>Your saves live at</strong> <code>%APPDATA%\Godot\app_userdata\Eclipsis &mdash; Godot Spike\</code> on Windows, <code>~/.local/share/godot/app_userdata/Eclipsis &mdash; Godot Spike/</code> on Linux. Saves from older playtests load in the current build &mdash; that is itself worth testing.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pp2">
+  <h2 class="rel-h" id="pp2">2 &middot; What this build needs eyes on</h2>
+  <p class="rel-date">Focus for Playtest 8</p>
+  <ul class="rn">
+    <li><strong>Walk into buildings.</strong> The whole world was rebuilt bigger. Do interiors read as rooms? Is there furniture, and is it ever in your way where it should not be?</li>
+    <li><strong>Use the stairs, a lot.</strong> Every building now has one stairwell in the same corner on every floor, and cellars show their way down. Climb, descend, get chased up a staircase if you can arrange it.</li>
+    <li><strong>Enter build mode on purpose</strong> (<kbd>B</kbd>). It should be impossible to build anything by accident now &mdash; try to prove that wrong.</li>
+    <li><strong>Load an old save</strong> from any earlier playtest. Everything you had should land in its right place on the bigger map, and the game should say so once.</li>
+    <li><strong>And play normally.</strong> Half of what gets fixed comes from &ldquo;I was just playing and this felt wrong.&rdquo; Three minutes of honest play is worth an hour of checklist.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pp3">
+  <h2 class="rel-h" id="pp3">3 &middot; The console is your test rig</h2>
+  <p class="rel-lede">Press <kbd>`</kbd> (backquote, left of the 1 key) to open the in-game console. These are testing tools, not the intended way to play &mdash; but they get you to the interesting places fast.</p>
+  <ul class="rn">
+    <li><code>time</code> &mdash; move the clock, so you can see night, dawn, and the eclipse without waiting.</li>
+    <li><code>tp</code> &mdash; teleport, for reaching far towns and biomes quickly.</li>
+    <li><code>spawn</code> / <code>give</code> &mdash; put creatures or goods in front of you to poke at.</li>
+    <li><code>god</code> / <code>heal</code> &mdash; survive your own experiments.</li>
+    <li><code>storm</code> &middot; <code>dust_storm</code> &middot; <code>eclipse</code> &mdash; summon the weather instead of waiting for it.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pp4">
+  <h2 class="rel-h" id="pp4">4 &middot; Report what you find</h2>
+  <ul class="rn">
+    <li><strong>File it on the <a href="https://github.com/dlarseninclusive/eclipsis-playtest/issues">issue tracker</a></strong> &mdash; one issue per thing, and the form will walk you through it. Include which playtest build (it is on the title screen), your OS, what happened, and what you expected instead. Screenshots help enormously; a save file that shows the problem helps even more.</li>
+    <li><strong>No GitHub account?</strong> Send it to Dave directly, same details.</li>
+    <li><strong>Nothing is too small.</strong> A word that reads oddly, a sound that is too loud, a door that felt wrong &mdash; all of it is signal.</li>
+  </ul>
+</section>
+
+<section class="rel" aria-labelledby="pp5">
+  <h2 class="rel-h" id="pp5">5 &middot; Hear about new builds</h2>
+  <ul class="rn">
+    <li><strong>Email on every release:</strong> on the <a href="https://github.com/dlarseninclusive/eclipsis-playtest">GitHub repo</a>, click <em>Watch &rarr; Custom &rarr; Releases</em>. GitHub emails you each time a new playtest is published. (Free account needed.)</li>
+    <li><strong>No account:</strong> point any RSS reader or RSS-to-email service at the <a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases.atom">releases feed</a>.</li>
+    <li>What changed in each build is always on the <a href="notes.html">release notes</a> page.</li>
+  </ul>
+</section>
+
+</div>
+</main>
+
+<footer class="wrap">
+  <p>Eclipsis: The Shattered Expanse &mdash; &copy; 2026 Dave Larsen. All rights reserved.</p>
+  <p>No tracking, no analytics, no cookies, no external requests. This page is one file.</p>
+</footer>
+
+</body>
+</html>
