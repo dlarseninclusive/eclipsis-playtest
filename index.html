@@ -238,7 +238,7 @@
 <section class="wrap" aria-labelledby="shots-h">
   <h2 id="shots-h">Screenshots</h2>
   <div class="shot-frame">
-    <img id="shot" src="screenshots/01.png" width="1920" height="1080"
+    <img id="shot" src="screenshots/01.png?v=8" width="1920" height="1080"
          alt="Gameplay screenshot from Eclipsis: The Shattered Expanse">
     <button class="navbtn prev" type="button" id="prev" aria-label="Previous screenshot">&#8249;</button>
     <button class="navbtn next" type="button" id="next" aria-label="Next screenshot">&#8250;</button>
@@ -305,6 +305,7 @@
       <span class="meta">x86_64 &middot; .tar.gz</span>
     </a>
   </div>
+  <p style="margin:0 0 18px;font-size:1.05em"><strong>New tester?</strong> Start with <a href="playtest.html">the playtest procedure</a> &mdash; what to try and how to report. Full history of changes: <a href="notes.html">release notes</a>.</p>
   <p class="note"><strong>New in Playtest 8 &mdash; room to live:</strong> The whole world has been rebuilt at a larger scale. Every building is 1.6&times; bigger &mdash; real rooms with real floor to cross &mdash; and the map grew with them, so towns keep their breathing room and a journey still costs what it did. Stairs stay put now: each building has one stairwell, in the same corner on every floor, with both flights side by side &mdash; and a ground floor shows the way <em>down</em> into its cellar instead of letting you fall through an unmarked square. Roughly twice as many houses are furnished, and nothing is placed on top of a doorway or a stair any more. Build mode also stops ambushing you: it enters with nothing selected, says so in a banner you cannot miss, and a stray click places nothing until you deliberately pick a structure. Old saves carry forward &mdash; everything you built lands in its right place on the bigger map.</p>
   <p class="version">Build <code>Playtest 8 &middot; 2026-08-23 &middot; Windows &amp; Linux</code> &middot; single executable, no installer, no launcher, no account &middot; <a href="notes.html">Full release notes</a> &middot; <a href="playtest.html">The playtest procedure</a><br>sha256 &middot; zip <code>7bc14868e4923f07ccd015a1107020b2c2229a366dbcd3eb35b4a9b757642b16</code> &middot; tar.gz <code>2ca039f6564c190887b7cb0d9479d55987d800e69152fd7a8689047d3c602b37</code></p>
 
@@ -375,13 +376,13 @@
 <script>
 (function(){
   var shots = [
-    ["screenshots/01.png","Rust Haven at midday — a Rust Walker town inside its curtain wall. Roads run gate to gate, footpaths thread between the houses, and the townsfolk are out on them."],
-    ["screenshots/02.png","The same streets deep into the night. Lamps down the main road, lit windows, and a crowd you can only half see — night is genuinely dark, and what you can see depends on what you are carrying."],
-    ["screenshots/03.png","A dust storm on the highway through the Corona’s Grave highlands: the tint on everything, the haze banked across it and the wind-blown streaks. The travellers strung out along the road were already walking it — and an Architect ruin has just been found and marked."],
-    ["screenshots/04.png","Inside an Automaton taproom in Machine Nexus — the keeper at his counter, three drinkers, stools, crates and shelves, and the stairwell in the corner that runs up to the roof and down to the cellar. The roof simply fades as you step under it — no loading screen, no separate map."],
-    ["screenshots/05.png","A street brawl in Rust Haven, mid-swing: damage in the air, blood and dropped packs on the ground, three Dust Reavers still on their feet — and the log keeping score of the other three: “You kill a Dust Reaver. Their people won’t forget.”"],
-    ["screenshots/06.png","The whole Expanse laid flat — biome ground, faction territories in their own colours, their named capitals, the named lands between them, and a compass rose."],
-    ["screenshots/07.png","Six days of world, written down: a famine in the Cinder Dominion, a war between the Blacklight Syndicate and the Automatons, coffers, border clashes, the world’s mood — and “Frost on the salt flats at noon. The old hands have stopped calling it weather.”"]
+    ["screenshots/01.png?v=8","Rust Haven at midday — a Rust Walker town inside its curtain wall. Roads run gate to gate, footpaths thread between the houses, and the townsfolk are out on them."],
+    ["screenshots/02.png?v=8","The same streets deep into the night. Lamps down the main road, lit windows, and a crowd you can only half see — night is genuinely dark, and what you can see depends on what you are carrying."],
+    ["screenshots/03.png?v=8","A dust storm on the highway through the Corona’s Grave highlands: the tint on everything, the haze banked across it and the wind-blown streaks. The travellers strung out along the road were already walking it — and an Architect ruin has just been found and marked."],
+    ["screenshots/04.png?v=8","Inside an Automaton taproom in Machine Nexus — the keeper at his counter, three drinkers, stools, crates and shelves, and the stairwell in the corner that runs up to the roof and down to the cellar. The roof simply fades as you step under it — no loading screen, no separate map."],
+    ["screenshots/05.png?v=8","A street brawl in Rust Haven, mid-swing: damage in the air, blood and dropped packs on the ground, three Dust Reavers still on their feet — and the log keeping score of the other three: “You kill a Dust Reaver. Their people won’t forget.”"],
+    ["screenshots/06.png?v=8","The whole Expanse laid flat — biome ground, faction territories in their own colours, their named capitals, the named lands between them, and a compass rose."],
+    ["screenshots/07.png?v=8","Six days of world, written down: a famine in the Cinder Dominion, a war between the Blacklight Syndicate and the Automatons, coffers, border clashes, the world’s mood — and “Frost on the salt flats at noon. The old hands have stopped calling it weather.”"]
   ];
   var img = document.getElementById('shot'),
       cap = document.getElementById('shot-cap'),
