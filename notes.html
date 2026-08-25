@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 9 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 10 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,35 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+<section class="rel" aria-labelledby="pt10">
+  <h2 class="rel-h" id="pt10">Playtest 10 &mdash; the feedback build, again</h2>
+  <p class="rel-date">Released 2026-08-24</p>
+  <p class="rel-lede">Playtest 9 produced fourteen pieces of feedback. All fourteen are in this build &mdash; nothing else jumped the queue. The theme this time: the world stops making exceptions &mdash; for buildings, for kings, for oxen, for the clock.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>The bar serves the seated.</strong> Take a stool and the bar screen opens with the keeper’s greeting &mdash; talk to the keeper and order from your seat, stay seated when you close the screen, or stand back up. Ordinary chairs still just seat you; the counter works as it always did.</li>
+    <li><strong>Provisions to go.</strong> A little over half the bars keep a shelf of water, bread and roast tubers you can buy straight into your pack, at the local counter’s price plus a house markup. The same bar always has &mdash; or doesn’t have &mdash; its shelf, so it pays to remember which houses stock one.</li>
+    <li><strong>Rank dresses the mighty.</strong> Faction heads and named figures now spawn with weapons and armor befitting their station &mdash; each keeping their own fighting style &mdash; and the gear of the fallen actually drops now (equipped weapons and armor used to vanish on death).</li>
+    <li><strong>You can put things down.</strong> On the Backpack tab: arrows pick a line, - and = set the count, D drops it &mdash; and the tab tells you exactly what D will do before you press it. Dropped goods become an ordinary pile at your feet that auto-pickup politely ignores until you walk away. (Two honest caveats: a dropped pile does not yet survive a save, and scavengers may cart off an unattended stash.)</li>
+    <li><strong>Time has a face.</strong> A TIME pill sits beside the clock at every speed &mdash; including x1 &mdash; dim at normal speed, gold when accelerated, noting when combat holds the speed down. Click it or press <kbd>.</kbd> to cycle x1 / x3 / x8.</li>
+    <li><strong>The console completes you.</strong> Tab completes commands and names &mdash; <code>tp rust</code> + Tab becomes the full town name &mdash; with candidate lists when ambiguous. And the console finally shows its answers: they used to go to a message log most installs had switched off, so every command answered into silence. It has its own output pane now and stays open so you can refine.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>People no longer walk through buildings.</strong> The general strolling through the bank was a game-wide gap: ordinary walkers &mdash; the whole non-hostile crowd, leaders on their rounds, marching columns &mdash; never treated buildings as solid; only hostiles chasing you did. An old performance trade-off whose cost had long since disappeared. Everyone routes around buildings now, at essentially no cost.</li>
+    <li><strong>The pack ox behaves.</strong> Bought while you’re indoors, it appears at the building’s doorstep instead of materializing beside you in the tap room; it waits at the door while you’re inside, falls in when you come out, and finds its way back to you after a tunnel. Loading it requires actually standing next to it &mdash; no more handing scrap through a wall.</li>
+    <li><strong>The ox looks like an ox.</strong> Crescent horns, a broad muzzle, a heavy four-beat plod with its head swaying to the walk &mdash; and when you load it, a yoke, frame and panniers appear that visibly swell and sag as the bags fill.</li>
+    <li><strong>The &ldquo;100%&rdquo; mystery is solved.</strong> That number was the animal’s <em>health</em>, wearing a name truncated into &ldquo;Pack&rdquo; &mdash; a health bar in a fuel gauge’s costume, pinned at 100 forever. A pack animal’s tag now shows its actual load (&ldquo;Pack Bristle Ox 3/40&rdquo;) and moves when cargo does; everyone else’s tag says &ldquo;hp&rdquo; so the two can never be confused again.</li>
+    <li><strong>Running looks like running.</strong> Both arms stream back behind the body, the swinging knee comes up nearly half the leg’s height, and the whole figure leans hard into the sprint. Walkers are untouched, pixel for pixel.</li>
+    <li><strong>Blades read as blades.</strong> Swords have a tapered body, bright edge, fuller, crossguard and pommel; axes a bearded head; maces banded hoops; spears a socketed leaf &mdash; and a glint that fires only on the strike.</li>
+    <li><strong>The yellow circle is named.</strong> It was the squad control-switch marker &mdash; recruit anyone and it drew an unlabeled yellow hoop around you, forever, to report a feature you weren’t using. It now appears only when you’re actually steering a companion, labeled at both ends.</li>
+  </ul>
+
+  <p class="rel-lede">Riding the next world-refresh update instead of this build: the crenellated battlement parapet (built and working, but switching it on moves a reference frame the art pipeline is pinned to) and a teller behind the bank counter. The rooftop already opens to the world around you in this build.</p>
+</section>
+
 
 <section class="rel" aria-labelledby="pt9">
   <h2 class="rel-h" id="pt9">Playtest 9 &mdash; the feedback build</h2>
