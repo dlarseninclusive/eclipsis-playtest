@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 11 — Eclipsis: The Shattered Expanse</title>
+<meta name="description" content="Playtest 11 field report: what changed, seven shots from the current build, where to look, and what is already known.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#14110e; --surface:#1d1915; --raised:#242019;
+    --ink:#e8e0d2; --muted:#9a8f7d; --line:#35302a;
+    --accent:#d08a3e; --accent-ink:#14110e;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --ground:#f0ebe1; --surface:#faf7f0; --raised:#fffdf8;
+      --ink:#2a241c; --muted:#6d6353; --line:#ddd5c6;
+      --accent:#a8641f; --accent-ink:#faf7f0;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#f0ebe1; --surface:#faf7f0; --raised:#fffdf8;
+    --ink:#2a241c; --muted:#6d6353; --line:#ddd5c6;
+    --accent:#a8641f; --accent-ink:#faf7f0;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);
+    font:16px/1.6 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;margin:0;padding:0 18px 90px}
+  .wrap{max-width:52rem;margin:0 auto}
+  header.top{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-variant:small-caps;
+    letter-spacing:.05em;font-size:clamp(2.4rem,7vw,3.6rem);line-height:1;margin:0 0 10px;text-wrap:balance}
+  .standfirst{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.15rem,2.4vw,1.4rem);
+    line-height:1.5;color:var(--muted);margin:0 0 26px;max-width:38rem}
+  .meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .meta b{color:var(--ink);font-weight:600}
+  .get{display:inline-block;margin-top:24px;background:var(--accent);color:var(--accent-ink);
+    text-decoration:none;font-weight:600;padding:11px 22px;border-radius:3px;font-size:.95rem}
+  .get:hover{filter:brightness(1.08)}
+  .get:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .hash{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.72rem;color:var(--muted);
+    margin-top:10px;word-break:break-all}
+  section{margin-top:46px}
+  h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-variant:small-caps;
+    letter-spacing:.05em;font-size:1.85rem;margin:0 0 6px}
+  .lede{color:var(--muted);margin:0 0 22px;max-width:40rem}
+  .fix{border-left:2px solid var(--line);padding:0 0 0 18px;margin:0 0 22px}
+  .fixhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .fix h3{font-size:1rem;font-weight:600;margin:0 0 4px}
+  .tag{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.7rem;color:var(--accent);
+    border:1px solid var(--line);border-radius:2px;padding:1px 7px;white-space:nowrap}
+  .fix p{margin:0;color:var(--muted);font-size:.94rem}
+  figure.shot{margin:0 0 34px}
+  figure.shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+  figcaption{margin-top:10px;font-size:.88rem;color:var(--muted);line-height:1.55}
+  figcaption b{display:block;color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:1.15rem;font-variant:small-caps;letter-spacing:.04em;font-weight:600;margin-bottom:3px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:20px 24px}
+  .panel h3{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;font-weight:600}
+  .panel ul{margin:0;padding-left:20px}
+  .panel li{margin-bottom:9px;color:var(--muted)}
+  .panel li b{color:var(--ink);font-weight:600}
+  .panel li:last-child{margin-bottom:0}
+  kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82em;background:var(--raised);
+    border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:1px 6px;color:var(--ink)}
+  .backlink{margin:0;padding:22px 0 0;font-size:.85rem}
+  .backlink a{color:var(--muted)}
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);max-width:40rem}
+  footer a{color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Eclipsis &middot; The Shattered Expanse</p>
+  <h1>Playtest 11</h1>
+  <p class="standfirst">Four things that were broken are not any more &mdash; including the one that
+  made crossing the world a coin flip. And the roads mean something now.</p>
+  <div class="meta">
+    <span><b>Windows</b> x86_64</span>
+    <span><b>Linux</b> x86_64</span>
+    <span><b>30 Aug 2026</b></span>
+    <span>build <b>555acc3</b></span>
+    <span>pre-alpha</span>
+  </div>
+  <a class="get" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-11">Download Playtest 11</a>
+  <p class="hash">sha256 &middot; zip 3e2e1bbac628c243b9183fa60fd17a528816c40a7a9f73a6ccd452ef50eb0cc6<br>
+  sha256 &middot; tar.gz d138a3c70bc9d8af8cf47c82b42d814f7a7f444b4abd175611766f5201339b35</p>
+</header>
+
+<section>
+  <h2>What changed</h2>
+  <p class="lede">Each of these was found by playing, measured across hundreds of generated worlds,
+  and verified afterwards on the same worlds.</p>
+
+<div class="fix">
+  <div class="fixhead"><h3>Long hauls arrive</h3><span class="tag">#10</span></div>
+  <p>A click across the continent used to give up. Measured over ninety-nine worlds: three arrivals before, eighty-two per cent arriving or all but arriving after.</p>
+</div>
+<div class="fix">
+  <div class="fixhead"><h3>The way down</h3><span class="tag">#8</span></div>
+  <p>A fitting on the roof deck sat fifty-two pixels from the stair mouth, inside the fifty-four-pixel reach of the prop scan that runs first &mdash; so E answered with the furniture and you were stranded upstairs. Descending went from twenty-eight per cent to a hundred.</p>
+</div>
+<div class="fix">
+  <div class="fixhead"><h3>The towns that ate themselves</h3><span class="tag">#7</span></div>
+  <p>Far from the map's origin, float32 lost enough precision that a body's own torso failed to triangulate and the errors killed the process. Machine Nexus was the first town over the line; it is not any more.</p>
+</div>
+<div class="fix">
+  <div class="fixhead"><h3>The details that went missing</h3><span class="tag">#9</span></div>
+  <p>The same distance quietly stopped the small things being drawn at all &mdash; weathervanes and gables on the rooftops, the tails that point a speech bubble at whoever is speaking, the icons on dropped loot. Far towns wear them again.</p>
+</div>
+<div class="fix">
+  <div class="fixhead"><h3>Roads, and what they cost</h3><span class="tag">new</span></div>
+  <p>Dave's bargain: the road is the safe way and the taxed one. Seventy-nine per cent of a long route now lies on a road, predators hunt at less than half their range near one, and the ambushers who work the highways trigger at twice the distance.</p>
+</div>
+
+</section>
+
+<section>
+  <h2>The Expanse</h2>
+  <p class="lede">Seven from the current build.</p>
+
+<figure class="shot">
+  <img src="../screenshots/01.png?v=11" alt="Rust Haven, day one" loading="lazy" width="1920" height="1080">
+  <figcaption><b>Rust Haven, day one</b>A walled town with its roofs off &mdash; the whole plan visible at once, streets that aren't a grid, and every body in it going about its own day. The prompt under the townsman is the game explaining itself: talk, recruit at Friendly, thirty per cent at charisma one.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/02.png?v=11" alt="The same town, 23:20" loading="lazy" width="1920" height="1080">
+  <figcaption><b>The same town, 23:20</b>Night is genuinely dark and lit from inside &mdash; hearths through windows, lamps down the street. Carry a match, a lighter, a torch or a lamp; the tier you're on decides how far you see and how long it lasts.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/03.png?v=11" alt="Weather as oppression" loading="lazy" width="1920" height="1080">
+  <figcaption><b>Weather as oppression</b>Dust rolls the Desert and the world dims with it. Storms carry their own haze, their own motes, and their own effect on who can see you.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/04.png?v=11" alt="One world, roofs off" loading="lazy" width="1920" height="1080">
+  <figcaption><b>One world, roofs off</b>There is no [E] to enter anything, because there is nothing to enter &mdash; a building is a wall ring with a gap in it and you walk through the gap. Stairs take you up to the roof deck and down to the cellars.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/05.png?v=11" alt="Melee with styles" loading="lazy" width="1920" height="1080">
+  <figcaption><b>Melee with styles</b>Block, dodge, charged heavy, and a stance for the squad behind you. Going down doesn't reset you: you wake wounded, or in somebody's confinement.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/06.png?v=11" alt="Seventy-five thousand units" loading="lazy" width="1920" height="1080">
+  <figcaption><b>Seventy-five thousand units</b>Six biomes, sixteen named lands, nineteen factions with a war that isn't about you. Discovered places land on the map as you find them.</figcaption>
+</figure>
+<figure class="shot">
+  <img src="../screenshots/07.png?v=11" alt="The Codex" loading="lazy" width="1920" height="1080">
+  <figcaption><b>The Codex</b>Species, factions and mechanics unlock on first sighting &mdash; the world explaining itself as you meet it.</figcaption>
+</figure>
+
+</section>
+
+<section>
+  <h2>Where to look</h2>
+  <div class="panel">
+    <h3>Worth your attention this round</h3>
+    <ul>
+      <li><b>Walk somewhere far.</b> Open the map with <kbd>M</kbd> and click across the continent.
+      It should get there &mdash; and it should take the road.</li>
+      <li><b>Do the roads feel like a bargain?</b> Fewer animals, more people who want your cargo.
+      That trade is new, and the numbers behind it are guesses until somebody plays them.</li>
+      <li><b>Go upstairs, then come back down.</b> Both directions, in as many buildings as you can stand.</li>
+      <li><b>Visit somewhere remote.</b> The far towns used to come apart. They should not now.</li>
+      <li><b>Carry a gun.</b> Firearms were drawing as strung bows and firing wooden arrows. They
+      look right now; they do not yet sound right.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Known, and not worth reporting</h2>
+  <div class="panel">
+    <h3>Already on the list</h3>
+    <ul>
+      <li><b>The Ollama prompt on first launch.</b> Dialogue offers to install a local model before
+      you reach the menu. <b>Skip</b> is fine &mdash; you get hand-written faction lines instead of
+      generated ones.</li>
+      <li><b>Guns sound like bowstrings.</b> The art is fixed; the audio is not. Parked.</li>
+      <li><b>Short days, dark nights.</b> A full cycle runs about two minutes and deep night sits
+      low on purpose. Cycle your carried light &mdash; match, lighter, torch, lamp.</li>
+      <li><b>The window says &ldquo;Godot Spike.&rdquo;</b> Cosmetic; it is the project&rsquo;s working name.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  Pre-alpha, unsigned, and not for redistribution. Trackers #7, #8, #9 and #10 close with this
+  build. Report anything on the playtest tracker &mdash; the town you were in, and roughly where in
+  it, is usually enough to reproduce.
+  <p class="backlink"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a></p>
+</footer>
+
+</div>
+
+</body>
+</html>
