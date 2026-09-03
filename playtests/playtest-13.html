@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 13 Field Report</title>
+<meta name="description" content="Playtest 13 field report: what was checked on the shipped archive, the before and after of the start screen, the update notifier on its first real day, and the protection ledger finding.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* -- figures (PT13) -- */
+figure{margin:0 0 22px;background:var(--raise);border:1px solid var(--rule);border-radius:3px;padding:10px}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font:400 13px/1.6 "JetBrains Mono",monospace;color:var(--ink-faint);padding:10px 4px 2px}
+figcaption b{color:var(--ink-soft);font-weight:600}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+.nav{font-size:14px;margin:18px 0 0}
+.nav a{color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-12.html">Playtest 12 report</a></p>
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 13</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>3 September 2026</span>
+  </div>
+  <h1>A build that <em>names</em> itself</h1>
+  <p class="dek">
+    A short build after a big one. It answers three things playtest 12 kept raising that were
+    not about the game at all: which build am I playing, why did a stray keypress start a run,
+    and can I play it on a Mac. Nothing about hunger, thirst or the length of a day changes here.
+  </p>
+</header>
+
+<div class="verdict">
+  <span class="mark">Cleared</span>
+  <p><strong>Play it.</strong> Every one of the four things this build promises was checked on
+  the shipped archive, not on source. One finding below came out of opening a real day-204 save
+  on it, and it explains a report from playtest 12 that nobody could account for.</p>
+</div>
+
+<div class="stamp">
+<b>stamp</b>&nbsp;&nbsp;&nbsp;&nbsp; playtest-13 &middot; 32df4f7 &nbsp;<span class="ok">&#10003; one line on the title, the same on the HUD, the same in the log</span><br>
+<b>windows</b>&nbsp;&nbsp; eclipsis_playtest-13_windows_x86_64.zip &nbsp; c54a8ad199b821690e389e8b994c3c817fe7190b45c0ee6dd02b79353b992901 <span class="ok">&#10003;</span><br>
+<b>macos</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-13_macos_universal.zip &nbsp;&nbsp; f5e520ee60087a7f2fee79b4395e98298efc64e7afd9141b74a2c860f24131de <span class="ok">&#10003;</span><br>
+<b>linux</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-13_linux_x86_64.tar.gz &nbsp;&nbsp; 631874afe4cab9c82b08f2a281557708dcb02b7c464bba22373c863d331ffd87 <span class="ok">&#10003;</span><br>
+<b>checked</b>&nbsp;&nbsp; sha256 of each downloaded file against the release body, byte for byte
+</div>
+
+<section>
+  <h2>What was actually proven</h2>
+  <p class="sub">Three tiers, as before. The top one is the only one that counts as a promise.</p>
+
+  <div class="tier t-art">
+    <div class="tier-head">
+      <span class="tier-name">Verified on the shipped build</span>
+      <span class="tier-how">the release archive, launched and driven like a player would</span>
+    </div>
+    <ul>
+      <li><b>One version stamp.</b> The title shows <code>playtest-13 &middot; 32df4f7</code> once, bottom-left. The bottom-right corner, where a second hand-typed stamp used to contradict it, is empty. The log opens with the same string.</li>
+      <li><b>The update notifier, on its first real day.</b> The playtest-12 build was launched with playtest-13 published. It raised the card: <i>You are playing playtest-12. playtest-13 has been published.</i> <b>Later</b> closes it, leaves a quiet one-line reminder with a Get-it button, and the same build never asks again. <b>Download</b> opens the release page in the browser. The game downloads nothing itself.</li>
+      <li><b>Your saves survive the upgrade.</b> Playtest 13 opened a real save from playtest 12 &mdash; day 204, Rust Haven &mdash; with the migration marker untouched by hash and nothing copied a second time.</li>
+      <li><b>The archive names carry the version.</b> All three, and the sha256 of each downloaded file equals the line in the release body.</li>
+      <li><b>Starting a game asks first.</b> On CHOOSE YOUR START, hovering a row selects it and clicking a row selects it; neither launches. The BEGIN plate names the start it will begin. The faction picker has its own BEGIN. Clicking it began an Automatons run with the HUD stamp present.</li>
+      <li><b>WORLD AGE no longer runs through the description.</b> On the artifact, with One of Their Own selected, the third line of the blurb sits clear above the heading.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-src">
+    <div class="tier-head">
+      <span class="tier-name">Verified against source</span>
+      <span class="tier-how">at the fix commit 4993334, windowed, before the cut</span>
+    </div>
+    <ul>
+      <li><b>The overlap, measured.</b> One of Their Own and Slave both wrap to three lines at this width. Before: the last line ran 19&nbsp;px into WORLD AGE. After: 25&nbsp;px clear. The Wanderer went from 21 to 65&nbsp;px clear. The list itself did not move (9 rows, pitch 27).</li>
+      <li><b>The fix reserves for the tallest blurb in the data</b>, not the one selected, so rows do not jump as you move and a modded tenth start cannot reopen it. The screen check now iterates every start and asserts the blurb bottom against the heading.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-non">
+    <div class="tier-head">
+      <span class="tier-name">Not tested this cycle</span>
+      <span class="tier-how">named, rather than left as silence</span>
+    </div>
+    <ul>
+      <li><b>macOS.</b> Nobody on the team has a Mac. The archive is structurally right (universal x86_64+arm64, executable bit, ad-hoc signature intact). The first real launch is a tester's. If macOS says the app is damaged, the README's <code>xattr</code> line is the fix.</li>
+      <li><b>The notifier's "See what changed" button</b>, and the rule that the card never appears over gameplay. Both are one code path each; neither was driven.</li>
+      <li><b>Survival pace.</b> Designed, ruled, and not in this build. See below.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Before and after</h2>
+  <p class="sub">The same screen on the playtest-12 build and on this one. Same seed, same window, same selection.</p>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt13/start_before_fbc3a79.png" alt="CHOOSE YOUR START on playtest 12: the last line of the One of Their Own blurb painted through the WORLD AGE heading" loading="lazy">
+      <figcaption><b>before</b> &middot; game code fbc3a79 (playtest 12) &middot; the blurb's third line runs through WORLD AGE, 19 px deep</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt13/start_after_4993334.png" alt="CHOOSE YOUR START on playtest 13: blurb clear of WORLD AGE, BEGIN plate reading One of Their Own beside the pawn" loading="lazy">
+      <figcaption><b>after</b> &middot; fix 4993334 (playtest 13) &middot; 25 px clear, and the BEGIN plate that now does the launching</figcaption>
+    </figure>
+  </div>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt13/title_pt12_two_stamps.png" alt="Playtest 12 title screen with two different build stamps in opposite corners" loading="lazy">
+      <figcaption><b>before</b> &middot; playtest 12's title carried two stamps that disagreed: a hand-typed build line from August, and the real tag</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt13/title_stamp.png" alt="Playtest 13 title screen with a single version stamp bottom-left" loading="lazy">
+      <figcaption><b>after</b> &middot; one stamp, generated from the release tag, the same string as the filename you downloaded</figcaption>
+    </figure>
+  </div>
+  <figure>
+    <img src="../screenshots/pt13/picker_begin.png" alt="CHOOSE YOUR PEOPLE picker with its own BEGIN plate reading Automatons" loading="lazy">
+    <figcaption>the faction picker had the same stray-launch defect and got the same plate</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>The notifier's first real day</h2>
+  <p>
+    The update check shipped in playtest 12 with nothing newer to find. This is the first cut
+    where an older build has something to say, so it was driven from the playtest-12 archive
+    against a copy of a real save directory with no memory of any release.
+  </p>
+  <figure>
+    <img src="../screenshots/pt13/notifier_modal.png" alt="The update card on the playtest 12 title: A NEWER PLAYTEST EXISTS, You are playing playtest-12, playtest-13 has been published, with See what changed, Download playtest-13 and Later buttons" loading="lazy">
+    <figcaption>the card, on the playtest-12 build, seconds after launch</figcaption>
+  </figure>
+  <p>
+    <b>Later</b> (or Esc) closes the card and writes the tag it saw; that build never asks about
+    playtest-13 again, and a one-line reminder with a Get-it button stays in the corner.
+    <b>Download</b> opens the release page &mdash; not the site root &mdash; and also counts as seen.
+    The game never fetches or replaces its own binary; every button opens your browser.
+  </p>
+</section>
+
+<section>
+  <h2>What playtest 12's feedback became</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>You said</th><th>What happened</th></tr></thead>
+    <tbody>
+      <tr><td>"We need a version, that should be easy to use."</td><td><b>Shipped.</b> The tag is in the filename, on the title, on the HUD and in the log &mdash; one generated string.</td></tr>
+      <tr><td>"It's confusing to scroll the starts and you just launch one."</td><td><b>Shipped.</b> Rows select; BEGIN launches; both pickers.</td></tr>
+      <tr><td>"'World age' overlaps the bottom description."</td><td><b>Shipped.</b> Measured 19 px over, now 25 px clear.</td></tr>
+      <tr><td>"I like the descriptions."</td><td>Kept. Not one blurb was shortened; the layout gave way instead.</td></tr>
+      <tr><td>"Time should pass slower, or food and water should empty slower. All I do is look for water."</td><td><b>Designed, not here.</b> The owner ruled an hour-long game day, real-life drain (thirsty twice a day, hungry once), and a three-day ladder of penalties that never kills you. Ten number calls ruled. It is the next slab. Nothing about it is in this build, so it will still feel the way it felt.</td></tr>
+      <tr><td>"Not sure how I got to unfriendly with the Rust Walkers by just standing there."</td><td><b>Root cause found</b> &mdash; in the save this gate opened. Below.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>One finding: the protection ledger</h2>
+  <p>
+    The save that playtest 13 opened for the upgrade check is a real run of <i>The Failing
+    Bakery</i>, day 204. Its owner reported going unfriendly with the Rust Walkers while standing
+    still. The save says exactly how, and it was not the standing they thought.
+  </p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Measured, from the save</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Standing with the Rust Walkers</td><td><b>&minus;100</b> &mdash; the floor; hostile begins at &minus;50</td></tr>
+      <tr><td>The shop (Vex's Larder, Rust Haven)</td><td>protection levies missed <b>38</b> &middot; arrears 1,135 &middot; counter <b>shut</b> &middot; next collection day 207</td></tr>
+      <tr><td>What the faction remembers of you</td><td>"your counter at Vex's Larder came up 30 short on the protection"</td></tr>
+      <tr><td>The debt ledger's figure for the same arrears</td><td><b>2,086,917 coronas</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+    <b>The mechanism</b>, read from the shipped rules: a shop in a lawless town owes 30 coronas of
+    protection every five days. Every collection you cannot meet costs four points of standing.
+    At zero coronas with a shut counter, every collection misses: thirty-eight of them is &minus;152,
+    clamped to &minus;100. That part is the game doing what it was told. The part that is not: the
+    shortfall goes onto the same ledger as a moneylender's loan, which compounds at <b>5% per
+    day</b>. Over roughly 180 days that is a factor of about 6,500 &mdash; 1,135 becomes two
+    million &mdash; and any debt over 60 turns every member of that faction hostile on sight,
+    which is the HOSTILE GROUND warning over Rust Haven. Standing still is exactly when the
+    collector keeps coming, and the only voice it has is one scrolling log line per visit; the
+    chronicle never mentions it.
+  </p>
+  <p>
+    Four recommendations went to the owner: arrears should not compound at loan interest;
+    arrears should floor at unfriendly, not hostile; the collection note should say the standing
+    cost and the running total; and the Failing Bakery's numbers need a design look, since a shut
+    counter cannot earn the 30 that keeps it open.
+  </p>
+</section>
+
+<section>
+  <h2>Numbers for the next slab</h2>
+  <p class="sub">The survival baseline, measured before any pace change, so the change can be measured against it.</p>
+  <p>
+    A player standing still in open waste with water and rations for seven game days, on the
+    shipped two-minute day:
+  </p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Measure</th><th>Shipped build</th></tr></thead>
+    <tbody>
+      <tr><td>Auto-drink per game day</td><td>1.14 (a drink every 100 real seconds)</td></tr>
+      <tr><td>Auto-eat per game day</td><td>0.29 (a meal every 3.5 game days)</td></tr>
+      <tr><td>Highest thirst / hunger the bar reached</td><td>125 / 250 of 100 &mdash; a refill does not cap, so the bar sits pinned at full while the hidden value drains back</td></tr>
+      <tr><td>Lowest health, idle and well supplied</td><td>50 &mdash; one pass of the hot hour while under half thirst</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+    The hot-hour burn is the number to watch: today its window is ten real seconds. On an
+    hour-long day it would be three hundred, which is why the pace slab lands a health floor
+    before it touches the clock.
+  </p>
+</section>
+
+<section>
+  <h2>What this build does not fix</h2>
+  <p>
+    Hunger, thirst and the length of a day are unchanged. No note tells you where you stand with
+    a faction when a run begins or when a standing crosses a line. The protection ledger above
+    still compounds. And as a machine standing in the Automatons' own city, the HUD flags the
+    ground hostile because the faction is hostile to strangers by default &mdash; cosmetic, listed.
+  </p>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <p class="sub">
+    The game code and the instruments live in the private development repository; the hashes
+    are here so the team can open them. Public items are linked.
+  </p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>The release</td><td><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-13">playtest-13</a> &middot; game code <code>32df4f7</code></td></tr>
+      <tr><td>The fix (confirm, stamp, layout)</td><td><code>4993334</code> and its parents <code>f2bc549</code>, <code>9624d9b</code>, <code>f77a27e</code></td></tr>
+      <tr><td>The before frames</td><td>game code <code>fbc3a79</code> (playtest 12)</td></tr>
+      <tr><td>Start-screen shot harness</td><td><code>tests/shot_scenario_select.gd</code> &middot; <code>14d4a70</code></td></tr>
+      <tr><td>Exported-build driver (keys, clicks, capture)</td><td><code>tools/journey/shot_export.ps1</code> &middot; <code>35d11bd</code></td></tr>
+      <tr><td>The gate itself, written before it ran</td><td><code>tools/journey/first_play_pt13.md</code> &middot; <code>3c45c07</code></td></tr>
+      <tr><td>Survival baseline probe</td><td><code>tests/probe_needs.gd</code> &middot; <code>0d20245</code></td></tr>
+      <tr><td>Starting-standings probe</td><td><code>tests/probe_start_rep.gd</code> &middot; <code>b9f6fd5</code></td></tr>
+      <tr><td>Survival pace design, with the owner's rulings</td><td><code>design/47_survival_pace.md</code> &middot; <code>b4dc46b</code></td></tr>
+      <tr><td>Frames on this page</td><td><a href="https://github.com/dlarseninclusive/eclipsis-playtest/tree/main/screenshots/pt13">screenshots/pt13</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-12.html">Playtest 12 report</a></p>
+
+</div>
+</body>
+</html>
