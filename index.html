@@ -151,7 +151,7 @@
   .thumbs img{width:100%}
 
   /* ---------- download ---------- */
-  .dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px}
+  .dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin:0 0 26px}
   .btn{
     display:block;text-decoration:none;border:1px solid var(--rule);
     background:linear-gradient(180deg,var(--panel-2),var(--panel));
@@ -165,7 +165,7 @@
     padding-bottom:22px;border-bottom:1px solid var(--rule-soft);
   }
   .version code{color:var(--corona-soft)}
-  .howto{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px}
   .howto h3{font-size:17px;color:var(--corona-soft);font-family:inherit;letter-spacing:.02em}
   .howto ol{margin:0;padding-left:20px}
   .howto li{margin-bottom:10px;font-size:16px;color:var(--ink)}
@@ -238,7 +238,7 @@
 <section class="wrap" aria-labelledby="shots-h">
   <h2 id="shots-h">Screenshots</h2>
   <div class="shot-frame">
-    <img id="shot" src="screenshots/01.png?v=12" width="1920" height="1080"
+    <img id="shot" src="screenshots/01.png?v=13" width="1920" height="1080"
          alt="Gameplay screenshot from Eclipsis: The Shattered Expanse">
     <button class="navbtn prev" type="button" id="prev" aria-label="Previous screenshot">&#8249;</button>
     <button class="navbtn next" type="button" id="next" aria-label="Next screenshot">&#8250;</button>
@@ -296,18 +296,28 @@
 <section class="wrap" aria-labelledby="dl-h">
   <h2 id="dl-h">Download the playtest build</h2>
   <div class="dl-grid">
-    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-12/eclipsis_windows_x86_64.zip">
+    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-13/eclipsis_playtest-13_windows_x86_64.zip">
       <span class="os">Windows</span>
       <span class="meta">64-bit &middot; .zip</span>
     </a>
-    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-12/eclipsis_linux_x86_64.tar.gz">
+    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-13/eclipsis_playtest-13_macos_universal.zip">
+      <span class="os">macOS</span>
+      <span class="meta">Apple Silicon &amp; Intel &middot; .zip</span>
+    </a>
+    <a class="btn" href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/download/playtest-13/eclipsis_playtest-13_linux_x86_64.tar.gz">
       <span class="os">Linux</span>
       <span class="meta">x86_64 &middot; .tar.gz</span>
     </a>
   </div>
+<<<<<<< HEAD
   <p style="margin:0 0 18px;font-size:1.05em"><strong>Playtest 12 field report:</strong> <a href="playtests/playtest-12.html">measured from outside the build &#8250;</a> &middot; <a href="playtests/playtest-11.html">Playtest 11 report</a><br><strong>New tester?</strong> Start with <a href="playtest.html">the playtest procedure</a> &mdash; what to try and how to report. Full history of changes: <a href="notes.html">release notes</a>. Bugs and build alerts live on <a href="https://github.com/dlarseninclusive/eclipsis-playtest">the GitHub page</a> &mdash; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/issues/new/choose">submit a ticket</a>.</p>
   <p class="note"><strong>New in Playtest 12 &mdash; take the wheel:</strong> Playtest 11 handed you the road; this build hands you the controls. Road travel is the headline, and the honest version of it is that last build&rsquo;s roads never actually engaged &mdash; the bargain was written, the Guide explained it, and underneath your journeys carried on cutting straight across country. That is fixed, and it is a switch now rather than a rule: <kbd>Insert</kbd> toggles road travel, a pill on the HUD says which way it is set, and on the road the wild mostly leaves you be while more eyes watch for an ambush. Running no longer means holding the key down &mdash; <kbd>Caps&nbsp;Lock</kbd> locks it on. You can start as a member of any of the nineteen factions instead of an outsider to all of them. <kbd>Home</kbd> follows someone and keeps following, which is also a job: walk a caravan to its gate and get paid. The medical menu, which has been on <kbd>H</kbd> all along and which almost nobody found, has a <strong>MEDS</strong> button now. And the game will tell you when a newer playtest exists &mdash; this is the first release that notifier will ever point at. Saves moved to a permanent home by themselves (the old folder is left where it is), the window says what it is, the key hints stay readable in fog and dust, robberies eased off and say where they happened, the settings list scrolls, and the actions that need something in your hands now tell you why nothing happened. One honest note: world traffic &mdash; the caravans between towns &mdash; is unchanged this build; the dial to tune it exists but has not been turned.</p>
   <p class="version">Build <code>Playtest 12 &middot; 2026-09-01 &middot; Windows &amp; Linux</code> &middot; single executable, no installer, no launcher, no account &middot; <a href="notes.html">Full release notes</a><br>sha256 &middot; zip <code>3322fe5adf37035a6cda82249cfdfceb37652a20f2f6fa7ba47ed4be1a427657</code> &middot; tar.gz <code>c281cd4d4492320c633627497dcef78bfb9784e28cef9d36e17678342ca746e1</code></p>
+=======
+  <p style="margin:0 0 18px;font-size:1.05em"><strong>Playtest 11 field report:</strong> <a href="playtests/playtest-11.html">what changed, in pictures &#8250;</a><br><strong>New tester?</strong> Start with <a href="playtest.html">the playtest procedure</a> &mdash; what to try and how to report. Full history of changes: <a href="notes.html">release notes</a>. Bugs and build alerts live on <a href="https://github.com/dlarseninclusive/eclipsis-playtest">the GitHub page</a> &mdash; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/issues/new/choose">submit a ticket</a>.</p>
+  <p class="note"><strong>New in Playtest 13 &mdash; it says which build it is, and it runs on a Mac:</strong> This is a small, plain build after a big one. <strong>There is a macOS version</strong> &mdash; one download that runs on both Apple Silicon and Intel Macs. It is not signed (an Apple developer account is a yearly bill and this is pre-release), so macOS will refuse the first launch and say the app is damaged, which it is not: open <em>System Settings &rarr; Privacy &amp; Security</em> and click <strong>Open Anyway</strong>, or run <code>xattr -cr /path/to/Eclipsis.app</code> in Terminal. Once, per download. <strong>Every build now says which build it is:</strong> the version is in the name of the file you download, on the title screen, and along the bottom of the game screen &mdash; the same string in all three places, so a bug report can name a build. Starting a game now asks you to confirm, on a plate that shows what you are about to begin, instead of dropping you into a world on a stray keypress; and the WORLD AGE line no longer paints through the text beside it. <strong>One honest note:</strong> the pacing feedback from playtest 12 &mdash; that time runs fast and food and water empty faster &mdash; has been designed but is <em>not</em> in this build. It is a whole slab of its own and it is next. Nothing about hunger, thirst or the length of a day has changed here.</p>
+  <p class="version">Build <code>playtest-13 &middot; 32df4f7</code> &middot; 2026-09-03 &middot; Windows, macOS &amp; Linux &middot; single executable, no installer, no launcher, no account &middot; <a href="notes.html">Full release notes</a><br>That same string is printed on the title screen and along the bottom of the game screen &mdash; quote it in a bug report.<br>sha256 &middot; windows.zip <code>c54a8ad199b821690e389e8b994c3c817fe7190b45c0ee6dd02b79353b992901</code><br>&middot; macos.zip <code>f5e520ee60087a7f2fee79b4395e98298efc64e7afd9141b74a2c860f24131de</code><br>&middot; linux.tar.gz <code>631874afe4cab9c82b08f2a281557708dcb02b7c464bba22373c863d331ffd87</code></p>
+>>>>>>> 5b9de00 (Playtest 13 — a macOS build, and a build that names itself)
 
   <div class="howto">
     <div>
@@ -316,6 +326,15 @@
         <li>Unzip the archive somewhere you can write to — your Desktop or Documents is fine. Do not run it from inside the zip.</li>
         <li>Run <code>eclipsis.exe</code>.</li>
         <li>Windows SmartScreen will warn you that it does not recognise the app. This build is unsigned pre-release software, so that warning is expected. Choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+        <li>First launch takes a few seconds longer than the rest while the world is generated.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>macOS</h3>
+      <ol>
+        <li>Unzip the archive and put <code>Eclipsis.app</code> somewhere you can write to.</li>
+        <li>The first launch is blocked: macOS says the app is damaged, or that the developer cannot be verified. It is neither &mdash; the build is simply unsigned. Fix it once, either way: try to open it, then go to <strong>System Settings &rarr; Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>; or run <code>xattr -cr /path/to/Eclipsis.app</code> in Terminal.</li>
+        <li>One download runs on both Apple Silicon and Intel.</li>
         <li>First launch takes a few seconds longer than the rest while the world is generated.</li>
       </ol>
     </div>
@@ -330,10 +349,10 @@
     </div>
   </div>
 
-  <p class="note"><strong>Send the log with any bug report.</strong> The build has no console window, so its log file is the only window into what happened. It is written every run, in the game's user-data folder: on Windows under <code>%APPDATA%\Godot\app_userdata\</code>, in the Eclipsis folder, at <code>logs\godot.log</code>; on Linux under <code>~/.local/share/godot/app_userdata/</code>, in the Eclipsis folder, at <code>logs/godot.log</code>. Attach that file, say roughly what you were doing, and that is a complete report.</p>
+  <p class="note"><strong>Send the log with any bug report.</strong> The build has no console window, so its log file is the only window into what happened. It is written every run, in the game's user-data folder: on Windows <code>%APPDATA%\Eclipsis\logs\godot.log</code>; on macOS <code>~/Library/Application Support/Eclipsis/logs/godot.log</code>; on Linux <code>~/.local/share/Eclipsis/logs/godot.log</code>. (Builds before playtest 12 wrote to a folder under <code>app_userdata</code>; the first launch of this one copies those saves across by itself and leaves the old folder alone.) Attach that file, say roughly what you were doing, and that is a complete report.</p>
 
   <dl class="reqs">
-    <dt>Operating system</dt><dd>64-bit Windows 10 or later &middot; x86_64 Linux</dd>
+    <dt>Operating system</dt><dd>64-bit Windows 10 or later &middot; macOS 13 on Apple Silicon, macOS 11 on Intel &middot; x86_64 Linux</dd>
     <dt>Disk</dt><dd>About 200 MB once unzipped</dd>
     <dt>Graphics</dt><dd>Any GPU from the last decade</dd>
     <dt>Network</dt><dd>None. The game never phones anywhere.</dd>
@@ -344,7 +363,12 @@
 <section class="wrap" aria-labelledby="hist-h">
   <h2 id="hist-h">Playtest history</h2>
   <dl class="reqs" style="margin-top:0">
+<<<<<<< HEAD
     <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-12">Playtest 12</a></dt><dd>2026-09-01 &mdash; Take the wheel: road travel actually engages and is yours to toggle, run lock, faction starts, follow &amp; escort, an update notifier, and the MEDS button. <a href="playtests/playtest-12.html">Field report &#8250;</a></dd>
+=======
+    <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-13">Playtest 13</a></dt><dd>2026-09-03 &mdash; A macOS build, and a build that says which build it is: the version is on the download, the title screen and the HUD. Starting a game asks first.</dd>
+    <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-12">Playtest 12</a></dt><dd>2026-09-01 &mdash; Take the wheel: road travel actually engages and is yours to toggle, run lock, faction starts, follow &amp; escort, an update notifier, and the MEDS button.</dd>
+>>>>>>> 5b9de00 (Playtest 13 — a macOS build, and a build that names itself)
     <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-11">Playtest 11</a></dt><dd>2026-08-29 &mdash; Take the road: long journeys arrive, roads trade beasts for bandits, stairs go down, far towns hold together, guns are guns. <a href="playtests/playtest-11.html">Field report &#8250;</a></dd>
     <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-10">Playtest 10</a></dt><dd>2026-08-24 &mdash; The feedback build, again: bars serve the seated, buildings are solid to everyone, the ox earns its name, packs drop, time shows its face.</dd>
     <dt><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-9">Playtest 9</a></dt><dd>2026-08-24 &mdash; The feedback build: custody is a place, interiors are findable, fast bodies run, the console teaches itself.</dd>
@@ -380,13 +404,13 @@
 <script>
 (function(){
   var shots = [
-    ["screenshots/01.png?v=12","Rust Haven at midday — a Rust Walker town inside its curtain wall. Roads run gate to gate, footpaths thread between the houses, and the townsfolk are out on them."],
-    ["screenshots/02.png?v=12","The same streets deep into the night. Lamps down the main road, lit windows, and a crowd you can only half see — night is genuinely dark, and what you can see depends on what you are carrying."],
-    ["screenshots/03.png?v=12","A dust storm on the highway through the Corona’s Grave highlands: the tint on everything, the haze banked across it and the wind-blown streaks. The travellers strung out along the road were already walking it — and an Architect ruin has just been found and marked."],
-    ["screenshots/04.png?v=12","Inside an Automaton taproom in Machine Nexus — the keeper at his counter, three drinkers, stools, crates and shelves, and the stairwell in the corner that runs up to the roof and down to the cellar. The roof simply fades as you step under it — no loading screen, no separate map."],
-    ["screenshots/05.png?v=12","A street brawl in Rust Haven, mid-swing: damage in the air, blood and dropped packs on the ground, three Dust Reavers still on their feet — and the log keeping score of the other three: “You kill a Dust Reaver. Their people won’t forget.”"],
-    ["screenshots/06.png?v=12","The whole Expanse laid flat — biome ground, faction territories in their own colours, their named capitals, the named lands between them, and a compass rose."],
-    ["screenshots/07.png?v=12","Six days of world, written down: a famine in the Cinder Dominion, a war between the Blacklight Syndicate and the Automatons, coffers, border clashes, the world’s mood — and “Frost on the salt flats at noon. The old hands have stopped calling it weather.”"]
+    ["screenshots/01.png?v=13","Rust Haven at midday — a Rust Walker town inside its curtain wall. Roads run gate to gate, footpaths thread between the houses, and the townsfolk are out on them."],
+    ["screenshots/02.png?v=13","The same streets deep into the night. Lamps down the main road, lit windows, and a crowd you can only half see — night is genuinely dark, and what you can see depends on what you are carrying."],
+    ["screenshots/03.png?v=13","A dust storm on the highway through the Corona’s Grave highlands: the tint on everything, the haze banked across it and the wind-blown streaks. The travellers strung out along the road were already walking it — and an Architect ruin has just been found and marked."],
+    ["screenshots/04.png?v=13","Inside an Automaton taproom in Machine Nexus — the keeper at his counter, three drinkers, stools, crates and shelves, and the stairwell in the corner that runs up to the roof and down to the cellar. The roof simply fades as you step under it — no loading screen, no separate map."],
+    ["screenshots/05.png?v=13","A street brawl in Rust Haven, mid-swing: damage in the air, blood and dropped packs on the ground, three Dust Reavers still on their feet — and the log keeping score of the other three: “You kill a Dust Reaver. Their people won’t forget.”"],
+    ["screenshots/06.png?v=13","The whole Expanse laid flat — biome ground, faction territories in their own colours, their named capitals, the named lands between them, and a compass rose."],
+    ["screenshots/07.png?v=13","Six days of world, written down: a famine in the Cinder Dominion, a war between the Blacklight Syndicate and the Automatons, coffers, border clashes, the world’s mood — and “Frost on the salt flats at noon. The old hands have stopped calling it weather.”"]
   ];
   var img = document.getElementById('shot'),
       cap = document.getElementById('shot-cap'),

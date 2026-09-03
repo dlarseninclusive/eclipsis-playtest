@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 12 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 13 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,7 +266,28 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
-<section class="rel" aria-labelledby="pt12">
+<section class="rel" aria-labelledby="pt13">
+  <h2 class="rel-h" id="pt13">Playtest 13 &mdash; it says which build it is</h2>
+  <p class="rel-date">Released 2026-09-03</p>
+  <p class="rel-lede">A short, plain build after a big one. It answers the two questions playtest 12 kept raising that were not about the game at all: which build am I playing, and can I play it on a Mac.</p>
+
+  <h3 class="sub">Features added</h3>
+  <ul class="rn">
+    <li><strong>There is a macOS build.</strong> One download that runs on both Apple Silicon and Intel Macs. It is <em>not signed</em> &mdash; an Apple developer account is a yearly bill and this is pre-release software &mdash; so macOS refuses the first launch and claims the app is damaged. It is not. Fix it once, either way: try to open it, then go to <strong>System Settings &rarr; Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>; or run <code>xattr -cr /path/to/Eclipsis.app</code> in Terminal. After that it opens like anything else. Nobody has run this build on a real Mac yet, so if it misbehaves in a way the Windows one does not, that is genuinely useful to hear about.</li>
+    <li><strong>Every build says which build it is.</strong> The version is now in the name of the file you download (<code>eclipsis_playtest-13_windows_x86_64.zip</code>), on the title screen, and along the bottom of the game screen &mdash; the same string in all three places, generated rather than typed, so it cannot drift. A Downloads folder full of <em>(1)</em>, <em>(2)</em>, <em>(3)</em> was making bug reports impossible to place.</li>
+    <li><strong>Starting a game asks first.</strong> Choosing a start now brings up a plate that shows what you are about to begin and waits for you to confirm it, instead of dropping you into a generated world on a stray keypress.</li>
+  </ul>
+
+  <h3 class="sub">Bug fixes</h3>
+  <ul class="rn">
+    <li><strong>WORLD AGE stopped painting through the text beside it.</strong> On the start screen the world-age line and the blurb next to it were drawn over each other.</li>
+    <li><strong>The archives tell you where your saves are.</strong> The README inside each download had been naming the folder the game used <em>before</em> playtest 12 &mdash; so a tester going to fetch their log for a bug report found the wrong folder, or an empty one. All three now name the real one, and say that the first launch of a new build copies an old install&rsquo;s saves across by itself and never deletes anything.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>One honest note.</strong> The pacing feedback from playtest 12 &mdash; that time runs too fast, or that food and water empty too quickly &mdash; has been <em>designed</em> and is <em>not</em> in this build. It is a slab of its own and it is the next one. Nothing about hunger, thirst or the length of a day has changed here, so it will still feel the way it felt.</p>
+</section>
+
+<section class="rel" aria-labelledby="pt12">
   <h2 class="rel-h" id="pt12">Playtest 12 &mdash; take the wheel</h2>
   <p class="rel-date">Released 2026-09-01</p>
   <p class="rel-lede">Playtest 11 handed you the road. This build hands you the controls: the things the game had been quietly doing on your behalf are now yours to switch on, switch off, and point at something.</p>
