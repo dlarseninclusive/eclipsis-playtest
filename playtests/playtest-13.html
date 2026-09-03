@@ -250,7 +250,7 @@ figcaption b{color:var(--ink-soft);font-weight:600}
 <div class="stamp">
 <b>stamp</b>&nbsp;&nbsp;&nbsp;&nbsp; playtest-13 &middot; 32df4f7 &nbsp;<span class="ok">&#10003; one line on the title, the same on the HUD, the same in the log</span><br>
 <b>windows</b>&nbsp;&nbsp; eclipsis_playtest-13_windows_x86_64.zip &nbsp; c54a8ad199b821690e389e8b994c3c817fe7190b45c0ee6dd02b79353b992901 <span class="ok">&#10003;</span><br>
-<b>macos</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-13_macos_universal.zip &nbsp;&nbsp; f5e520ee60087a7f2fee79b4395e98298efc64e7afd9141b74a2c860f24131de <span class="ok">&#10003;</span><br>
+<b>macos</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-13_macos_universal.zip &nbsp;&nbsp; 8cefe6853be25cca8afd2d6863d8ba0739718c193a5b3e3d1e729fd5959c2ff9 <span class="ok">&#10003;</span> <i>replaced same day, see below</i><br>
 <b>linux</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-13_linux_x86_64.tar.gz &nbsp;&nbsp; 631874afe4cab9c82b08f2a281557708dcb02b7c464bba22373c863d331ffd87 <span class="ok">&#10003;</span><br>
 <b>checked</b>&nbsp;&nbsp; sha256 of each downloaded file against the release body, byte for byte
 </div>
@@ -291,7 +291,7 @@ figcaption b{color:var(--ink-soft);font-weight:600}
       <span class="tier-how">named, rather than left as silence</span>
     </div>
     <ul>
-      <li><b>macOS.</b> Nobody on the team has a Mac. The archive is structurally right (universal x86_64+arm64, executable bit, ad-hoc signature intact). The first real launch is a tester's. If macOS says the app is damaged, the README's <code>xattr</code> line is the fix.</li>
+      <li><b>macOS.</b> The first tester's report was "it just won't open, no error" &mdash; and the archive was the cause, not the app. Every entry in the first zip was stamped as made on a DOS host, so macOS ignored the stored executable bit and the app unpacked with a binary it could not run: no bounce, no dialog. The asset was replaced the same day (sha above; the six app entries are byte-identical, only the README changed) with every entry Unix-stamped and the binary 100755, and the packager now refuses to produce the old shape. Verified on the archive; <b>not yet launched on a Mac</b>. If macOS says the app is damaged or unverified, the README's <code>chmod</code> and <code>xattr</code> lines are the fix.</li>
       <li><b>The notifier's "See what changed" button</b>, and the rule that the card never appears over gameplay. Both are one code path each; neither was driven.</li>
       <li><b>Survival pace.</b> Designed, ruled, and not in this build. See below.</li>
     </ul>
