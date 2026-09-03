@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Playtest 12 field report: what was measured from outside the build, what was found, and what is already known.">
+<meta name="robots" content="noindex, nofollow">
+<title>Playtest 12 Field Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<p style="font-size:.9em;margin:18px 0 0"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-11.html">Playtest 11 report</a></p>
+
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 12</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>1 September 2026</span>
+  </div>
+  <h1>The road <em>remembers</em> where it goes</h1>
+  <p class="dek">
+    Eleven things shipped. The one that mattered most was a flag that had never survived a single
+    frame — and the one that nearly shipped broken would have hidden every save you have.
+  </p>
+</header>
+
+<div class="verdict">
+  <span class="mark">Cleared</span>
+  <p><strong>Play it.</strong> The save migration is proven at byte level, the walk that was
+  wandering now goes straight, and the labels you couldn't read in fog are readable. One finding
+  below is worth knowing before you pick a faction.</p>
+</div>
+
+<div class="stamp">
+<b>artifact</b>&nbsp; eclipsis_windows_x86_64.zip<br>
+<b>sha256</b>&nbsp;&nbsp; 3322fe5adf37035a6cda82249cfdfceb37652a20f2f6fa7ba47ed4be1a427657 <span class="ok">✓ matches published</span><br>
+<b>stamp</b>&nbsp;&nbsp;&nbsp; playtest-12 · 3c8f272
+</div>
+
+<section>
+  <h2>What was actually proven</h2>
+  <p class="sub">
+    Three tiers, because they are not the same claim. An exported build ignores the test hooks, so
+    some things can only be checked against source — and saying so is the difference between a gate
+    that means something and a gate that means whatever the last person had time for.
+  </p>
+
+  <div class="tier t-art">
+    <div class="tier-head">
+      <span class="tier-name">Verified on the shipped build</span>
+      <span class="tier-how">the artifact itself, launched and inspected</span>
+    </div>
+    <ul>
+      <li><b>Save migration, four checks.</b> A fresh upgrade copies all four files with matching
+        MD5s. The old folder survives byte-identical — <b>copied, not moved</b>. A second launch
+        does not copy again. And a marker recording a <em>successful</em> migration never re-runs,
+        which was the failure worth fearing: this bug hid saves, the other would have eaten them.</li>
+      <li><b>The broken state heals.</b> Tested against the folder the first cut actually produced,
+        not a reconstruction of it: <code>skipped</code> → <code>copied</code>, bytes intact.</li>
+      <li><b>Window title</b> reads “Eclipsis: The Shattered Expanse”, read off the running process.
+        Not “Godot Spike” any more.</li>
+      <li><b>The update notice cannot be tested yet</b> — it shipped <em>in</em> this build, so the
+        older one has no code to display it. Validates at Playtest 13.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-src">
+    <div class="tier-head">
+      <span class="tier-name">Verified against source</span>
+      <span class="tier-how">at the ship hash 3c8f272 — not the export</span>
+    </div>
+    <ul>
+      <li><b>Road travel, both states, same world.</b> On: the route joins the road and stays on it
+        <b>53%</b> of the walk. Off: <b>8%</b>, the old direct line. Two distinct, correct behaviours.</li>
+      <li><b>Ctrl labels in fog</b> — the worst case — now crisp on a dark backing where they were
+        grey on grey.</li>
+      <li><b>MEDS · H</b> is on the quick bar, and <b>ROAD ON</b> shows the travel mode.</li>
+      <li><b>Faction starts</b> pass 13 of 13 on scenario mechanics: factions valid, kit replaced,
+        reputation and bounty seeded.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-non">
+    <div class="tier-head">
+      <span class="tier-name">Not tested this cycle</span>
+      <span class="tier-how">named, rather than left as silence</span>
+    </div>
+    <ul>
+      <li><b>Following someone through a town</b> — roofs, gates, floors. The automated runs stage
+        clear of towns by design, so this case has been exercised by nobody. It is the likeliest
+        thing in the follow order to break.</li>
+      <li><b>Rebind screen, run lock latch, sprint on a long straight.</b> Keyboard-in-hand items.</li>
+      <li><b>The update notice</b>, for the reason above.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>The walk</h2>
+  <p class="sub">
+    Reported as: <em>“I am on a long walk south, and zigzagging, this walk is taking a lot longer
+    than it needs to.”</em>
+  </p>
+  <p>
+    It was not the roads. The road preference had <b>never engaged in play</b> — the flag that
+    protects a road route was raised and then wiped fifteen lines later, on every single order,
+    by a progress gauge that shipped in the same slab. The code's own comment described the exact
+    failure it was failing to prevent.
+  </p>
+  <p>
+    Below: 209 long hauls on the repaired build, random worlds, one machine to itself. Efficiency
+    is distance walked over distance made good — <b>1.00 is a straight line</b>.
+  </p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Outcome</th><th>Runs</th><th>Share</th><th>Reading</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Arrived</td><td class="num">116</td><td class="num">56%</td><td>median <b>1.05</b>, worst 1.57</td></tr>
+      <tr><td>Slow</td><td class="num">69</td><td class="num">33%</td><td>walked well, didn't finish</td></tr>
+      <tr><td>Stalled</td><td class="num">18</td><td class="num">9%</td><td>—</td></tr>
+      <tr><td>Retreating</td><td class="num">6</td><td class="num">3%</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>
+    Before the repair the same measure ran <b>1.52 – 1.59</b>. Not one of the 116 arrivals exceeded
+    the detour limit the game promises itself. And the wandering loop we killed a fortnight ago has
+    stayed dead: <b>181 of 209</b> hauls gave ground zero times, 28 gave it once, none twice.
+  </p>
+  <p>
+    What is left is a different question and a quieter one: <b>the walks that don't finish are not
+    walking badly, they are just not finishing.</b> That points at pace or interruption rather than
+    routing. Nobody has ever reported it as a feeling, so it waits.
+  </p>
+</section>
+
+<section>
+  <h2>One finding</h2>
+  <div class="finding">
+    <span class="tag">Not a blocker · silent</span>
+    <h3>Four of nineteen faction starts don't take you home</h3>
+    <p>
+      Pick <b>the Veiled Blades</b>, <b>the Hollowed</b>, <b>the Eclipse Choir</b> or
+      <b>the Quiet Mile</b> and you begin at the generic world spawn instead of with the people you
+      chose. Every faction that holds territory lands correctly and far apart; these four cluster on
+      the same default point.
+    </p>
+    <div class="where">
+<span class="cm"># start_scenario.gd:61</span>
+var terr := ...get("territory", [])
+if not terr.is_empty():
+    p.set_center(...)   <span class="cm"># ← empty territory: placement silently skipped</span>
+    </div>
+    <p>
+      Three of the four <em>have</em> a home in the data — Reedshadow Village, the Processing Yard,
+      the Totality Camp — and you simply don't arrive there. The Quiet Mile has no city at all and
+      starting on the road is correct for it.
+    </p>
+    <p>
+      These are the same four rows whose empty territory broke a suite check that sat red for twenty
+      days. One data gap, second symptom. The fix is to fall back to the faction's city before
+      falling back to nowhere — and to say so in the log, because <b>the silence is half the
+      defect</b>.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>What this build does not fix</h2>
+  <div class="dial">
+    <h3>The world's traffic is unchanged</h3>
+    <p>
+      <em>“I never get the feeling the simulation is running without me.”</em> That was traced: the
+      caravan population is capped at <b>one</b>, world-wide, and the cap turned out to be an
+      accident — inherited from the old Python build and never given a number, while every other
+      travelling party got one (wayfarers 12, patrols 7, chain gangs 2).
+    </p>
+    <p>
+      The dial now exists. It ships at its default of <b>1</b>, so this build will feel exactly as
+      empty as the last one. The number is set to <b>4</b> in the next build, behind a frame-time
+      check. Expect no change here; expect it there.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Also shipped</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Change</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td>Run lock — Caps Lock latches the sprint</td><td class="num"><code>255b822</code></td></tr>
+      <tr><td>A start from all 19 factions</td><td class="num"><code>dfec471</code></td></tr>
+      <tr><td>Road travel repaired, Insert toggles it</td><td class="num"><code>20b9e34</code></td></tr>
+      <tr><td>Follow &amp; escort order — Home key</td><td class="num"><code>b0cbdef</code></td></tr>
+      <tr><td>Ctrl labels painted over the weather</td><td class="num"><code>eb199dc</code></td></tr>
+      <tr><td>Robberies calmed, and they say where</td><td class="num"><code>4f95b4b</code></td></tr>
+      <tr><td>Medical menu gets a button</td><td class="num"><code>11f9101</code></td></tr>
+      <tr><td>Rebind list scrolls; empty verbs speak</td><td class="num"><code>9f1785f</code></td></tr>
+      <tr><td>Update notice, save home, real title</td><td class="num"><code>679d613</code></td></tr>
+      <tr><td>Caravan dial (default 1)</td><td class="num"><code>2fe3cbd</code></td></tr>
+      <tr><td>Save folder asks “is a player here?”</td><td class="num"><code>fbc3a79</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>The one that nearly shipped</h2>
+  <p>
+    The first cut of this build was pulled. Its save migration <b>never ran</b> — not sometimes,
+    never. It asked whether the new folder already held player data, and the engine's own
+    <code style="font-family:'JetBrains Mono',monospace;font-size:14px">shader_cache</code> and
+    <code style="font-family:'JetBrains Mono',monospace;font-size:14px">vulkan</code> directories,
+    created at startup a moment before the question was asked, answered yes. Every upgrading player
+    would have launched into an empty save menu — with their game safe on disk, invisible, and a
+    marker ensuring it never tried again.
+  </p>
+  <p>
+    Nine hundred and six automated checks passed on that build. They could not see it, because they
+    staged their own folders where no engine had ever run. <b>Anything that depends on engine
+    startup order is invisible to a check that builds its own fixture</b> — which is the second time
+    this cycle the shipped artifact held something no source-side test could reach.
+  </p>
+</section>
+
+
+<section>
+  <h2>Sources</h2>
+  <p class="sub">
+    Everything above is checkable. The game code and the measurement instruments live in the
+    private development repository; the commit hashes are given so the team can open them there.
+    Game code refers to the build that shipped (<code>3c8f272</code>); the instruments refer to the
+    tester that produced the numbers (<code>4682c6a</code>, the measurement branch) &mdash; two trees,
+    because they are two different claims. Public items (the release and the download) are linked.
+  </p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What</th><th>Where it lives</th></tr></thead>
+    <tbody>
+      <tr><td>The build this report covers</td><td><code>3c8f272</code></td></tr>
+      <tr><td>Download — <code>sha256 3322fe5a…</code></td><td><a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-12">playtest-12 release</a></td></tr>
+      <tr><td>The finding — faction spawn skip</td><td><code>start_scenario.gd:61</code></td></tr>
+      <tr><td>Probe that found it</td><td><code>probe_faction_starts.gd</code></td></tr>
+      <tr><td>The scripted play-tester</td><td><code>journey.gd</code></td></tr>
+      <tr><td>Long-haul measurements (batch 8)</td><td><code>journey.gd</code> · B8.02–B8.06</td></tr>
+      <tr><td>Label shoot, four weathers</td><td><code>shot_ctrl_labels.gd</code></td></tr>
+      <tr><td>Migration logic under test</td><td><code>user_dir.gd</code></td></tr>
+      <tr><td>The first-play sequence, written first</td><td><code>tools/journey/first_play.md</code></td></tr>
+      <tr><td>How the two lanes divide the work</td><td><code>design/42</code></td></tr>
+      <tr><td>Why the world feels empty</td><td><code>design/43</code></td></tr>
+      <tr><td>The runner, and what it has found</td><td><code>design/41</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<footer class="foot">
+  Measured by the scripted play-tester across 209 long hauls, 300 world runs and four migration
+  fixtures. Findings carry what was measured, what was read, and what was <em>not</em> verified —
+  because an instrument that can't tell “the game refused correctly” from “the game failed” will
+  eventually spend somebody's afternoon. Four such defects were found in the tester itself this
+  cycle. <br><br>
+  Screenshots frozen at <code>screenshots/pt12/</code>. Ship hash <code>3c8f272</code>.
+</footer>
+
+</div>
+
+<p style="font-size:.9em;margin:18px 0 0"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-11.html">Playtest 11 report</a></p>
+</body>
+</html>
