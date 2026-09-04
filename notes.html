@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 13 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 14 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,7 +266,59 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
-<section class="rel" aria-labelledby="pt13">
+<section class="rel" aria-labelledby="pt14">
+  <h2 class="rel-h" id="pt14">Playtest 14 &mdash; the forty-eight-minute day</h2>
+  <p class="rel-date">Released 2026-09-04</p>
+  <p class="rel-lede">The pacing build. Playtest 12 said time ran too fast and the bars emptied faster; playtest 13 said the fix was designed but not in the box. This is the box. A day is forty-eight minutes now, there is exactly one clock, and everything that was quietly counted in real seconds &mdash; hunger, sentences, interest, caravans &mdash; is counted in game time instead.</p>
+
+  <h3 class="sub">The clock</h3>
+  <ul class="rn">
+    <li><strong>A day takes forty-eight minutes</strong>, up from two &mdash; Kenshi&rsquo;s base day. The x1/x3/x8 speed control is unchanged, so x8 is a six-minute day when you want the world to get on with it.</li>
+    <li><strong>There is only one clock.</strong> The whole world runs on it, so a &ldquo;day&rdquo; means the same thing to your thirst, a town&rsquo;s food bill, a courier&rsquo;s deadline, a crop, a war and a wage. An earlier draft gave the economy a second clock of its own; that was thrown away.</li>
+    <li><strong>Travelling by road no longer skips the dawn.</strong> Fast travel across midnight used to leave wages unpaid, towns unfed and the day unwritten. The hours a road eats now go through the same clock the world does.</li>
+  </ul>
+
+  <h3 class="sub">Staying alive</h3>
+  <ul class="rn">
+    <li><strong>Thirst is twelve game hours, hunger twenty-four</strong> &mdash; drink about twice a day, eat about once &mdash; and because they are authored in game time they mean that at any length of day.</li>
+    <li><strong>Going without has rungs, not a cliff.</strong> A second day without water slows you and halves your healing; a third stops healing altogether and blunts your damage and your skills. You read as <em>Dehydrated</em>, and you begin blacking out for a moment every couple of hours.</li>
+    <li><strong>Heat can no longer kill you.</strong> The noon sun will take a parched body to its last hit point and leave it there. Thirst can wreck you; it does not finish you.</li>
+    <li><strong>A meal fills the bar to exactly full</strong>, never past it &mdash; and a mouthful that merely lifts you off zero pauses the ladder rather than wiping the days you have spent on it.</li>
+    <li><strong>Sprinting costs what it should.</strong> Holding shift drains both bars at three times the resting rate, so a full canteen is four game hours of running. It used to be charged per real second, which at the new day length emptied a water bar in about eighty seconds.</li>
+  </ul>
+
+  <h3 class="sub">The ledger</h3>
+  <ul class="rn">
+    <li><strong>A missed protection levy is a tally, not a loan.</strong> It sits flat against the shop it was levied on instead of compounding on a lender&rsquo;s book. It can cost you standing down to <em>unfriendly</em> and no further &mdash; that floor is deliberate; &minus;100 is what a massacre earns.</li>
+    <li><strong>You can finally pay one.</strong> &ldquo;Settle&rdquo; on the Holdings tab, or <code>venue arrears</code>. The shipped game had no way to clear an arrears at all.</li>
+    <li><strong>Criminal factions send hunters.</strong> Three missed collections in a row from a faction whose word is <em>protection</em> puts a price on you through the same bounty ledger everything else uses &mdash; and settling the bill takes back exactly that, not a murder you had already earned.</li>
+    <li><strong>The levy note says what it cost you</strong> and how deep the hole is, instead of moving your standing in silence.</li>
+    <li><strong>Loans compound at 1% a game day, down from 5%.</strong> At the old rate an inherited forty-corona note crossed the collection threshold on day nine and turned a whole faction hostile against a player who had done nothing.</li>
+    <li><strong>Old runaway debts are wiped once.</strong> A save carrying a seven-figure entry &mdash; the record was 2,086,916 coronas against 1,135 of real missed shop bills &mdash; is zeroed on load and the world writes a chronicle line saying so. What you actually owed a counter stays owed, and your standing is not forgiven.</li>
+  </ul>
+
+  <h3 class="sub">Being held</h3>
+  <ul class="rn">
+    <li><strong>Sentences are game days.</strong> A town cell is two, a lord&rsquo;s hold four, a work gang seven, a slaver&rsquo;s pen fourteen &mdash; and your bounty adds days on top, so killing a faction leader is about three game months. They were real seconds before, which made custody a menu with a countdown on it.</li>
+    <li><strong>Serving it is a real way out.</strong> Nothing shortens a term for a player who sits still, and nothing forces you to escape. The wall tells you which day the door opens on, and the world moves over your head while you wait.</li>
+  </ul>
+
+  <h3 class="sub">Everything else</h3>
+  <ul class="rn">
+    <li><strong>Standing has a voice.</strong> A start tells you who it made you and who will not have you; crossing into a new band says so once, and not once per point; and a kill line names what it cost.</li>
+    <li><strong>Your own faction&rsquo;s city is not &ldquo;hostile ground&rdquo;.</strong> The zone readout was ORing a faction&rsquo;s default hostility into its warning, so an Automaton stood in the Automaton capital and was told he was in danger.</li>
+    <li><strong>The Great Eclipse is rare again</strong> &mdash; every fourteenth day, which is what the title screen has always said. Holding its old real-time rhythm under the longer day would have meant the sun dying at every single noon, which is weather, not an omen &mdash; and a cadence that disagreed with the game&rsquo;s own premise line was not worth the minutes it saved. About eleven hours of play at normal speed, eighty-four minutes at x8.</li>
+    <li><strong>Caravans leave every twenty-four minutes</strong>, twice a game day, with more of them on the roads at once.</li>
+    <li><strong>Autosave every five minutes</strong> as well as at dawn &mdash; one save per forty-eight-minute day would have been a data-loss regression dressed up as a clock change.</li>
+    <li><strong>The macOS build is ad-hoc signed</strong>, so its first launch is a click in Privacy &amp; Security rather than a Terminal command.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>One honest note.</strong> The base game is meant to be hard, and this build makes it harder before it makes it kinder. Difficulty settings and quality-of-life options are a slab of their own and they are not here yet &mdash; so if this feels punishing, that is the shape of the thing right now and worth telling us about anyway.</p>
+
+  <p class="rel-lede"><strong>Your playtest 13 saves still load.</strong> Custody was never written to a save, so nobody wakes up in a cell they were not in; the deprivation counters start at zero; and the credit ledger heals itself once, as above.</p>
+</section>
+
+<section class="rel" aria-labelledby="pt13">
   <h2 class="rel-h" id="pt13">Playtest 13 &mdash; it says which build it is</h2>
   <p class="rel-date">Released 2026-09-03</p>
   <p class="rel-lede">A short, plain build after a big one. It answers the two questions playtest 12 kept raising that were not about the game at all: which build am I playing, and can I play it on a Mac.</p>
