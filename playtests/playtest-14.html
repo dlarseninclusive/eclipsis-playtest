@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 14 Field Report</title>
+<meta name="description" content="Playtest 14 field report: the forty-eight-minute day checked on the shipped archive, a real day-204 save taken through the ledger heal, the clock and the bars timed at 1x, and the figures for everything too long to sit through.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* -- figures (PT13) -- */
+figure{margin:0 0 22px;background:var(--raise);border:1px solid var(--rule);border-radius:3px;padding:10px}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font:400 13px/1.6 "JetBrains Mono",monospace;color:var(--ink-faint);padding:10px 4px 2px}
+figcaption b{color:var(--ink-soft);font-weight:600}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+.nav{font-size:14px;margin:18px 0 0}
+.nav a{color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-13.html">Playtest 13 report</a></p>
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 14</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>4 September 2026</span>
+  </div>
+  <h1>The day is <em>forty-eight minutes</em> long now</h1>
+  <p class="dek">
+    Every fix the owner asked for since playtest 12 lands here in one cut: the two-minute day is
+    gone, thirst and hunger are counted against the game clock, going without has a ladder under
+    it, a shop bill can no longer compound into a faction that wants you dead, and a sentence is
+    served in game days. This report says what was checked on the shipped archive, what was
+    measured on source with the numbers, and what nobody has sat through yet.
+  </p>
+</header>
+
+<div class="verdict">
+  <span class="mark">Cleared</span>
+  <p><strong>Play it.</strong> The owner's own day-204 save was taken through the new load path on
+  the release build before he touched it: the two-million-corona book was wiped once, the real
+  1,135 stayed on the counter, and the second load said nothing. The clock, the autosave and the
+  bars were timed on the running game. Nothing was found. What the clock makes too long to sit
+  through is listed with its figure, not left as silence.</p>
+</div>
+
+<div class="stamp">
+<b>stamp</b>&nbsp;&nbsp;&nbsp;&nbsp; playtest-14 &middot; 7030afd &nbsp;<span class="ok">&#10003; one line on the title, the same on the HUD, the same in the log</span><br>
+<b>windows</b>&nbsp;&nbsp; eclipsis_playtest-14_windows_x86_64.zip &nbsp; 1e295450b3cf41d178a425b57b88fbd6ee09f3dcbe1d49841c2b112677da76ae <span class="ok">&#10003;</span><br>
+<b>macos</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-14_macos_universal.zip &nbsp;&nbsp; aea4a6cf669ae01a4d2c8d58287ed17135a11988eda73fd7306ddc078b76f3c3 <span class="ok">&#10003;</span><br>
+<b>linux</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-14_linux_x86_64.tar.gz &nbsp;&nbsp; 79634b144d6b86a3959107b2cdb541a5a0d9c86623016ddb543a35e5a2428639 <span class="ok">&#10003;</span><br>
+<b>checked</b>&nbsp;&nbsp; sha256 of each downloaded file against the release body, byte for byte; the macOS archive's binary is stored executable and ad-hoc signed
+</div>
+
+<section>
+  <h2>What was actually proven</h2>
+  <p class="sub">Three tiers, as before. The top one is the only one that counts as a promise.</p>
+
+  <div class="tier t-art">
+    <div class="tier-head">
+      <span class="tier-name">Verified on the shipped build</span>
+      <span class="tier-how">the release archive, launched and driven like a player would, on a copy of the owner's real save directory</span>
+    </div>
+    <ul>
+      <li><b>The build says which build it is.</b> Title bottom-left, HUD, and log all read <code>playtest-14 &middot; 7030afd</code>; nothing else in a corner.</li>
+      <li><b>Playtest 13 finds playtest 14.</b> The previous build, booted on a save directory that had never seen the notifier, put up the card naming both builds; Later closed it, the quiet "Get it" line stayed, and the next boot asked nothing.</li>
+      <li><b>The owner's day-204 save opens, and the book is wiped exactly once.</b> On load the log said "The Rust Walkers' book is wiped &mdash; what compound interest made of a shop bill was never a debt anybody could pay. What you owe is on the counter." The save written afterwards holds no credit debt, no collectors, one line of that in the Codex history, and Vex's Larder still owing its flat 1,135 with the shutters down. A second load said only "Welcome to the Expanse." The manual save and the migration marker were byte-identical afterwards. Standing with the Rust Walkers is still &minus;100 by the owner's ruling, so the banner still reads hostile ground; a Rust Walker quartermaster walked up to talk rather than draw.</li>
+      <li><b>A game hour is two real minutes.</b> The HUD clock read 06.1 on load and 08.0 four minutes later; a fresh Wanderer went from 08.1 to 12.3 in eight and three-quarter minutes.</li>
+      <li><b>The autosave has its own five-minute timer.</b> "Autosaved (day 204)." at five and a half minutes into a run that never crossed a dawn, and the file's clock moved with it.</li>
+      <li><b>The bars drain against the game clock.</b> Read off the save the Wanderer run wrote on quit: thirst fell 8.5 points per game hour (authored 8.33), food 4.3 (authored 4.17). Neither bar overfilled; the labels read Thirst and Food.</li>
+      <li><b>The start screen is still right.</b> Blurb clear of WORLD AGE, hovering and clicking a start only selects it, the BEGIN plate names the start and clicking it began the run.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-src">
+    <div class="tier-head">
+      <span class="tier-name">Verified against source</span>
+      <span class="tier-how">headless soaks on the landed commits, seed 0x510E5A, the same numbers before and after</span>
+    </div>
+    <ul>
+      <li><b>The ladder under the bars</b>, four game days without water or food (871a782): thirst empties at 12 game hours, day 2 at 24, day 3 at 36 with the bar relabelled Dehydrated; hunger 24 / 48 / 72. Day 2 costs speed and healing; day 3 costs more of both, damage dealt and skill checks; both at day 3 floors at half speed. Twelve pass-outs a day at thirst day 3, each a quarter hour, zero movement while down. Health floors at 1 and never dies of either. A real drink or meal clears the counter the same tick.</li>
+      <li><b>The protection ledger</b>, read back off the owner's day-204 save (cc8a9af): the compounded 2,086,916 is wiped, the venue's 1,135 stays flat, three consecutive missed collections put a 45-corona price on you and every third miss adds another, paying at the counter lifts the shutters and the price. Levies never touch the credit book again.</li>
+      <li><b>Custody in game days</b> (811254f, 9bafd61): Cell 2, Lord's Hold 4, Work Gang 7, Slaver Pen 14; the wall names the day the door opens and sitting it out opens it on that day. Killing a leader adds 90 days. A captor who hands you to another faction prices your ransom off the bounty that built the term, not the receiver's empty ledger.</li>
+      <li><b>The credit ledger</b> compounds at 1 percent per game day: a Failing Bakery's inherited 40 coronas reach the collectors' line on day 41, not day 9.</li>
+      <li><b>The world on the long day</b>, two game days standing still: one dawn every 48 minutes, 1.25 an hour; caravans every 24 minutes, one and a half a day; the town food bill once a day.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-non">
+    <div class="tier-head">
+      <span class="tier-name">Not tested on the shipped build</span>
+      <span class="tier-how">named, with the figure from source where there is one</span>
+    </div>
+    <ul>
+      <li><b>Anything the clock makes long.</b> At 1&times; the thirst bar takes 24 real minutes to empty and the first pass-out comes at 72; a Cell is 1.6 real hours and a Slaver Pen 11.2; the Great Eclipse comes every fourteen days, 11.2 real hours. All of it is measured on source above; none of it was sat through on the archive.</li>
+      <li><b>Sprint.</b> Holding Shift now costs three times the resting drain per game hour and empties a full water bar in four game hours. Source only.</li>
+      <li><b>The settle button</b> in Holdings. The verb behind it was driven headless and its wording read; the button itself was not pressed.</li>
+      <li><b>A caravan on the road.</b> Twenty-four minutes between departures on source; not watched on the archive.</li>
+      <li><b>macOS on a browser download.</b> The archive is structurally right and the README inside carries the Gatekeeper steps (the malware dialog, then System Settings &rarr; Privacy &amp; Security &rarr; Open Anyway). The owner's Mac is the lane; this build has not been through it yet.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>The same save, before and after</h2>
+  <p class="sub">The owner's day-204 Failing Bakery save is the case this build was cut for. Read off the file, not the screen.</p>
+  <table>
+    <thead><tr><th>field</th><th>playtest 13 opened it</th><th>playtest 14 opened it</th></tr></thead>
+    <tbody>
+      <tr><td>credit debt to the Rust Walkers</td><td>2,086,916.9 coronas</td><td>none</td></tr>
+      <tr><td>collectors out</td><td>yes, every Rust Walker hostile</td><td>none; 0 hostile beyond their nature</td></tr>
+      <tr><td>Vex's Larder owes</td><td>1,135 flat, shut</td><td>1,135 flat, shut, settle at the counter</td></tr>
+      <tr><td>missed collections on record</td><td>38</td><td>38</td></tr>
+      <tr><td>standing with the Rust Walkers</td><td>&minus;100</td><td>&minus;100, unchanged by ruling</td></tr>
+      <tr><td>Codex history</td><td>nothing about it</td><td>one line: the book is wiped</td></tr>
+      <tr><td>healed flag in the file</td><td>absent</td><td>true; the second load is silent</td></tr>
+    </tbody>
+  </table>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt14/c_load_0.png" alt="Playtest 14 opening the day-204 save: the log panel shows the Rust Walkers' book being wiped, the HUD reads day 204 at 06.1" loading="lazy">
+      <figcaption><b>On load.</b> The wipe line in the log, day 204 at 06.1, the stamp bottom-right.</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt14/c_load_5m30.png" alt="The same run five and a half minutes later: the clock reads 08.9 and the log shows Autosaved (day 204)" loading="lazy">
+      <figcaption><b>Five and a half minutes later.</b> 08.9 on the clock, "Autosaved (day 204)." in the log, no dawn crossed.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>The day, before and after</h2>
+  <p class="sub">The same soak on the two-minute day and on the forty-eight-minute day. Game-hour figures do not move; real time does.</p>
+  <table>
+    <thead><tr><th>thing</th><th>in game hours</th><th>playtest 13, real time</th><th>playtest 14, real time</th></tr></thead>
+    <tbody>
+      <tr><td>thirsty (auto-drink)</td><td>every 9</td><td>45 s</td><td>18 min</td></tr>
+      <tr><td>hungry (auto-eat)</td><td>every 18</td><td>90 s</td><td>36 min</td></tr>
+      <tr><td>a full water bar, resting</td><td>12</td><td>60 s</td><td>24 min</td></tr>
+      <tr><td>a full food bar</td><td>24</td><td>2 min</td><td>48 min</td></tr>
+      <tr><td>thirst day 2 / day 3</td><td>24 / 36 without</td><td>2 / 3 min</td><td>48 / 72 min</td></tr>
+      <tr><td>hunger day 2 / day 3</td><td>48 / 72 without</td><td>4 / 6 min</td><td>1.6 / 2.4 h</td></tr>
+      <tr><td>a dawn (payroll, food bill, levies, caravans)</td><td>24</td><td>2 min</td><td>48 min</td></tr>
+      <tr><td>protection levy</td><td>every 5 days</td><td>10 min</td><td>4 h</td></tr>
+      <tr><td>a Cell sentence</td><td>2 days</td><td>25 real seconds (it was never in game time)</td><td>1.6 h</td></tr>
+      <tr><td>a Slaver Pen sentence</td><td>14 days</td><td>45 real seconds</td><td>11.2 h</td></tr>
+      <tr><td>Great Eclipse</td><td>every 14 days</td><td>28 min</td><td>11.2 h</td></tr>
+      <tr><td>autosave</td><td>&mdash;</td><td>every dawn, 2 min</td><td>every 5 min and every dawn</td></tr>
+    </tbody>
+  </table>
+  <p>One thing the long day showed that the short one never could: in both four-hour soaks the
+  idle test character was knocked down by something before the run ended. A raiding party of
+  five was recorded on day two. On the two-minute day the whole soak took fourteen real minutes
+  and nothing found them. Standing still in the wastes is no longer safe, which is the world the
+  owner asked for.</p>
+</section>
+
+<section>
+  <h2>What playtest 13's feedback became</h2>
+  <table>
+    <thead><tr><th>what was said</th><th>what shipped</th></tr></thead>
+    <tbody>
+      <tr><td>"It feels like I don't have time to do anything else but look for water."</td><td>Thirst and hunger are counted per game hour, the day is 48 minutes, and the bars mean twice a day and once a day whatever the clock says.</td></tr>
+      <tr><td>"I am not sure how I got to unfriendly with the Rust Walkers by just standing there."</td><td>The protection bill stays on the shop's counter, flat. Missing it costs standing down to unfriendly and no further, and three misses in a row put a price on you instead. Old saves have the compounded book wiped once, with a line saying so.</td></tr>
+      <tr><td>"A crime faction would put a hit on you eventually."</td><td>They do: 45 coronas after the third consecutive miss, again every third after; paying cancels exactly that.</td></tr>
+      <tr><td>"If you are enslaved I expect it to take 12 hours at 1x to complete 14 or so days of work."</td><td>Custody is in game days: a Slaver Pen is 14, 11.2 real hours at 1&times;. Three months for killing a leader, and serving it is a legitimate path.</td></tr>
+      <tr><td>"It just won't open" (macOS)</td><td>The binary is stored executable and ad-hoc signed; the README says which dialog to expect and where the Open Anyway button is.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Numbers on file for the next slabs</h2>
+  <p class="sub">Measured on source so the balancing starts from a figure rather than a guess.</p>
+  <table>
+    <thead><tr><th>skill, exercised alone</th><th>level after 3 game hours</th><th>level 20</th><th>level 100</th></tr></thead>
+    <tbody>
+      <tr><td>bare-handed fighting (no swing limit in the sim; upper bound)</td><td>27</td><td>2 game hours</td><td>2 game days</td></tr>
+      <tr><td>sneaking near a townsman</td><td>11</td><td>0.4 game days</td><td>11 game days</td></tr>
+      <tr><td>bandaging every 8 s</td><td>6</td><td>1.3 game days</td><td>34 game days</td></tr>
+      <tr><td>smithing metal plates</td><td>7</td><td>1.1 game days</td><td>29 game days</td></tr>
+      <tr><td>walking</td><td>1</td><td>33 game days</td><td>859 game days</td></tr>
+    </tbody>
+  </table>
+  <p>The curve is linear, so level 100 costs only about 26 times level 20, and walking barely
+  trains athletics at all: one of its two experience hooks sits on a code path the game never
+  takes. Both are on the ledger for the skills slab.</p>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <table>
+    <thead><tr><th>claim</th><th>where it was read</th></tr></thead>
+    <tbody>
+      <tr><td>artifact checks above</td><td>release build 7030afd, driven on a copy of the real save directory taken 23:40 on 3 September; frames and the save files it wrote</td></tr>
+      <tr><td>needs and ladder on the long day</td><td>3-day and 4-day headless soaks on 871a782, seed 0x510E5A</td></tr>
+      <tr><td>the ledger heal and hits</td><td>the day-204 save opened headless on cc8a9af, then on 871a782</td></tr>
+      <tr><td>custody, hand-over ransom</td><td>headless captures on 871a782 and 9bafd61</td></tr>
+      <tr><td>dawns, caravans, autosave</td><td>2-day headless clock soak on 871a782</td></tr>
+      <tr><td>skills</td><td>3 game hours per activity on 871a782</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-13.html">Playtest 13 report</a></p>
+
+</div>
+</body>
+</html>
