@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 14f1 Field Report</title>
+<meta name="description" content="Playtest 14f1 field report: the squad pass and the gameplay journal checked on the shipped archive, the owner's own save taken through the keeper repair, a companion recruited, ordered, driven and asked why.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* -- figures (PT13) -- */
+figure{margin:0 0 22px;background:var(--raise);border:1px solid var(--rule);border-radius:3px;padding:10px}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font:400 13px/1.6 "JetBrains Mono",monospace;color:var(--ink-faint);padding:10px 4px 2px}
+figcaption b{color:var(--ink-soft);font-weight:600}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+.nav{font-size:14px;margin:18px 0 0}
+.nav a{color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14.html">Playtest 14 report</a></p>
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 14f1</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>4 September 2026</span>
+  </div>
+  <h1>The squad says <em>why</em>, and the game keeps a journal</h1>
+  <p class="dek">
+    A follow-up cut to playtest 14, made for one report: "my companion is not following me."
+    The companion was the shop's keeper, put in the squad by the start and skipped by the
+    formation rule for holding a job, and nothing in the game said so. This build takes staff out
+    of the squad, makes every refusal and every non-follow say its reason, gives a driven
+    companion the same hands as your own body, and writes a journal a tester can read. This
+    report says what was checked on the shipped archive, on the owner's own save, and what was
+    not.
+  </p>
+</header>
+
+<div class="verdict">
+  <span class="mark">Cleared</span>
+  <p><strong>Play it.</strong> The owner's own day-1 Failing Bakery save, the one the report came
+  from, was opened on the release build before he touched it: the keeper left the squad with one
+  line saying she is staff, she kept her job and her counter in the file the build wrote, and the
+  second load said nothing. A companion was recruited on the shipped build, ordered away and
+  told to stand, driven by the mouse and the run key, and refused when the band was full, each
+  time with the sentence on screen and the same event in the journal. Two small things were
+  found in the journal's wording and are listed; neither changes play.</p>
+</div>
+
+<div class="stamp">
+<b>stamp</b>&nbsp;&nbsp;&nbsp;&nbsp; playtest-14f1 &middot; c232b72 &nbsp;<span class="ok">&#10003; one line on the title, the same on the HUD, the same in the log and on every journal line</span><br>
+<b>windows</b>&nbsp;&nbsp; eclipsis_playtest-14f1_windows_x86_64.zip &nbsp; 2377d8195964473f1be76f6d2486e203d94ba06c644b43e2599dc631e930f256 <span class="ok">&#10003;</span><br>
+<b>macos</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-14f1_macos_universal.zip &nbsp;&nbsp; bfdd60eed1336eb900cb2459a743d5a7f27f680e12e1ff1d27afea5ad9506aea <span class="ok">&#10003;</span><br>
+<b>linux</b>&nbsp;&nbsp;&nbsp;&nbsp; eclipsis_playtest-14f1_linux_x86_64.tar.gz &nbsp;&nbsp; 0599352a1de0db866a8b1e413db71290a64a0d43ce7716c2be22814d932bbc1f <span class="ok">&#10003;</span><br>
+<b>checked</b>&nbsp;&nbsp; sha256 of each downloaded file against the release body, byte for byte; the macOS archive's binary is stored executable and the README inside carries the Gatekeeper steps
+</div>
+
+<section>
+  <h2>What was actually proven</h2>
+  <p class="sub">Three tiers, as before. The top one is the only one that counts as a promise.</p>
+
+  <div class="tier t-art">
+    <div class="tier-head">
+      <span class="tier-name">Verified on the shipped build</span>
+      <span class="tier-how">the release archive, launched and driven like a player would, on a copy of the owner's real save directory</span>
+    </div>
+    <ul>
+      <li><b>The build says which build it is.</b> Title bottom-left and the log both read <code>playtest-14f1 &middot; c232b72</code>; the first line of the journal carries the tag and the commit.</li>
+      <li><b>Playtest 14 finds playtest 14f1.</b> The previous build, booted on a copy of the owner's save directory, put up the card naming both builds; Later closed it, the file recorded it, and the second boot showed only the quiet "Get it" line.</li>
+      <li><b>The keeper leaves the squad, once.</b> On load the log said "Merrow Kestin is staff at Vex's Provisions, not one of your band &mdash; she keeps the counter and the squad walks without her." The Squad tab read 0 of 3 with no row for her. The autosave the build wrote on quit has no companions and one crew row: Merrow Kestin, keeper. Opening that file again said nothing and changed nothing.</li>
+      <li><b>Hovering says why before you press F.</b> Over the keeper: "Merrow Kestin is the keeper at Vex's Provisions &mdash; staff, not a companion. Take them off the counter first." Over a guard: "holds a post for the Rust Walkers." Over a stranger with a full band: "Your band is full (3 of 3)." Over your own companion: "Ally &mdash; follows you."</li>
+      <li><b>Recruiting works and refusing is spoken.</b> Three warriors of the home faction asked to join and joined ("won over and falls in beside you (1/3)" through "(3/3)"); the fourth was refused with the full-band sentence, and the save the build wrote holds exactly the three.</li>
+      <li><b>A squadmate on an order says so once.</b> Sent somewhere by right-click, Vicar Spring II produced one line two seconds later: "walking an order of their own &mdash; let it finish, or send them somewhere else." When the order finished, formation resumed. Told to stand with Y, every row on the Squad tab read "STANDING &mdash; Y for FOLLOW" and no per-member line was spoken; the squad-wide "Squad order: STAND" line was.</li>
+      <li><b>Driving a companion answers the mouse and the run key.</b> Key 2 took Vicar Spring II ("Now controlling"); a held right button walked the driven body toward the cursor, which playtest 14 ignored; Shift registered as a sprint on the driven body and it kept moving. Pressing Space while driving said, once: "Fighting and handling are your own hands' work, not Vicar Spring II's &mdash; press 1 to take your body back."</li>
+      <li><b>The Controls tab tells the truth about Y.</b> "cycle squad stance (FOLLOW / STAND / DEFEND / ATTACK / FLEE)". Playtest 14 said it toggled two.</li>
+      <li><b>The journal is written as promised.</b> One JSON object per line, ASCII, eleven fields in a fixed order, flushed as it goes: the game was killed one second after a keypress and that keypress was the last line on disk. F12 wrote a mark with a numbered frame file beside it and the toast "Marked bug #1 &mdash; frame saved." The manual save, the five-minute autosave, the save on quit and one closing line all appear, in that order, and the file a tester tails is a byte-for-byte copy of the session's own.</li>
+      <li><b>The clock has not moved.</b> The HUD went from 10.0 to 12.8 in five and a half minutes (a game hour every two), and the autosave came 306 seconds after the load.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-src">
+    <div class="tier-head">
+      <span class="tier-name">Verified against source</span>
+      <span class="tier-how">headless on the landed commits, seed 0x510E5A, before and after the fix</span>
+    </div>
+    <ul>
+      <li><b>The keeper repair, on the owner's exact file, three loads deep.</b> On the first version of the fix (8a383a3) the repair ran before the venues existed, decided the counter was no longer his, cleared her job and left her in the squad as a real companion &mdash; found by reading the file rather than the check, reported, and fixed twice over (the order of the load, and the flag that let a later save drop her from both lists). On the cut commit the file the first load writes, the second load, and a third load after another save all agree: squad empty, keeper at the counter, one line the first time and silence after.</li>
+      <li><b>The five reasons a squadmate will not fall in</b> (in transit, posted, on an order, standing, behind a wall) each have a sentence, a Squad-tab tag and a journal id; the journal id is the same word the code uses.</li>
+      <li><b>Who can be asked at all</b> is one function with thirteen answers, consulted by the hover label, the F press and the inspect card; the flag is data, false by default for slaver guards, overseers, slave traders and bosses.</li>
+    </ul>
+  </div>
+
+  <div class="tier t-non">
+    <div class="tier-head">
+      <span class="tier-name">Not tested on the shipped build</span>
+      <span class="tier-how">named, with the figure from source where there is one</span>
+    </div>
+    <ul>
+      <li><b>How much faster a driven companion runs.</b> The run key registered and the body moved; the walk-to-run ratio was not measured on the archive. Source asserts 1.55 to 1.85 against a factor of 1.7.</li>
+      <li><b>Three of the five non-follow reasons</b> (posted, in transit, behind a wall) were read in source, not driven.</li>
+      <li><b>Pressing F on the keeper herself</b>, and the three ways to make someone recruitable (release from a post, free a captive, become friendly). The hover sentence for her was measured; the press was not.</li>
+      <li><b>The flicker.</b> Measured on source as the following body having no route out of a house; not driven at &times;8 on the archive. If you see it, press F12 &mdash; that is what the mark is for.</li>
+      <li><b>macOS on a browser download.</b> Structurally right and the README carries the Gatekeeper steps; the double-click on a Mac is still the owner's to do.</li>
+      <li><b>Linux beyond the archive.</b> Hash and permissions only.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>The same save, before and after</h2>
+  <p class="sub">The owner's day-1 Failing Bakery save is the case this build was cut for. Read off the file the build wrote, not the screen.</p>
+  <table>
+    <thead><tr><th>field</th><th>playtest 14 opened it</th><th>playtest 14f1 opened it</th></tr></thead>
+    <tbody>
+      <tr><td>companions in the squad</td><td>Merrow Kestin, job keeper (the shop's own staff)</td><td>none</td></tr>
+      <tr><td>crew on Vex's Provisions</td><td>none listed</td><td>Merrow Kestin, keeper, same post</td></tr>
+      <tr><td>what the game said</td><td>nothing; she stood at the door and never took a step</td><td>one line: she is staff, she keeps the counter, the squad walks without her</td></tr>
+      <tr><td>hovering over her</td><td>a talk prompt</td><td>the reason she cannot be recruited, and what would change it</td></tr>
+      <tr><td>opening it a second time</td><td>&mdash;</td><td>silent; the file is unchanged</td></tr>
+      <tr><td>a flag in the file</td><td>&mdash;</td><td>none; the repair is safe to run every time because the save is written from the repaired lists</td></tr>
+    </tbody>
+  </table>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt14f1/b1_loaded.png" alt="Playtest 14f1 opening the owner's bakery save: the log says Merrow Kestin is staff at Vex's Provisions, and the hover label over her says she is the keeper, staff, not a companion" loading="lazy">
+      <figcaption><b>On load.</b> The staff line in the log; the hover label over Merrow says why she cannot be asked.</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt14f1/b2_squad.png" alt="The Squad tab on the same load: 0 of 3, no companions, the stance row at FOLLOW" loading="lazy">
+      <figcaption><b>The Squad tab.</b> 0 of 3. The keeper is not a row.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>A companion, recruited, ordered, driven</h2>
+  <p class="sub">A fresh Wanderer on the shipped build. Warriors of the home faction were placed beside the player with the in-game console so the recruit could be repeated; everything after that is the game as a player meets it.</p>
+  <table>
+    <thead><tr><th>step</th><th>playtest 14</th><th>playtest 14f1</th></tr></thead>
+    <tbody>
+      <tr><td>recruit refused</td><td>"isn't convinced" or "No one in reach"</td><td>the sentence names the reason ("Your band is full (3 of 3).") and the hover shows it before F</td></tr>
+      <tr><td>companion sent on an order</td><td>silently out of formation</td><td>"walking an order of their own" once, two seconds in; formation resumes when it ends</td></tr>
+      <tr><td>Y to STAND</td><td>a stance line</td><td>the same line, and every Squad row tagged "STANDING &mdash; Y for FOLLOW"</td></tr>
+      <tr><td>driving: right button held</td><td>the driven body did not move</td><td>walks toward the cursor</td></tr>
+      <tr><td>driving: Shift</td><td>no run on the driven body</td><td>sprint registers on the driven body</td></tr>
+      <tr><td>driving: Space</td><td>nothing</td><td>"Fighting and handling are your own hands' work &hellip; press 1 to take your body back."</td></tr>
+      <tr><td>Controls tab, Y</td><td>"toggle squad orders (FOLLOW / HOLD GROUND)"</td><td>"cycle squad stance (FOLLOW / STAND / DEFEND / ATTACK / FLEE)"</td></tr>
+    </tbody>
+  </table>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt14f1/d8b_tab_stand.png" alt="The Squad tab with three companions after Y: each row tagged STANDING, Y for FOLLOW" loading="lazy">
+      <figcaption><b>Told to stand.</b> Three rows, three tags, no three lines in the log.</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt14f1/d12_silence.png" alt="Driving Vicar Spring II; after pressing Space the log reads Fighting and handling are your own hands' work, not Vicar Spring II's, press 1 to take your body back" loading="lazy">
+      <figcaption><b>Space while driving.</b> The game says what it will not do and how to get your hands back.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>The journal</h2>
+  <p class="sub">What the game writes in <code>logs/journal.jsonl</code> under its user folder, read straight off the file the shipped build wrote.</p>
+  <table>
+    <thead><tr><th>moment</th><th>line</th></tr></thead>
+    <tbody>
+      <tr><td>launch</td><td><code>session/start</code> with the version, commit, tag, your OS and GPU, and where the journal is</td></tr>
+      <tr><td>Continue</td><td><code>session/loaded</code> with the file's path, size and checksum, then <code>session/world</code> with the seed, scenario and the 2880-second day</td></tr>
+      <tr><td>a squadmate skipped</td><td><code>order/formation_skip</code> with the reason word, the sentence, and one <code>note</code> two seconds later</td></tr>
+      <tr><td>Y</td><td><code>stance/set</code> from and to</td></tr>
+      <tr><td>key 2 / key 1</td><td><code>drive/switch</code> from and to</td></tr>
+      <tr><td>F12</td><td><code>mark/bug</code> with a number, the frame file's name, your position, who you were driving, and the last events; the frame is under <code>logs/marks/</code></td></tr>
+      <tr><td>saves</td><td><code>save/manual</code>, <code>save/autosave</code> with the path and byte count</td></tr>
+      <tr><td>quit</td><td>the autosave, then one <code>session/quit</code> as the last line; a crash leaves no quit line and every earlier line intact</td></tr>
+    </tbody>
+  </table>
+  <p>Two things to fix in it, neither of which changes play: a refusal for a full band carries the
+  journal id <code>standing</code> where the sentence says the band is full, and the "could join
+  you" note ends with two full stops. Both are reported.</p>
+  <div class="pair">
+    <figure>
+      <img src="../screenshots/pt14f1/b4_mark.png" alt="After F12: the log reads Marked bug #1, frame saved" loading="lazy">
+      <figcaption><b>F12.</b> "Marked bug #1 &mdash; frame saved." The frame is on disk under the same number.</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/pt14f1/u1_modal.png" alt="Playtest 14 showing the card: you are playing playtest-14, playtest-14f1 has been published" loading="lazy">
+      <figcaption><b>Playtest 14 finds this build.</b> The card names both; Later closes it once.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <table>
+    <thead><tr><th>claim</th><th>where it was read</th></tr></thead>
+    <tbody>
+      <tr><td>artifact checks above</td><td>release build c232b72, driven on copies of the owner's real save directory taken 4 September before any 14f1 binary ran; frames, the save files it wrote, and its journal</td></tr>
+      <tr><td>the keeper repair, before and after</td><td>the owner's autosave opened headless on 8a383a3 (wrong branch), b8e0f6d and c232b72 (right), three loads each</td></tr>
+      <tr><td>the journal contract</td><td>a checker run over the shipped build's journal: shape, closed set of kinds, order, marks on disk, no per-frame spam; a hard kill for the flush</td></tr>
+      <tr><td>non-follow reasons, recruitability</td><td>companion_manager.gd on c232b72</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14.html">Playtest 14 report</a></p>
+
+</div>
+</body>
+</html>
