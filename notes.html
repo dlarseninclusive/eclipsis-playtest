@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 14f5 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 14f6 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,34 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+<section class="rel" aria-labelledby="pt14f6">
+  <h2 class="rel-h" id="pt14f6">Playtest 14f6 &mdash; every blow on the record</h2>
+  <p class="rel-date">Released 2026-09-06</p>
+  <p class="rel-lede">A sixth follow-up to playtest 14. Playtest 14f4 gave fights a voice, but a beating still happened in silence &mdash; and that turned out to be the worst case of all, because a beating is exactly when you most need to know what is happening to you.</p>
+
+  <h3 class="sub">Every blow on the record</h3>
+  <ul class="rn">
+    <li><strong>Every blow you take is now in the combat report and the journal.</strong> Contact damage arrives as a trickle rather than as discrete hits, so a beating produced no lines at all. Blows are now gathered per attacker per second and reported with the whole of the damage, so the record matches what your health bar is doing.</li>
+    <li><strong>Going down writes its own line.</strong> Losing consciousness is an event, and it now says so.</li>
+    <li><strong>A blow your armour turned reads as absorbed.</strong> It used to report as &ldquo;bleeding&rdquo; for zero damage, which described nothing that happened.</li>
+  </ul>
+
+  <h3 class="sub">Being held</h3>
+  <ul class="rn">
+    <li><strong>The people who captured you stand down inside the camp for your term.</strong> They used to keep beating you where you fell, which made serving a sentence a matter of surviving your gaolers. They take up arms again only if you run.</li>
+    <li><strong>The banner over a camp that granted you passage says passage</strong>, not hostile ground.</li>
+    <li><strong>The gate of a camp you have served your sentence in says leave</strong>, not run.</li>
+  </ul>
+
+  <h3 class="sub">Under the hood</h3>
+  <ul class="rn">
+    <li><strong>The game frees the worlds it builds.</strong> Worlds were being created and never released; the test suite&rsquo;s memory use drops from about 50&nbsp;GB to 17&nbsp;GB. You should not see this at all &mdash; which is the point &mdash; but a long session has less reason to grind.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>Your playtest 14 through 14f5 saves load.</strong> Nothing here changes the shape of a save. The journal is still <code>logs/journal.jsonl</code> in the game&rsquo;s user folder, with <code>F12</code> to mark a moment and save a frame &mdash; and if you take a beating and the report does not match what your health did, that is the moment to press it.</p>
+
+  <p class="rel-date">Build <code>playtest-14f6 &middot; debe401</code> &middot; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-14f6">release and downloads</a><br>sha256 &middot; windows.zip <code>fdb779225b46a5151d8d3660dfae5dbacb67c6b35017b6a12dba86cfca8090e3</code><br>&middot; macos.zip <code>2bf5bff02ee140446acb1262f994bbda703a1013a0a6bc57623539b7cbc0f254</code><br>&middot; linux.tar.gz <code>6ae54d11137888d64c4f4a47b0bc04fdb5876983eb9be271d762794d9aeeb5ce</code></p>
+</section>
 <section class="rel" aria-labelledby="pt14f5">
   <h2 class="rel-h" id="pt14f5">Playtest 14f5 &mdash; what is still true</h2>
   <p class="rel-date">Released 2026-09-06</p>
