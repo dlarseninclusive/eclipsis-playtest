@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 14f11 Field Report</title>
+<meta name="description" content="Playtest 14f11 field report, unedited: Windowed gate (GX-C faces, ST5 cinematic + page frames, LL1 dialogue fix, WR1 lines)">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* -- figures (PT13) -- */
+figure{margin:0 0 22px;background:var(--raise);border:1px solid var(--rule);border-radius:3px;padding:10px}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font:400 13px/1.6 "JetBrains Mono",monospace;color:var(--ink-faint);padding:10px 4px 2px}
+figcaption b{color:var(--ink-soft);font-weight:600}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+.nav{font-size:14px;margin:18px 0 0}
+.nav a{color:var(--ink-faint)}
+</style>
+<style>
+  h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:1.32rem;
+     line-height:1.25;margin:2.1rem 0 .55rem;color:var(--ink)}
+  code{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+       font-size:.86em;background:var(--sunk);border:1px solid var(--rule);
+       border-radius:3px;padding:.06em .34em}
+  th code,td code{background:none;border:0;padding:0}
+  ul{margin:.7rem 0 1rem;padding-left:1.15rem}
+  li{margin:.3rem 0}
+  .src{font-size:.86rem;color:var(--ink-faint);margin:2.6rem 0 0;
+       padding-top:1rem;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14f10.html">Playtest 14f10 report</a></p>
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 14f11</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>8 September 2026</span>
+  </div>
+  <h1>Windowed gate (GX-C faces, ST5 cinematic + page frames, LL1 dialogue fix, WR1 lines)</h1>
+</header>
+
+<section>
+<p>Artifact <code>eclipsis_playtest-14f11_windows_x86_64.zip</code>, sha256 <code>2d5ad88b9c33474da2d2c083b58325eb2295042aafcacf6c0356aa9760d32020</code> (43,317,696 bytes) — hashed here, matches the cut. Submodule fa0a5f5, stamp <code>playtest-14f11 · fa0a5f5</code>.</p>
+
+<div class="verdict"><p><strong>VERDICT: PASS.</strong> Two things measured but not provable in play, named below rather than glossed.</p></div>
+
+<div class="scroll"><table>
+<thead><tr>
+<th>gate</th>
+<th>evidence</th>
+<th>result</th>
+</tr></thead>
+<tbody>
+<tr><td>G1 title, subtitle, stamp</td><td>modal subtitle pixel <strong>(236,226,210)</strong> exact; stamp reads <code>playtest-14f11 · fa0a5f5</code></td><td>PASS</td></tr>
+<tr><td>G2 pill honest, journal clean</td><td>shortfalls 11 rows, mean 3.34; check_journal C1–C9 PASS at <code>--speeds 1,2,4</code></td><td>PASS</td></tr>
+<tr><td>G3 GX-C portrait plate</td><td><code>pt14f11_faces/card_shown_1.png</code> — a drawn face, skin and hair, name under it</td><td>PASS</td></tr>
+<tr><td>G4 cinematic, all three doors</td><td>launch flag, F10 both ways, console both ways — 5 frames by <code>check_hud_off.py</code></td><td>PASS</td></tr>
+<tr><td>G5 page frames live</td><td>eleven images HTTP 200, all 1920×1080, and 08–11 are the recomposed set</td><td>PASS</td></tr>
+<tr><td>G6 page layout</td><td>1584 / 1020 / 386 — no horizontal overflow at any width, gallery scales 1058 / 963 / 329 px</td><td>PASS</td></tr>
+<tr><td>G7 Dave's real user://</td><td>untouched</td><td>PASS</td></tr>
+</tbody>
+</table></div>
+
+</section>
+<section>
+<h2>Speed — flat across three builds</h2>
+
+<div class="scroll"><table>
+<thead><tr>
+<th>build</th>
+<th>rung</th>
+<th>fps</th>
+<th>game s per real 60 s</th>
+</tr></thead>
+<tbody>
+<tr><td>14f9</td><td>x4</td><td>25.2</td><td>~201</td></tr>
+<tr><td>14f10</td><td>x4</td><td>23.7</td><td>~206</td></tr>
+<tr><td><strong>14f11</strong></td><td><strong>x4</strong></td><td><strong>25.4</strong> (39.36 ms at the rung)</td><td><strong>~200</strong> (mean achieved 3.34)</td></tr>
+</tbody>
+</table></div>
+
+<p>14f10's ~6% props cost is back, which is the cinematic HUD saving paying for it even with the HUD on.</p>
+
+</section>
+<section>
+<h2>LL1 — the empty-line bug, measured before and after</h2>
+
+<p>Same prompt, same models, ten generations per cell, on this box:</p>
+
+<div class="scroll"><table>
+<thead><tr>
+<th>model</th>
+<th>14f10 stop list</th>
+<th>14f11 stop list</th>
+</tr></thead>
+<tbody>
+<tr><td>gemma3:1b</td><td><strong>3/10 empty</strong></td><td><strong>0/10</strong></td></tr>
+<tr><td>gemma3:4b</td><td><strong>2/10 empty</strong></td><td><strong>0/10</strong></td></tr>
+</tbody>
+</table></div>
+
+<p>Median latency unchanged (0.14 s and 0.42 s). About a quarter of NPC dialogue was being discarded and now is not, at no cost. The console self-test still answers on the shipped build.</p>
+
+</section>
+<section>
+<h2>GX-C — the plate is real, the hood is not reachable</h2>
+
+<p>The talk card carries a 112×126 portrait: a drawn face, hair, skin, the speaker's name beneath it. It reads at play size, which is the thing that was in doubt.</p>
+
+<p><strong>The hooded path could not be exercised in play, as predicted before the cut.</strong> <code>road_hood</code> is on no shelf, no loot row and no loadout, so the only hooded body a generated world holds is a faction leader in a crowned helm. I reached a leader's parley screen but not a leader's card inside the gate's time budget; a console <code>give</code> proves the item exists, not the consumer path. <strong>Not claimed as tested.</strong> WD1 puts hoods on scouts, the Choir, the Penumbra and the low bandit tiers; the 14f12 drive meets one on a road, which is the honest test.</p>
+
+</section>
+<section>
+<h2>WR1 — 171 lines, verified on the table, not in the mouth</h2>
+
+<p><code>check_fallbacks.py</code> passes the shipped table: 19 factions, 171 lines, 63 carrying a slot (37%), no unknown token, every faction exercising <code>{ADDRESS}</code>, pools 2–4 ASCII terms. <strong>What I could not do is photograph one being spoken.</strong> Forcing the canned path (<code>model no-such-model</code>) and talking to gate guards produced a frisk card and a parley menu rather than a faction line; the bodies that answer with a fallback line were not in reach in the runs I had time for. The lines are right in the data and the resolver is unit-checked upstream; the sentence a player hears remains unphotographed.</p>
+
+</section>
+<section>
+<h2>Cinematic mode — one nuance worth writing down</h2>
+
+<p>Launch flag, F10 and the console all hide and restore the HUD as specified. A save-and-reload <strong>inside the same session keeps the HUD hidden</strong> — my drive's <code>after_reload</code> frame reads HUD-off. That is not a defect: the state is a view preference, not a save field, and a fresh launch without the flag shows the HUD (every other part of this gate proves it). Worth stating so nobody later reads the frame as a bug.</p>
+
+</section>
+<section>
+<h2>Not tested</h2>
+
+<p>The hooded card; a fallback line spoken on screen; macOS and Linux artifacts; the four beats of the trailer under <code>--cinematic</code> (next, now that the flag ships).</p>
+</section>
+
+<p class="src">A playtester's field report, written as a lab notebook for the team and published unedited. Source: <code>tools/journey/first_play_pt14f11.md</code> at <code>3b4d5bb</code>.</p>
+
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14f10.html">Playtest 14f10 report</a></p>
+
+</div>
+</body>
+</html>

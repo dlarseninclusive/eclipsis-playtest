@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playtest 14f10 Field Report</title>
+<meta name="description" content="Playtest 14f10 field report, unedited: Windowed gate (GX-D props and interior dressing)">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#EFEDE8;
+  --raise:#F7F6F3;
+  --sunk:#E3E0D8;
+  --ink:#1B1D22;
+  --ink-soft:#4A4E57;
+  --ink-faint:#8B857A;
+  --rule:#D2CEC4;
+  --corona:#B87A18;
+  --corona-lit:#E3A03C;
+  --verdigris:#42705C;
+  --rust:#A8492E;
+  --shadow:rgba(27,29,34,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A;
+    --raise:#1D1F24;
+    --sunk:#101116;
+    --ink:#EFEDE8;
+    --ink-soft:#B3B1AA;
+    --ink-faint:#7E7A72;
+    --rule:#2C2F36;
+    --corona:#E3A03C;
+    --corona-lit:#F2BC63;
+    --verdigris:#7FB39A;
+    --rust:#D97554;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A;
+  --raise:#1D1F24;
+  --sunk:#101116;
+  --ink:#EFEDE8;
+  --ink-soft:#B3B1AA;
+  --ink-faint:#7E7A72;
+  --rule:#2C2F36;
+  --corona:#E3A03C;
+  --corona-lit:#F2BC63;
+  --verdigris:#7FB39A;
+  --rust:#D97554;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font:400 17px/1.65 "Source Sans 3","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px 120px}
+
+/* ── masthead ─────────────────────────────────────────── */
+.mast{padding:72px 0 0;border-bottom:1px solid var(--rule);margin-bottom:44px}
+.eyebrow{
+  font:600 12px/1 "JetBrains Mono",ui-monospace,monospace;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--corona);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;
+}
+.eyebrow .sep{color:var(--ink-faint)}
+h1{
+  font:400 clamp(46px,8vw,78px)/.98 "Instrument Serif",Georgia,serif;
+  margin:20px 0 0;letter-spacing:-.015em;text-wrap:balance;
+}
+h1 em{font-style:italic;color:var(--corona)}
+.dek{
+  font:300 21px/1.5 "Source Sans 3",sans-serif;color:var(--ink-soft);
+  margin:18px 0 34px;max-width:60ch;text-wrap:pretty;
+}
+
+/* ── verdict ──────────────────────────────────────────── */
+.verdict{
+  display:flex;gap:22px;align-items:flex-start;
+  background:var(--raise);border:1px solid var(--rule);
+  border-left:4px solid var(--verdigris);
+  padding:24px 26px;border-radius:3px;margin-bottom:14px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.verdict .mark{
+  font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--verdigris);white-space:nowrap;padding-top:5px;
+}
+.verdict p{margin:0;color:var(--ink-soft)}
+.verdict strong{color:var(--ink);font-weight:600}
+
+.stamp{
+  font:400 13px/1.7 "JetBrains Mono",monospace;color:var(--ink-faint);
+  border:1px dashed var(--rule);border-radius:3px;padding:14px 18px;
+  overflow-x:auto;margin-bottom:56px;
+}
+.stamp b{color:var(--ink-soft);font-weight:600}
+.stamp .ok{color:var(--verdigris)}
+
+/* ── sections ─────────────────────────────────────────── */
+section{margin:0 0 56px}
+h2{
+  font:400 33px/1.2 "Instrument Serif",Georgia,serif;
+  margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance;
+}
+.sub{color:var(--ink-faint);font-size:15px;margin:0 0 24px;max-width:62ch}
+p{margin:0 0 16px;max-width:66ch;text-wrap:pretty}
+a{color:var(--corona);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--corona-lit)}
+a:focus-visible{outline:2px solid var(--corona);outline-offset:2px;border-radius:2px}
+td a{text-decoration:none;border-bottom:1px solid var(--rule)}
+td a:hover{border-bottom-color:var(--corona)}
+.where a{color:var(--ink-faint);text-decoration:underline}
+.where a:hover{color:var(--corona)}
+
+/* ── evidence tiers ───────────────────────────────────── */
+.tier{
+  border:1px solid var(--rule);border-radius:3px;background:var(--raise);
+  margin-bottom:16px;overflow:hidden;
+}
+.tier-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:15px 20px;background:var(--sunk);border-bottom:1px solid var(--rule);
+  flex-wrap:wrap;
+}
+.tier-name{
+  font:600 12px/1.3 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+}
+.tier-how{font-size:14px;color:var(--ink-faint);font-style:italic}
+.t-art .tier-name{color:var(--verdigris)}
+.t-src .tier-name{color:var(--corona)}
+.t-non .tier-name{color:var(--ink-faint)}
+.tier ul{list-style:none;margin:0;padding:8px 20px 16px}
+.tier li{
+  padding:9px 0 9px 24px;border-bottom:1px solid var(--rule);position:relative;
+  color:var(--ink-soft);
+}
+.tier li:last-child{border-bottom:0}
+.tier li::before{
+  content:"";position:absolute;left:2px;top:19px;
+  width:9px;height:9px;border-radius:50%;
+}
+.t-art li::before{background:var(--verdigris)}
+.t-src li::before{background:var(--corona)}
+.t-non li::before{background:transparent;border:1.5px solid var(--ink-faint)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier li code{
+  font:400 14px "JetBrains Mono",monospace;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;border-radius:2px;
+}
+
+/* ── data table ───────────────────────────────────────── */
+.scroll{overflow-x:auto;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:440px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule)}
+th{
+  font:600 11px/1.3 "JetBrains Mono",monospace;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.num{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr.hi td{background:var(--sunk)}
+tr.hi td:first-child{font-weight:600}
+
+/* ── finding ──────────────────────────────────────────── */
+.finding{
+  border:1px solid var(--rule);border-left:4px solid var(--rust);
+  background:var(--raise);border-radius:3px;padding:24px 26px;
+}
+.finding h3{
+  font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 4px;
+}
+.finding .tag{
+  font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rust);display:block;margin-bottom:10px;
+}
+.finding p:last-child{margin-bottom:0}
+.where{
+  font:400 14px/1.7 "JetBrains Mono",monospace;color:var(--ink-soft);
+  background:var(--sunk);border-radius:2px;padding:12px 16px;margin:16px 0;
+  overflow-x:auto;
+}
+.where .cm{color:var(--ink-faint)}
+
+/* ── the dial ─────────────────────────────────────────── */
+.dial{
+  border:1px dashed var(--rule);border-radius:3px;padding:22px 26px;background:var(--raise);
+}
+.dial h3{font:400 25px/1.25 "Instrument Serif",Georgia,serif;margin:0 0 10px}
+.dial p:last-child{margin-bottom:0}
+
+.foot{
+  margin-top:72px;padding-top:22px;border-top:1px solid var(--rule);
+  font-size:14px;color:var(--ink-faint);
+}
+.foot code{font-family:"JetBrains Mono",monospace}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px 80px}
+  .mast{padding-top:48px}
+  .verdict{flex-direction:column;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* -- figures (PT13) -- */
+figure{margin:0 0 22px;background:var(--raise);border:1px solid var(--rule);border-radius:3px;padding:10px}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font:400 13px/1.6 "JetBrains Mono",monospace;color:var(--ink-faint);padding:10px 4px 2px}
+figcaption b{color:var(--ink-soft);font-weight:600}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.pair{grid-template-columns:1fr}}
+.nav{font-size:14px;margin:18px 0 0}
+.nav a{color:var(--ink-faint)}
+</style>
+<style>
+  h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:1.32rem;
+     line-height:1.25;margin:2.1rem 0 .55rem;color:var(--ink)}
+  code{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+       font-size:.86em;background:var(--sunk);border:1px solid var(--rule);
+       border-radius:3px;padding:.06em .34em}
+  th code,td code{background:none;border:0;padding:0}
+  ul{margin:.7rem 0 1rem;padding-left:1.15rem}
+  li{margin:.3rem 0}
+  .src{font-size:.86rem;color:var(--ink-faint);margin:2.6rem 0 0;
+       padding-top:1rem;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14f9.html">Playtest 14f9 report</a></p>
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Playtest 14f10</span><span class="sep">/</span>
+    <span>Field report</span><span class="sep">/</span>
+    <span>8 September 2026</span>
+  </div>
+  <h1>Windowed gate (GX-D props and interior dressing)</h1>
+</header>
+
+<section>
+<p>Artifact: <code>eclipsis_playtest-14f10_windows_x86_64.zip</code>, sha256 <code>247860750b472e97047223ac468c82ea29d37c40bf6a23dfab1165a0e48c9d85</code> — hashed here, matches the cut. Submodule 3e311e7. Windowed at 1280x720, APPDATA sandboxed; determinism run from the source tree at the same head.</p>
+
+<div class="verdict"><p><strong>VERDICT: PASS.</strong> One cost to note (perf), two things not reached (below).</p></div>
+
+<div class="scroll"><table>
+<thead><tr>
+<th>gate</th>
+<th>evidence</th>
+<th>result</th>
+</tr></thead>
+<tbody>
+<tr><td>G1 title, wordmark, stamp</td><td><code>pt14f10_title/title.png</code>, stamp <code>playtest-14f10 · 3e311e7</code></td><td>PASS</td></tr>
+<tr><td>G2 subtitle colour</td><td>modal pixel <strong>(236,226,210)</strong> exact</td><td>PASS</td></tr>
+<tr><td>G3 pill honest, journal clean</td><td>shortfalls 3.27–3.56, none above achievement; check_journal C1–C9 PASS</td><td>PASS</td></tr>
+<tr><td>G4 a bar, lid-off from the artifact</td><td><code>inside_bar_b.png</code></td><td>PASS</td></tr>
+<tr><td>G5 a shop, lid-off</td><td><code>inside_weaponsmith_a.png</code></td><td>PASS</td></tr>
+<tr><td>G6 crates present and readable at play zoom</td><td><code>kind_trader.png</code>, <code>kind_grocer.png</code>, <code>kind_cache.png</code></td><td>PASS</td></tr>
+<tr><td>G7 store determinism at tol 0</td><td>two runs at 3e311e7: 0 px on all seven</td><td>PASS</td></tr>
+<tr><td>G8 a cell</td><td>not reached — see below</td><td>NOT TESTED</td></tr>
+<tr><td>G9 Dave's real user:// untouched</td><td>listing md5 unchanged</td><td>PASS</td></tr>
+</tbody>
+</table></div>
+
+</section>
+<section>
+<h2>Speed — props cost about 6% of frame rate</h2>
+
+<div class="scroll"><table>
+<thead><tr>
+<th>build</th>
+<th>rung</th>
+<th>fps</th>
+<th>game s per real 60 s</th>
+</tr></thead>
+<tbody>
+<tr><td>14f9</td><td>x4</td><td>25.2</td><td>~201</td></tr>
+<tr><td><strong>14f10</strong></td><td><strong>x4</strong></td><td><strong>23.7</strong> (42.31 ms avg at the rung)</td><td><strong>~206</strong> (achieved 3.27–3.56, mean 3.44)</td></tr>
+</tbody>
+</table></div>
+
+<p>The x1/x2 window also moved, 25.92 → 27.30 ms. That is a real cost, in line with the dev box's +2.6% draw_world / +6.3% lid-off bar, and it is the first slab in this run of cuts to spend frames. It buys dressing the player looks straight at, so it is worth it once; it should not be spent twice. Nothing here is near the cliff — the top rung still delivers more world per minute than 14f9 did.</p>
+
+</section>
+<section>
+<h2>What reads</h2>
+
+<p>The bar is a bar: counter, kegs and bottles on the shelf, stools, a lit brazier, the keeper behind it with <code>[F] trade</code>. The smithy is a smithy: workbench with tools laid out, brick hearth, rack, and a grindstone in the next room. Outside, the trader's crates read as crates at play zoom — lid boards and a stencil on the face, not tan boxes — the grocer has produce and a stalled awning, and the cache's yard has crates in the corner. A crate reads as a crate, which was the claim.</p>
+
+</section>
+<section>
+<h2>Not reached, and why</h2>
+
+<ul>
+  <li><strong>The cell.</strong> No generated world contains a gaol or a slaver camp — the compound is raised around</li>
+</ul>
+
+<p>you when you are taken — so a teleport census cannot reach one. Testing it needs a custody run (get taken, then look), which is its own drive; it is not in this gate and I have not claimed it. The orchestrator's inherited bug (a gaol raised by <code>send_to_gaol</code> renders no interior dressing at all) is therefore also unconfirmed from my side, and is named on the release page as inherited.</p>
+
+<ul>
+  <li><strong>The grocer's and trader's interiors.</strong> The venue doors sit at different distances from the tp</li>
+</ul>
+
+<p>point, so a fixed walk-in enters some and walks past others. The runner now shoots each venue twice (2.2 s and 3.6 s of walk, E at each) and the read takes whichever frame is inside; those two were outside in both. Their street dressing is what is measured here instead.</p>
+
+</section>
+<section>
+<h2>Not tested</h2>
+
+<p>Interiors above the ground floor; gates as gates; macOS and Linux artifacts; long-run stability; whether the interior dressing survives the eclipse's light change.</p>
+
+</section>
+<section>
+<h2>Follow-on: what the 14f11 drive adds</h2>
+
+<ul>
+  <li><strong>faces (GX-C).</strong> Talk cards from the gate mouth at Rust Haven — two shown-face speakers, then</li>
+</ul>
+
+<p><code>give road_hood</code> as the mechanism proof. Stated plainly in the verdict: with road_hood on no shelf, no loot row and no loadout, the only hooded body a generated world contains is a faction leader in a crowned helm, so the hooded card in 14f11 is NOT the consumer path. WD1 puts hoods on scouts, the Choir, the Penumbra and the low bandit tiers for 14f12; the 14f12 drive meets one on the road.</p>
+
+<ul>
+  <li><strong>cinematic (ST5-B).</strong> Every capture part re-shot with <code>--cinematic</code> once it exists: the acceptance</li>
+</ul>
+
+<p>is zero HUD rows in the art log and no hotbar plate pixels in the bottom band, and it is what makes the trailer beats worth recording.</p>
+
+<ul>
+  <li><strong>store frames 08–11 (ST5).</strong> The four new page shots re-taken from the kit at 1080p, and the seven</li>
+</ul>
+
+<p>existing ones unchanged by md5 — the determinism fix is what makes that assertion possible.</p>
+</section>
+
+<p class="src">A playtester's field report, written as a lab notebook for the team and published unedited. Source: <code>tools/journey/first_play_pt14f10.md</code> at <code>3b4d5bb</code>.</p>
+
+<p class="nav"><a href="../">&#8249; Back to downloads</a> &middot; <a href="../notes.html">Release notes</a> &middot; <a href="../playtest.html">Playtest procedure</a> &middot; <a href="playtest-14f9.html">Playtest 14f9 report</a></p>
+
+</div>
+</body>
+</html>
