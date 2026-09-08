@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 14f8 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 14f9 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,43 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+<section class="rel" aria-labelledby="pt14f9">
+  <h2 class="rel-h" id="pt14f9">Playtest 14f9 &mdash; women in the crowd, and a yard around the tower</h2>
+  <p class="rel-date">Released 2026-09-08</p>
+  <p class="rel-lede">A ninth follow-up to playtest 14. Two things you look at constantly: the people, and the buildings they stand between. Both got a pass.</p>
+
+  <h3 class="sub">Women in the crowd</h3>
+  <ul class="rn">
+    <li><strong>Women read as women at play zoom, from the silhouette alone.</strong> The body plan branches on sex &mdash; narrower shoulders, a waist, wider hips, with the head and the stance following &mdash; so you can tell who is in a crowd without clicking anything.</li>
+    <li><strong>Armour follows the torso it is on.</strong> It is fitted to the body wearing it rather than pasted over a single shape.</li>
+    <li><strong>Every pose goes through the same body</strong>, and so does the corpse. There is no second rig that drifts out of step.</li>
+    <li><strong>Restraint is a rule here, not a taste.</strong> The hip-to-shoulder ratio is capped, so the read is a person and never tips into caricature.</li>
+    <li><strong>Machines, beasts and the Hollowed are untouched.</strong></li>
+  </ul>
+
+  <h3 class="sub">A yard around the tower</h3>
+  <ul class="rn">
+    <li><strong>Round buildings stand in a paved yard</strong> &mdash; the palace, the guild hall, the mine head, the cache, the smith&rsquo;s kiln. Flagstone courses, a chamfered kerb, and the tower&rsquo;s own shadow falling across it, instead of a flat square of roof colour with a circle sitting in it.</li>
+    <li><strong>The yard is the sim&rsquo;s footprint</strong>, drawn honestly. Collision is unchanged.</li>
+  </ul>
+
+  <h3 class="sub">Under the hood</h3>
+  <ul class="rn">
+    <li><strong>Store capture is deterministic.</strong> Two runs of the same build now produce the same seven store screenshots byte for byte, so an art pass can be compared frame to frame against the one before it.</li>
+  </ul>
+
+  <h3 class="sub">Known, and not fixed here</h3>
+  <ul class="rn">
+    <li>Round-building collision is still rectangular.</li>
+    <li>On the tallest drums the shadow falls beyond the yard.</li>
+    <li><strong>The top speed rung stays at x4.</strong> That is a decision, not an oversight &mdash; x4 is good for now.</li>
+    <li>The far-crowd performance tier is still the next lever on speed.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>Your playtest 14 through 14f8 saves load.</strong> Nothing here changes the shape of a save. <strong>Coming next:</strong> props and interiors, then faces and armour, with hooded and shown readings keyed to the head slot. The journal is still <code>logs/journal.jsonl</code> in the game&rsquo;s user folder, with <code>F12</code> to mark a moment and save a frame &mdash; a body or a building that reads wrong is exactly the sort of thing to mark, and the seed from <code>--seed</code> handed over with it lets us stand in the same street you did.</p>
+
+  <p class="rel-date">Build <code>playtest-14f9 &middot; 0224b82</code> &middot; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-14f9">release and downloads</a><br>sha256 &middot; windows.zip <code>52e0c166cec14c43a0ac53f5c419279db4ae76eb846f718d6522357a6eadb41c</code><br>&middot; macos.zip <code>7d5454bebf99503bc5fd65fa9890c79be924498f325768a28d09fa4009edd3c1</code><br>&middot; linux.tar.gz <code>a05bd837e1af86ad296ce46774592174366c34ac27aec00ebf8eac6f47f77086</code></p>
+</section>
 <section class="rel" aria-labelledby="pt14f8">
   <h2 class="rel-h" id="pt14f8">Playtest 14f8 &mdash; every building is its own building</h2>
   <p class="rel-date">Released 2026-09-07</p>
