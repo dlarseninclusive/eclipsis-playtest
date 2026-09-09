@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 14f11 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 14f12 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,58 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a></p>
 
 <div class="col">
+<section class="rel" aria-labelledby="pt14f12">
+  <h2 class="rel-h" id="pt14f12">Playtest 14f12 &mdash; nobody walks through a wall</h2>
+  <p class="rel-date">Released 2026-09-08</p>
+  <p class="rel-lede">A twelfth follow-up to playtest 14. Playtest 14f11 put a face on the people; this one dresses them for it, stops them walking through walls, and opens the gaol from every door.</p>
+
+  <h3 class="sub">Nobody walks through a wall</h3>
+  <ul class="rn">
+    <li><strong>Dave saw NPCs cross town walls. It is fixed.</strong> The tester measured it first: thirteen bodies walked clean through a curtain wall in five game minutes, four Automaton sentries five times each. The movement code was cleared by count: no path ever walked a clear body into a wall. Bodies were being <em>placed</em> inside walls &mdash; squads posted on the town ring, travellers marching to a city centre inside the ring, a beast rounded half a pixel into a brick &mdash; and the anti-trap escape then walked them out through the far side.</li>
+    <li><strong>Every placement now resolves to clear ground, and the escape walks toward the nearest way out</strong> instead of wherever the body was already going. Patrols and travellers take the gate. The tester&rsquo;s probe over 1500 ticks reads zero on every count.</li>
+    <li><strong>Not fixed here:</strong> three shopkeepers stand in a wall brick at world build because their building was raised overlapping the ring. They never move and never cross.</li>
+  </ul>
+
+  <h3 class="sub">Hooded, by who they are</h3>
+  <ul class="rn">
+    <li><strong>The road hood is on the armorer&rsquo;s shelf</strong> for 12 credits. Buy one and your own face goes under it.</li>
+    <li><strong>Scouts, outriders, the Eclipse Choir, the Penumbra and the road bandits wear hoods.</strong> Their champions and heavies keep the steel. About one body in five is hooded; the two cult capitals are hooded to a man, on purpose.</li>
+    <li><strong>Nineteen leaders, nineteen heads.</strong> Some are bare-faced because you are meant to know them, some hooded because you are not, some behind a crowned visor because the office is the point, two in an open military helm. Dave rules each one; the table is in the data.</li>
+  </ul>
+
+  <h3 class="sub">The gaol, from every door</h3>
+  <ul class="rn">
+    <li><strong>Captured on the spot, delivered by a slaver, or starting your game in a cell</strong> all land you in a dressed gaol: barred cells, a rack under a lamp, the bench, two wardens, another prisoner, the barred gate. The &ldquo;bare gaol&rdquo; reported in 14f10 turned out to be a test staging its own camera; it does not reproduce in play.</li>
+    <li><strong>A new start, &ldquo;Sentenced&rdquo;:</strong> you begin in a Corona Wardens cell with an eight-day term, a ransom of 32 credits, eighteen coins and one bandage.</li>
+    <li><strong>The custody card gets out of your way.</strong> Any movement or answer key dismisses it; <code>Q</code> brings it back.</li>
+    <li><strong>The sign tells you how to say it:</strong> <code>Ashen Camp Gaol (&ldquo;jayl&rdquo;)</code>. On the sign and the custody header, nowhere else.</li>
+  </ul>
+
+  <h3 class="sub">The written voice, fixed underneath</h3>
+  <ul class="rn">
+    <li><strong>A body with no name was getting the same word every day as every other nameless body.</strong> The word an NPC calls you now comes off the same identity the crowd already uses for its face, so it is stable per body and varies across bodies. Every spawned NPC has a name; this only mattered for hand-built ones.</li>
+  </ul>
+
+  <h3 class="sub">Also</h3>
+  <ul class="rn">
+    <li>The cinematic key gained a headless check, so the suite no longer fails the family in a headless run.</li>
+    <li>Store screenshots 01&ndash;04 and 08 are re-cut: hooded scouts in Rust Haven, road travellers in the storm, hooded bodies in two interiors.</li>
+  </ul>
+
+  <h3 class="sub">Known, and not fixed here</h3>
+  <ul class="rn">
+    <li><strong>On the Sentenced start the Wardens levy their territory toll on you in their own cell</strong> (18 &rarr; 3 credits in seconds).</li>
+    <li><strong>The floor row reads &ldquo;Ground Floor&rdquo; inside a cell.</strong></li>
+    <li><strong>A slave collar files into the helm slot</strong> on the body. Pre-existing.</li>
+    <li><strong>Long speaker names clip on the name bar</strong> of the talk card.</li>
+    <li>Round-building collision is still rectangular.</li>
+    <li><strong>The top speed rung stays at x4</strong>, by decision.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>Your playtest 14 through 14f11 saves load.</strong> Nothing here changes the shape of a save. <strong>Coming next:</strong> shadows that lengthen with the sun. The journal is still <code>logs/journal.jsonl</code> in the game&rsquo;s user folder, with <code>F12</code> to mark a moment and save a frame &mdash; a body inside a wall is exactly the sort of thing to mark, and the seed from <code>--seed</code> handed over with it lets us stand where you stood.</p>
+
+  <p class="rel-date">Build <code>playtest-14f12 &middot; 90c3ea8</code> &middot; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-14f12">release and downloads</a><br>sha256 &middot; windows.zip <code>cc02d6941c025e01687079ed85e3d699c4559564078fe34eb298ea6c6fcdbd85</code><br>&middot; macos.zip <code>64db042f9b1210c8c98e676bb51e77354d7dcb8a02680df4f0e9df8d465cef51</code><br>&middot; linux.tar.gz <code>8513e2dbc63ff63046c5d01020918ba1636b7ec1546d1971825f93b53e6bff5d</code></p>
+</section>
 <section class="rel" aria-labelledby="pt14f11">
   <h2 class="rel-h" id="pt14f11">Playtest 14f11 &mdash; a face under the hood</h2>
   <p class="rel-date">Released 2026-09-08</p>
