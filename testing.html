@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testing — Eclipsis: The Shattered Expanse</title>
+<meta name="description" content="How to watch an Eclipsis playtest build while you play it: the journal, the F12 mark, launch flags, and what a good report carries.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#0a0908;
+    --bg-2:#100e0b;
+    --panel:#15120e;
+    --panel-2:#1b1712;
+    --rule:#2b241b;
+    --rule-soft:#221d16;
+    --ink:#ded6c7;
+    --ink-strong:#f2ece0;
+    --ink-dim:#9a8f7c;
+    --ink-faint:#71695a;
+    --corona:#f0b24a;
+    --corona-soft:#ffd489;
+    --rust:#a4552e;
+    --maxw:1100px;
+    --textw:74ch;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:var(--corona-soft);text-decoration:none;border-bottom:1px solid rgba(240,178,74,.35)}
+  a:hover{border-bottom-color:var(--corona)}
+  img{max-width:100%;height:auto;display:block}
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;color:var(--ink-strong)}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .col{max-width:var(--textw)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--rule);
+    background:
+      radial-gradient(120% 90% at 50% 118%, #1d1710 0%, #120f0b 40%, var(--bg) 72%);
+  }
+  .masthead .horizon{
+    position:absolute;left:-10%;right:-10%;bottom:0;height:38%;
+    background:linear-gradient(180deg, rgba(120,86,44,.00) 0%, rgba(126,90,46,.16) 55%, rgba(20,16,12,.9) 100%);
+    pointer-events:none;
+  }
+  .masthead-inner{position:relative;padding:118px 20px 54px;text-align:center;max-width:var(--maxw);margin:0 auto}
+  .title{
+    margin:0;
+    font-size:clamp(42px,10.5vw,104px);
+    line-height:.98;
+    letter-spacing:.10em;
+    text-indent:.10em;
+    color:#f6f0e4;
+    text-shadow:0 2px 0 rgba(0,0,0,.6), 0 0 44px rgba(240,178,74,.22);
+  }
+  .subtitle{
+    margin:16px 0 0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:clamp(13px,2.6vw,20px);
+    letter-spacing:.42em;
+    text-indent:.42em;
+    color:var(--corona-soft);
+    text-transform:uppercase;
+  }
+  .rule-orn{
+    width:min(420px,70%);margin:26px auto 0;height:1px;
+    background:linear-gradient(90deg,rgba(240,178,74,0) 0%,rgba(240,178,74,.5) 50%,rgba(240,178,74,0) 100%);
+  }
+  .kicker{
+    margin:30px 0 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0}
+  section + section{border-top:1px solid var(--rule-soft)}
+  h2{
+    font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    margin:0 0 26px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;
+  }
+  h3{font-size:20px;margin:0 0 8px}
+  p{margin:0 0 18px}
+  .lede{font-size:19px;color:var(--ink-strong)}
+
+  code,kbd{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+    background:#1c1811;border:1px solid var(--rule-soft);padding:1px 5px;color:#e6dcc8;
+    word-break:break-word;
+  }
+  pre{
+    background:#1c1811;border:1px solid var(--rule-soft);padding:14px 16px;
+    overflow-x:auto;font-size:14px;line-height:1.55;margin:0 0 20px;
+  }
+  pre code{background:none;border:0;padding:0;word-break:normal}
+  .note{
+    margin-top:30px;border-left:2px solid var(--rust);padding:2px 0 2px 18px;
+    color:var(--ink-dim);font-size:15px;
+  }
+  .note strong{color:var(--ink)}
+
+  footer{
+    border-top:1px solid var(--rule);padding:34px 0 60px;color:var(--ink-faint);font-size:14px;
+  }
+  footer p{margin:0 0 6px}
+
+  @media (max-width:760px){
+    body{font-size:16px}
+    .masthead-inner{padding:96px 18px 42px}
+  }
+
+  /* ---------- testing page ---------- */
+  .backlink{font-size:15px;letter-spacing:.04em}
+  .rel{padding:52px 0}
+  .rel + .rel{border-top:1px solid var(--rule-soft)}
+  .rel-h{
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-weight:400;text-transform:none;color:var(--ink-strong);
+    font-size:26px;line-height:1.2;letter-spacing:.01em;margin:0 0 18px;
+  }
+  .rel-lede{color:var(--ink-strong);font-size:18px;margin:0 0 24px}
+  h3.sub{
+    font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--corona);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-weight:600;margin:26px 0 14px;
+  }
+  ul.rn{list-style:none;margin:0;padding:0 0 18px}
+  ul.rn li{
+    break-inside:avoid;margin:0 0 14px;padding-left:20px;position:relative;
+    font-size:16px;line-height:1.6;
+  }
+  ul.rn li::before{
+    content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+    background:var(--corona);opacity:.8;
+    clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+  }
+  ul.rn li strong{color:var(--ink-strong);font-weight:600}
+  .tbl-wrap{overflow-x:auto;margin:0 0 22px}
+  table{width:100%;border-collapse:collapse;font-size:15px;min-width:420px}
+  th,td{text-align:left;padding:8px 14px 8px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  th{color:var(--ink-strong);font-weight:600;border-bottom:1px solid var(--rule);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  td:first-child, th:first-child{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="horizon" aria-hidden="true"></div>
+  <div class="masthead-inner" style="padding:64px 20px 40px">
+    <h1 class="title" style="font-size:clamp(30px,6vw,58px)">TESTING</h1>
+    <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
+    <div class="rule-orn"></div>
+    <p class="kicker">Watching the game while you play it</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a> &middot; <a href="notes.html">Release notes &#8250;</a></p>
+
+<div class="col">
+
+<p class="rel-lede" style="padding-top:6px">How to watch the game while you play it &mdash; the journal, the F12 mark, the launch flags, and what a good report carries.</p>
+
+<p>This page is for whoever is <strong>driving a build</strong> &mdash; playing it live, or running it for someone else, while a tester session (or a teammate) works out what happened. It covers the tools you have as an observer: the journal, the F12 mark, the launch flags, the dev console and the save files. It does not cover the check suites &mdash; those are for developers.</p>
+
+<section class="rel" aria-labelledby="t1">
+  <h2 class="rel-h" id="t1">1. What a build tells you about itself</h2>
+  <p>Every build prints and draws a <strong>version string</strong>: the release tag and the commit it was cut from, joined with <code>&middot;</code> &mdash; for example:</p>
+  <pre><code>playtest-14f31 &middot; 53d7b7e</code></pre>
+  <p>A development run (no release stamp) prints <code>dev</code> instead. You&rsquo;ll see the string in three places, all reading the same value:</p>
+  <ul class="rn">
+    <li><strong>The title screen</strong>, bottom-left corner.</li>
+    <li><strong>The in-game HUD</strong>, drawn small in the corner.</li>
+    <li><strong><code>godot.log</code></strong>, the first few lines: <code>[ECLIPSIS] version playtest-14f31 &middot; 53d7b7e</code>.</li>
+  </ul>
+  <p><strong>Quote it in every report.</strong> It is the one fact that tells a developer which commit&rsquo;s code you were actually running &mdash; the tag alone is not enough once two builds share a tag during a fix cycle, and the commit alone means nothing to a release page.</p>
+</section>
+
+<section class="rel" aria-labelledby="t2">
+  <h2 class="rel-h" id="t2">2. The journal</h2>
+  <p>The journal is a machine-readable log of what happened in a session, separate from <code>godot.log</code> (which is prose for a person standing at the machine). One JSON object per line, in <code>user://logs/journal.jsonl</code>, meant for a reader who is <strong>not</strong> in the room.</p>
+
+  <h3 class="sub">Where it lives</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>OS</th><th>Path</th></tr>
+    <tr><td>Windows</td><td><code>%APPDATA%\Eclipsis\logs\journal.jsonl</code></td></tr>
+    <tr><td>macOS</td><td><code>~/Library/Application Support/Eclipsis/logs/journal.jsonl</code></td></tr>
+    <tr><td>Linux</td><td><code>$XDG_DATA_HOME/Eclipsis/logs/journal.jsonl</code> (usually <code>~/.local/share/Eclipsis/logs/journal.jsonl</code>)</td></tr>
+  </table>
+  </div>
+  <p><code>journal.jsonl</code> is a <strong>fixed path</strong> a tailing reader can watch live &mdash; a second open file handle, not a periodic copy. Each session also writes its own dated copy, <code>journal_&lt;session-id&gt;.jsonl</code> (session id <code>YYYYMMDD-HHMMSS</code>); the game keeps the last ten and prunes older ones at launch. Want &ldquo;the log from Tuesday&rdquo; specifically, not just &ldquo;the log from just now&rdquo;? That&rsquo;s the dated file.</p>
+  <p><strong>Every line is flushed as it&rsquo;s written</strong>, on both handles &mdash; a run that crashes still leaves everything up to that instant on disk.</p>
+
+  <h3 class="sub">The eleven fields</h3>
+  <p>Every line &mdash; including a mark line &mdash; carries exactly these fields, in this order:</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Field</th><th>Meaning</th></tr>
+    <tr><td><code>t</code></td><td>Wall-clock timestamp, local time, <code>YYYY-MM-DDTHH:MM:SS.mmm</code>.</td></tr>
+    <tr><td><code>rt</code></td><td>Seconds since the process started (run time), to the millisecond.</td></tr>
+    <tr><td><code>day</code></td><td>The in-world day number (<code>0</code> and <code>"paused"</code> speed outside play &mdash; title, menus).</td></tr>
+    <tr><td><code>hour</code></td><td>The in-world clock hour, 0&ndash;24.</td></tr>
+    <tr><td><code>speed</code></td><td>The game-speed ladder&rsquo;s own number (1/2/4), or <code>"paused"</code>.</td></tr>
+    <tr><td><code>v</code></td><td>The build&rsquo;s version string (see &sect;1).</td></tr>
+    <tr><td><code>kind</code></td><td>One of the closed set of kinds &mdash; see below.</td></tr>
+    <tr><td><code>ev</code></td><td>The specific event within that kind (<code>"move_issued"</code>, <code>"bark"</code>, <code>"dawn"</code>&hellip;).</td></tr>
+    <tr><td><code>who</code></td><td>The body the line is about, when there is one &mdash; often empty.</td></tr>
+    <tr><td><code>text</code></td><td>A free-text line, when the event has one (a note, a karma reason).</td></tr>
+    <tr><td><code>data</code></td><td>Everything else, flattened to JSON-safe values &mdash; see below.</td></tr>
+  </table>
+  </div>
+  <p><code>data</code> is <strong>flat</strong>: a position becomes <code>[x, y]</code>, an NPC becomes its name, and a nested dictionary is stringified rather than left as a tree to recurse into &mdash; the one declared exception is <code>data.hud</code> on a mark line, which stays a real object. The file is <strong>seven-bit ASCII on disk</strong> &mdash; anything above <code>0x7F</code> (this game&rsquo;s prose is full of em-dashes) is escaped to <code>\uXXXX</code>, so nothing comes back as mojibake through a terminal with a different code page.</p>
+
+  <h3 class="sub">The kinds</h3>
+  <p>The closed set, enforced at runtime &mdash; a caller that hands in anything else gets a developer error and a <code>warn</code> line in the journal itself, so the <em>reader</em> also learns a line was dropped rather than silently missing it:</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Kind</th><th>Meaning</th></tr>
+    <tr><td><code>session</code></td><td>Process/run lifecycle: start, phase, world (the seed/scenario/save once play begins), quit.</td></tr>
+    <tr><td><code>input</code></td><td>One line per bound-key action &mdash; every keybind, discrete verbs only, no mouse motion/held keys/frames.</td></tr>
+    <tr><td><code>order</code></td><td>The player&rsquo;s standing click-order: issued/cleared, for move and attack.</td></tr>
+    <tr><td><code>stance</code></td><td>The squad&rsquo;s stance (hold/follow/aggressive, etc.).</td></tr>
+    <tr><td><code>drive</code></td><td>Which body you&rsquo;re driving &mdash; you, or a companion you&rsquo;ve taken the reins of.</td></tr>
+    <tr><td><code>recruit</code></td><td>A recruit attempt and, on refusal, the machine-readable reason id.</td></tr>
+    <tr><td><code>note</code></td><td>Every line the player is shown in the note log.</td></tr>
+    <tr><td><code>chronicle</code></td><td>World history off the event bus that isn&rsquo;t one of the named families below.</td></tr>
+    <tr><td><code>sim</code></td><td>World-level edges: raids, famines, caravans, weather, the eclipse, dawn.</td></tr>
+    <tr><td><code>custody</code></td><td>Being captured, held, ransomed, released &mdash; and what happens around it.</td></tr>
+    <tr><td><code>ledger</code></td><td>Coin: levies, wages, taxes, bounties, trades, karma writes.</td></tr>
+    <tr><td><code>needs</code></td><td>The deprivation ladder (thirst/hunger rungs) and passing out / coming round.</td></tr>
+    <tr><td><code>save</code></td><td>A save was written &mdash; manual (F7) or autosave, told apart by path.</td></tr>
+    <tr><td><code>warn</code></td><td>Something non-fatal the journal itself wants the reader to know about.</td></tr>
+    <tr><td><code>error</code></td><td>Declared kind; no call site writes it in this build (see &sect;9).</td></tr>
+    <tr><td><code>perf</code></td><td>Frame-time health &mdash; slow-frame buckets and a one-minute summary.</td></tr>
+    <tr><td><code>mark</code></td><td>An F12 bug mark &mdash; see &sect;3.</td></tr>
+    <tr><td><code>combat</code></td><td>One line per resolved exchange (hit/blocked/dodged/crit/disarm/limb/wound/kill/assassinate).</td></tr>
+    <tr><td><code>alert</code></td><td>A standing condition&rsquo;s edges (raise/clear) &mdash; e.g. starving, wanted.</td></tr>
+    <tr><td><code>llm</code></td><td>Local-LLM dialogue/decision routing and fallbacks.</td></tr>
+    <tr><td><code>audio</code></td><td>The adaptive music director: state, cue, stinger.</td></tr>
+    <tr><td><code>speech</code></td><td>Unprompted NPC speech: bark, chain, chain_cut, enrich.</td></tr>
+    <tr><td><code>arc</code></td><td>A private NPC arc&rsquo;s stage changes (assigned, stage).</td></tr>
+  </table>
+  </div>
+
+  <h3 class="sub">A worked row</h3>
+  <p>An F12 mark, trimmed (a real one also carries <code>squad</code> and <code>nearby</code>):</p>
+  <pre><code>{"t":"2026-09-17T14:12:05.331","rt":581.31,"day":2,"hour":9.6,"speed":2,"v":"playtest-14f31 &middot; 53d7b7e","kind":"mark","ev":"bug","who":"","text":"","data":{"n":1,"frame":"20260917-140203_1_day2_09.60.png","recent":["move_issued","dawn","rung","bark"],"driving":"player","pos":[4321.0,8765.2,0],"camera":[4321.0,8765.2],"zoom":1.0,"interior":"playing","hud":{"thirst":62.0,"food":48.5,"hp":100.0,"coronas":340,"stamp":"playtest-14f31 &middot; 53d7b7e"}}}</code></pre>
+</section>
+
+<section class="rel" aria-labelledby="t3">
+  <h2 class="rel-h" id="t3">3. F12 &mdash; the mark</h2>
+  <p>Press <kbd>F12</kbd> the moment something looks wrong &mdash; not after you&rsquo;ve reacted to it, not after you&rsquo;ve closed the panel that showed it. F12 is read ahead of everything else that handles input, so it works on <strong>every screen</strong> and nothing in the game can eat the key first.</p>
+  <p>One press writes, in order:</p>
+  <ul class="rn">
+    <li>A <code>mark</code>/<code>bug</code> journal line &mdash; written <strong>first</strong>, and it carries the exact PNG file name in <code>data.frame</code>, plus <code>data.recent</code>: the <code>ev</code> ids of the last twenty journal lines before this one, so the mark carries its own immediate history.</li>
+    <li>A screenshot, saved beside the journal&rsquo;s own logs at <code>user://logs/marks/&lt;session-id&gt;_&lt;mark-number&gt;_day&lt;D&gt;_&lt;HH.MM&gt;.png</code>.</li>
+    <li>A toast in the note log confirming it: <code>Marked bug #N &mdash; frame saved.</code></li>
+  </ul>
+  <p>A report built from one mark&rsquo;s line and its PNG is self-contained &mdash; nothing else needs to be attached.</p>
+</section>
+
+<section class="rel" aria-labelledby="t4">
+  <h2 class="rel-h" id="t4">4. Launch flags</h2>
+  <p><code>--journal-echo</code> mirrors every journal line to the log as it&rsquo;s written, in addition to the file. What that means depends on what&rsquo;s attached to stdout:</p>
+  <ul class="rn">
+    <li><strong>A shipped build has no console.</strong> The exporter refuses to ship the console-wrapper exe. But Godot&rsquo;s file logger mirrors every print into <code>godot.log</code> regardless, so with <code>--journal-echo</code> the mirrored lines land in <code>user://logs/godot.log</code>, interleaved with the game&rsquo;s ordinary log prose &mdash; not in a visible window.</li>
+    <li><strong>A dev build run from a terminal</strong> shows the echoed lines live, as you&rsquo;d expect.</li>
+  </ul>
+  <p>Launch it, on each OS:</p>
+  <pre><code># Windows &mdash; from an existing terminal, or as a shortcut target
+cmd /c eclipsis.exe -- --journal-echo
+
+# macOS
+"/path/to/Eclipsis.app/Contents/MacOS/Eclipsis- The Shattered Expanse" -- --journal-echo
+
+# Linux
+./eclipsis.x86_64 -- --journal-echo</code></pre>
+  <p>The <code>--</code> matters: Godot claims everything before it for the engine itself and would refuse an unknown flag; everything after it reaches the game.</p>
+  <p><strong>Every other flag the game reads at launch:</strong></p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Flag</th><th>What it does</th></tr>
+    <tr><td><code>--journal-echo</code></td><td>Mirrors every journal line to the log (see above).</td></tr>
+    <tr><td><code>--seed &lt;n&gt;</code></td><td>Arms the seed the <strong>next new world</strong> is built from (hex or decimal). Does not affect a loaded save.</td></tr>
+    <tr><td><code>--screenshot &lt;path&gt;</code></td><td>Renders, saves one PNG to <code>&lt;path&gt;</code>, and quits &mdash; for driving the game somewhere with no screen-recording permission.</td></tr>
+    <tr><td><code>--screenshot-after &lt;n&gt;</code></td><td>Frames to wait before that screenshot (default 120, ~2s at 60fps) &mdash; lets the title fade and the world generate first.</td></tr>
+    <tr><td><code>--cinematic</code></td><td>Starts with the HUD hidden &mdash; same as pressing F10 or typing <code>hud off</code> at the console, but from launch.</td></tr>
+  </table>
+  </div>
+  <p><code>--scenario</code> is <strong>not</strong> a flag the shipped game reads &mdash; it only exists as an argument to one dev probe tool. To apply a start scenario to a <em>running</em> game, use the console&rsquo;s <code>scenario &lt;id&gt;</code> (&sect;6).</p>
+</section>
+
+<section class="rel" aria-labelledby="t5">
+  <h2 class="rel-h" id="t5">5. Reading the file</h2>
+  <p>Three copy-paste filters. Substitute your own journal path (&sect;2).</p>
+  <p><strong>PowerShell &mdash; list rows of one kind</strong> (e.g. every <code>alert</code>):</p>
+  <pre><code>Get-Content "$env:APPDATA\Eclipsis\logs\journal.jsonl" |
+  ForEach-Object { $_ | ConvertFrom-Json } |
+  Where-Object { $_.kind -eq 'alert' }</code></pre>
+  <p><strong>Python &mdash; the same, one kind at a time:</strong></p>
+  <pre><code>python -c "import json,sys
+kind = sys.argv[2]
+for line in open(sys.argv[1]):
+    d = json.loads(line)
+    if d.get('kind') == kind:
+        print(line.rstrip())
+" "$APPDATA/Eclipsis/logs/journal.jsonl" alert</code></pre>
+  <p><strong>grep &mdash; every line mentioning a body by name</strong> (works because <code>who</code>, and most <code>data</code> values, are plain strings &mdash; no JSON parsing needed for a quick look):</p>
+  <pre><code>grep '"Merrow"' "$APPDATA/Eclipsis/logs/journal.jsonl"</code></pre>
+  <p><strong>Lining a mark up with what led to it.</strong> A mark&rsquo;s own line already carries <code>data.recent</code> &mdash; the <code>ev</code> ids of the twenty lines just before it &mdash; so you often don&rsquo;t need the file at all. To see the <em>actual</em> lines (not just their names), find the mark by its frame name (which is unique) and take the handful of lines before it:</p>
+  <pre><code>$lines = Get-Content "$env:APPDATA\Eclipsis\logs\journal.jsonl"
+$i = ($lines | Select-String -SimpleMatch '"frame":"20260917-140203_1_day2_09.60.png"').LineNumber
+$lines[($i-21)..($i-1)]</code></pre>
+</section>
+
+<section class="rel" aria-labelledby="t6">
+  <h2 class="rel-h" id="t6">6. The dev console</h2>
+  <p>Open it with the backtick key (<kbd>`</kbd>, remappable). The world <strong>pauses</strong> while it is up. Enter runs the line and leaves the answer on the console; backtick, Esc, or Enter on an empty line closes it. Every command lists what it accepts with <code>&lt;cmd&gt; ?</code>, and Tab completes.</p>
+  <p>The five verbs a tester reaches for most, for reproducing and narrating a run:</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Verb</th><th>Use</th></tr>
+    <tr><td><code>tp &lt;city&gt;</code> / <code>tp &lt;x&gt; &lt;y&gt;</code></td><td>Jump straight to where something is happening, instead of walking there.</td></tr>
+    <tr><td><code>seed &lt;n&gt;</code></td><td>Arm the seed the next New Game builds from, so a bug tied to a world can be handed back exactly.</td></tr>
+    <tr><td><code>time &lt;hour&gt;</code></td><td>Set the clock, to reach a day/night state on demand.</td></tr>
+    <tr><td><code>music</code></td><td>Reports the adaptive score&rsquo;s actual state (cue, stems, mute) &mdash; the one system whose state is otherwise inaudible as a fact.</td></tr>
+    <tr><td><code>voices</code></td><td>Reports the last NPC line spoken and why it was (or wasn&rsquo;t) heard &mdash; same idea, for speech.</td></tr>
+  </table>
+  </div>
+</section>
+
+<section class="rel" aria-labelledby="t7">
+  <h2 class="rel-h" id="t7">7. Saves and profiles</h2>
+  <p><strong>Where saves live.</strong> Same <code>user://</code> root as the journal (&sect;2): <code>&lt;data path&gt;/Eclipsis/eclipsis_*.json</code>. The files:</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>File</th><th>What</th></tr>
+    <tr><td><code>eclipsis_save.json</code></td><td>The F7/F8 quick-save slot.</td></tr>
+    <tr><td><code>eclipsis_autosave.json</code></td><td>Written <strong>each dawn</strong>, and on quit.</td></tr>
+    <tr><td><code>eclipsis_slot_1.json</code> &hellip; <code>eclipsis_slot_3.json</code></td><td>The three named slots from the save/load screen.</td></tr>
+    <tr><td><code>eclipsis_soak_save.json</code></td><td>Only present if a headless soak test aged a world into it &mdash; not something normal play writes.</td></tr>
+  </table>
+  </div>
+  <p><strong>Autosave cadence:</strong> at every in-world dawn, and once more on quit.</p>
+  <p><strong>Driving a build by hand for testing is not running the check suites</strong> &mdash; the suites sandbox their own data folder and restore your real profile byte-for-byte; you, playing normally, are on the real profile, same as any player.</p>
+  <p><strong>Loading an older playtest save is supported</strong>, but only forward from whichever builds the <em>current release&rsquo;s</em> notes say carry forward &mdash; each release on the playtest repo states this explicitly, e.g. this build&rsquo;s notes read &ldquo;Your 14f27 through 14f30 saves load. Nothing here touches the world&rsquo;s dice.&rdquo; Check the notes for the build you&rsquo;re on rather than assuming an arbitrary old save will open.</p>
+</section>
+
+<section class="rel" aria-labelledby="t8">
+  <h2 class="rel-h" id="t8">8. Reporting</h2>
+  <p>Every report should carry:</p>
+  <ul class="rn">
+    <li><strong>The version string</strong> (&sect;1) &mdash; quoted exactly, from the title screen, HUD or <code>godot.log</code>.</li>
+    <li><strong>The seed</strong> &mdash; off the <code>session/world</code> journal line (<code>data.seed</code>), or from what you typed at <code>seed &lt;n&gt;</code> if you armed one yourself.</li>
+    <li><strong>What you did</strong> &mdash; the order/input rows in the journal in the run-up to the problem (or just <code>data.recent</code> off the mark itself, &sect;2&ndash;3).</li>
+    <li><strong>The mark&rsquo;s PNG</strong> &mdash; press F12 at the moment, attach the file it names.</li>
+    <li><strong>The journal file itself</strong> &mdash; the dated <code>journal_&lt;session-id&gt;.jsonl</code>, or the fixed <code>journal.jsonl</code> if that&rsquo;s what you were tailing.</li>
+  </ul>
+  <p><strong>Where to file:</strong> Issues on <a href="https://github.com/dlarseninclusive/eclipsis-playtest/issues/new/choose">the playtest repo</a>. A plain paragraph with the five items above is the whole shape &mdash; nothing more is expected.</p>
+</section>
+
+<section class="rel" aria-labelledby="t9">
+  <h2 class="rel-h" id="t9">9. What is not there yet</h2>
+  <ul class="rn">
+    <li><strong>No viewer.</strong> The journal is a flat JSONL file and nothing more &mdash; there is no in-game or standalone tool that renders it as a timeline. The file is the tool; read it with the filters in &sect;5.</li>
+    <li><strong>No NPC decision rows for named bodies, yet</strong> in earlier builds &mdash; a body&rsquo;s utility-AI choice (flee / seek / avoid / hunt) wasn&rsquo;t journalled independent of what it did on screen. This build, 14f31, is the one that adds it: named bodies now write a row each time they pick a goal.</li>
+    <li><strong><code>error</code> is a declared kind with no call site currently writing it</strong> &mdash; reserved, but nothing in the codebase logs under it today.</li>
+    <li><strong>No way to filter the journal in-engine.</strong> <code>--journal-echo</code> mirrors <em>everything</em>; there&rsquo;s no launch flag or console verb to echo only one kind.</li>
+  </ul>
+</section>
+
+</div>
+
+<p class="backlink" style="padding:10px 0 40px"><a href="./">&#8249; Back to downloads</a></p>
+
+</main>
+
+<footer class="wrap">
+  <p>Eclipsis: The Shattered Expanse &mdash; &copy; 2026 Dave Larsen. All rights reserved.</p>
+  <p>No tracking, no analytics, no cookies, no external requests. This page is one file.</p>
+</footer>
+
+</body>
+</html>
