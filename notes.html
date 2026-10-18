@@ -257,7 +257,7 @@
     <h1 class="title" style="font-size:clamp(30px,6vw,58px)">RELEASE NOTES</h1>
     <p class="subtitle">Eclipsis &middot; The Shattered Expanse</p>
     <div class="rule-orn"></div>
-    <p class="kicker">Newest first &middot; Playtest 14f34 back to Playtest 1</p>
+    <p class="kicker">Newest first &middot; Playtest 14f36 back to Playtest 1</p>
   </div>
 </header>
 
@@ -266,6 +266,56 @@
 <p class="backlink" style="padding-top:26px"><a href="./">&#8249; Back to downloads</a> &middot; <a href="testing.html">How to test &#8250;</a></p>
 
 <div class="col">
+<section class="rel" aria-labelledby="pt14f36">
+  <h2 class="rel-h" id="pt14f36">Playtest 14f36 &mdash; the world, watched</h2>
+  <p class="rel-date">Released 2026-10-18</p>
+  <p class="rel-lede">The world, watched. For the first time the game was left running with nobody in it &mdash; six worlds, a month of game time each &mdash; and then played by five scripted players: a trader, a shopkeeper, a contractor, an outlaw and a settler. They play through the same buttons you do. This build fixes what they found. (14f35 was built but never released; everything in it is here.)</p>
+
+  <h3 class="sub">The world</h3>
+  <ul class="rn">
+    <li><strong>Patrols no longer fight forever.</strong> A patrol and a party it caught could trade blows for days with nobody dying (one world logged 12,695 such fights). Knocked-down escorts get back up, and a leader with no escort left takes the blows.</li>
+    <li><strong>Caravans stop starving the map.</strong> A blockaded town is skipped and the next one fed, instead of no wagon leaving at all. Relief convoys count against the caravan limit.</li>
+    <li><strong>Nothing gets stuck on walls.</strong> Roads used to cut through town corners in nearly every world; they now keep clear of walls, and wagons and travellers that do get pinned detour round or turn back.</li>
+    <li><strong>Travellers arrive, not die.</strong> A party reaching its town used to be counted as dead and left corpses and loot behind. Now they simply arrive.</li>
+    <li><strong>Towns rehire guards</strong> &mdash; one per dawn, for coin and a soul, never while besieged or starving.</li>
+    <li><strong>Sieges are real.</strong> A town must be visibly besieged before it can fall.</li>
+  </ul>
+
+  <h3 class="sub">Money</h3>
+  <ul class="rn">
+    <li><strong>Making things is where value comes from.</strong> Every recipe now yields more than its ingredients would sell for (some make two). You can bake bread to sell.</li>
+    <li><strong>Trading pays, with effort.</strong> Goods sell back at 60% of their price, towns that need a good pay more for it, and a counter that stocks a good never buys it back at its own price. A careful route makes money; a careless one doesn&rsquo;t. An exploit that let you buy and sell the same good at the same price at allied counters is closed.</li>
+    <li><strong>Water and salt are produced.</strong> Three towns make water and two make salt, so grocers stop running dry.</li>
+    <li><strong>The bakery start is playable.</strong> Wages come out of the day&rsquo;s takings first, the protection money is first due on day 4, and you can empty your own till.</li>
+    <li><strong>Machine factions earn their keep</strong> from what they produce, instead of going broke around day 30.</li>
+  </ul>
+
+  <h3 class="sub">Crime and raids</h3>
+  <ul class="rn">
+    <li><strong>Murder is a crime.</strong> A witnessed killing is booked as murder; guards nearby turn on you and stay hostile while you&rsquo;re wanted; a body found in town gets reported. Bounty hunters spawn close and follow you through fast travel.</li>
+    <li><strong>A knocked-out body can be robbed</strong> &mdash; quietly, or as theft if someone sees.</li>
+    <li><strong>Raids are paced by the game clock.</strong> No raid until two days after your fourth building, then more often and bigger as the settlement grows. (The old timer ran on real seconds and raided far too often.)</li>
+    <li><strong>You can only build within reach.</strong></li>
+  </ul>
+
+  <h3 class="sub">Your notes from 14f34</h3>
+  <ul class="rn">
+    <li><strong>Roads layer by size</strong> &mdash; side roads and trails sit under main roads.</li>
+    <li><strong>Trade shows its numbers.</strong> Hover any row for the full item card and a comparison against what you&rsquo;re wearing; goods show their real names.</li>
+    <li><strong>Every item has its own icon</strong> &mdash; all 118, in the pack and at the trade counter.</li>
+  </ul>
+
+  <h3 class="sub">Also</h3>
+  <ul class="rn">
+    <li><strong>Weapons hit as hard as their data says</strong> &mdash; the damage multiplier was ignored in combat. Heavy weapons land their weight (Regent&rsquo;s Greatsword 42 &rarr; 80 ATK); your Rusty Sword is a little stronger too.</li>
+    <li><strong>A long session no longer kills the journal</strong> around the 20 MB mark.</li>
+  </ul>
+
+  <p class="rel-lede"><strong>Saves.</strong> Older saves have not been tested against this build; if one fails to load, tell us.</p>
+
+  <p class="rel-date">Build <code>playtest-14f36 &middot; b43416b</code> &middot; <a href="https://github.com/dlarseninclusive/eclipsis-playtest/releases/tag/playtest-14f36">release and downloads</a><br>sha256 &middot; windows.zip <code>767ff3db8636250daa0792a6a4153dda3a0b9df6e802aaa69579b7cb0348ef5d</code><br>&middot; macos.zip <code>a7def4938911988df69b14ac8c33d2875bedfe11851268d39b7ea5ffc9636243</code><br>&middot; linux.tar.gz <code>a695ab2c8975164c72dfd05bef61f81fc0b262a643f8d5664ce600be2b81b7a7</code></p>
+</section>
+
 <section class="rel" aria-labelledby="pt14f34">
   <h2 class="rel-h" id="pt14f34">Playtest 14f34 &mdash; a door that proves itself, and a roof without the sliver</h2>
   <p class="rel-date">Released 2026-10-12</p>
