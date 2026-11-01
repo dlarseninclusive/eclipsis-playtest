@@ -15,6 +15,15 @@ This repository hosts the **public playtest builds** for Windows and Linux.
 - **[The playtest procedure](https://dlarseninclusive.github.io/eclipsis-playtest/playtest.html)** — what to try, the in-game console, and how to report what you find.
 - **[Release notes](https://dlarseninclusive.github.io/eclipsis-playtest/notes.html)** — what changed in every build, newest first.
 
+## Adding a devlog post
+
+The devlog is one file, `devlog.html`, a dated feed with the newest entry first. Each entry is one
+`<section class="rel">` block. To add a daily post, copy the existing `Daily post` block, put it above the
+newest entry, and change the date (in the `rel-date` line and the two `p2026-..` ids), the title, the
+one-line summary and the bullet list. A video rollup is the same block with `Video rollup` in the date line,
+plus a page at `devlog/N.html` (copy `devlog/1.html`) and its YouTube link. Link new posts only to things that
+have shipped; mark anything not shipped as coming, in its own post when it ships.
+
 ## Found a bug?
 
 [File it on the issue tracker](https://github.com/dlarseninclusive/eclipsis-playtest/issues) —
